@@ -1,0 +1,132 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Entity;
+
+import java.util.Date;
+
+/**
+ *
+ * @author hero
+ */
+public class Evenement{
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private String imageEve;
+    private Integer vue;
+    private int nbplaces;
+    private Date dateEvenement;
+    private String titre;
+    private String description;
+    private String titreCordination;
+
+    public Evenement() {
+    }
+
+    public Evenement(Integer id, int nbplaces, String titre, String description, String titreCordination) {
+        this.id = id;
+        this.nbplaces = nbplaces;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
+    }
+    
+    public Evenement(int nbplaces, String titre, String description, String titreCordination) {
+        this.nbplaces = nbplaces;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImageEve() {
+        return imageEve;
+    }
+
+    public void setImageEve(String imageEve) {
+        this.imageEve = imageEve;
+    }
+
+    public Integer getVue() {
+        return vue;
+    }
+
+    public void setVue(Integer vue) {
+        this.vue = vue;
+    }
+
+    public int getNbplaces() {
+        return nbplaces;
+    }
+
+    public void setNbplaces(int nbplaces) {
+        this.nbplaces = nbplaces;
+    }
+
+    public Date getDateEvenement() {
+        return dateEvenement;
+    }
+
+    public void setDateEvenement(Date dateEvenement) {
+        this.dateEvenement = dateEvenement;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTitreCordination() {
+        return titreCordination;
+    }
+
+    public void setTitreCordination(String titreCordination) {
+        this.titreCordination = titreCordination;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Evenement)) {
+            return false;
+        }
+        Evenement other = (Evenement) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Entity.Evenement[ id=" + id + " ]";
+    }
+    
+}

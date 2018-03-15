@@ -5,12 +5,14 @@
  */
 package Service;
 
+import Core.DataSource;
 import IService.ISignalerService;
+import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
 public class SignalerService implements ISignalerService {
-    
+    private Connection con = DataSource.getInstance().getCon();
 }

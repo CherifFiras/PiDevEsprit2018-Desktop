@@ -5,12 +5,14 @@
  */
 package Service;
 
+import Core.DataSource;
 import IService.ICentreInteretService;
+import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
 public class CentreInteretService implements ICentreInteretService {
-    
+    private Connection con = DataSource.getInstance().getCon();
 }

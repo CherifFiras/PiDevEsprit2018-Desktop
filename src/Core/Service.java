@@ -23,6 +23,9 @@ public class Service {
     private IRelationService relationService;
     private IScolariteService scolariteService;
     private ISignalerService signalerService;
+    private IEvenementService evenementService;
+    private IAvisEvenementService avisEvenementService;
+    private IParticipationService participationService;
     private Service()
     {
         
@@ -95,5 +98,26 @@ public class Service {
         if(signalerService == null)
             signalerService = new SignalerService();
         return signalerService;
+    }
+    
+    public IEvenementService getEvenementService()
+    {
+        if(evenementService == null)
+            evenementService = new EvenementService();
+        return evenementService;
+    }
+    
+    public IParticipationService getParticipationService()
+    {
+        if(participationService == null)
+            participationService = new ParticipationService();
+        return participationService;
+    }
+    
+    public IAvisEvenementService getAvisEvenementService()
+    {
+        if(avisEvenementService == null)
+            avisEvenementService = new AvisEvenementService();
+        return avisEvenementService;
     }
 }

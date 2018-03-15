@@ -5,12 +5,14 @@
  */
 package Service;
 
+import Core.DataSource;
 import IService.IDemandeService;
+import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
 public class DemandeService implements IDemandeService{
-    
+    private Connection con = DataSource.getInstance().getCon();
 }

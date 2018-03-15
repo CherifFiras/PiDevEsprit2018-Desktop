@@ -5,12 +5,14 @@
  */
 package Service;
 
+import Core.DataSource;
 import IService.IMessageService;
+import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
 public class MessageService implements IMessageService {
-    
+    private Connection con = DataSource.getInstance().getCon();
 }

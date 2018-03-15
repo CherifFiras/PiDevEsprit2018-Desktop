@@ -5,12 +5,14 @@
  */
 package Service;
 
+import Core.DataSource;
 import IService.IScolariteService;
+import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
 public class ScolariteService implements IScolariteService {
-    
+    private Connection con = DataSource.getInstance().getCon();
 }
