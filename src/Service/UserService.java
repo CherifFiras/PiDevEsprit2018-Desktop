@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.logging.Logger;
  */
 public class UserService implements IUserService {
     private Connection con = DataSource.getInstance().getCon();
+    private Statement ste;
 
     @Override
     public List<User> searchResult(int id, Date datemin, Date datemax, String gender, List<String> occupation, List<String> religion, List<String> pays, 
@@ -133,4 +135,138 @@ public class UserService implements IUserService {
         t=t.replaceFirst(",","");
         return t;
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        String req = "SELECT * FROM user";
+        ResultSet rs= null;
+        try {
+            rs = ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<User> users = new ArrayList<>();
+        try {
+            while (rs.next()){
+                users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getBoolean("enabled"), rs.getString("salt"), rs.getDate("lastLogin"), rs.getString("roles"), rs.getString("nom"), rs.getString("prenom"), rs.getDate("dateNaissance"), rs.getString("genre"), rs.getString("pays"), rs.getString("region"), rs.getString("ville"), rs.getString("tel"), rs.getString("placeNaiss"), rs.getString("religion"), rs.getString("apropos"), rs.getString("facebook"), rs.getString("twitter"), rs.getString("instagram"), rs.getString("image"), rs.getDate("updatedAt"), rs.getString("occupation")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return users;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        String req = "SELECT * FROM user where id=?";
+        ResultSet rs= null;
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            rs = ps.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        User u = null;
+        try {
+            while (rs.next()){
+                u = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getBoolean("enabled"), rs.getString("salt"), rs.getDate("lastLogin"), rs.getString("roles"), rs.getString("nom"), rs.getString("prenom"), rs.getDate("dateNaissance"), rs.getString("genre"), rs.getString("pays"), rs.getString("region"), rs.getString("ville"), rs.getString("tel"), rs.getString("placeNaiss"), rs.getString("religion"), rs.getString("apropos"), rs.getString("facebook"), rs.getString("twitter"), rs.getString("instagram"), rs.getString("image"), rs.getDate("updatedAt"), rs.getString("occupation"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
+
+    @Override
+    public int countUsers() {
+        String req = "SELECT count(*) as cu FROM user where role not like %ROLE_SUPER_ADMIN%";
+        ResultSet rs= null;
+        try {
+            rs = ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int cu = 0;
+        try {
+            while (rs.next()){
+                cu = rs.getInt("cu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cu;
+    }
+
+    @Override
+    public int countActifUsers() {
+        String req = "SELECT COUNT(*) FROM user u WHERE DATE_ADD(u.last_login, INTERVAL 7 DAY)>= now() and role not like %ROLE_SUPER_ADMIN%";
+        ResultSet rs= null;
+        try {
+            rs = ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int cu = 0;
+        try {
+            while (rs.next()){
+                cu = rs.getInt("cu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cu;
+    }
+
+    @Override
+    public int countInactifUsers() {
+        String req = "SELECT COUNT(*) FROM user u WHERE DATE_ADD(u.last_login, INTERVAL 7 DAY)< now() and role not like %ROLE_SUPER_ADMIN%";
+        ResultSet rs= null;
+        try {
+            rs = ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int cu = 0;
+        try {
+            while (rs.next()){
+                cu = rs.getInt("cu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cu;
+    }
+
+    @Override
+    public List<User> getSuggestionUsers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<User> getBlockedUsers() {
+        String req = "SELECT * FROM user where enabled != 1 and role not like %ROLE_SUPER_ADMIN%";
+        ResultSet rs= null;
+        try {
+            rs = ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<User> users = new ArrayList<>();
+        try {
+            while (rs.next()){
+                users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getBoolean("enabled"), rs.getString("salt"), rs.getDate("lastLogin"), rs.getString("roles"), rs.getString("nom"), rs.getString("prenom"), rs.getDate("dateNaissance"), rs.getString("genre"), rs.getString("pays"), rs.getString("region"), rs.getString("ville"), rs.getString("tel"), rs.getString("placeNaiss"), rs.getString("religion"), rs.getString("apropos"), rs.getString("facebook"), rs.getString("twitter"), rs.getString("instagram"), rs.getString("image"), rs.getDate("updatedAt"), rs.getString("occupation")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return users;
+    }
+
+    @Override
+    public void modifierUser(User u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

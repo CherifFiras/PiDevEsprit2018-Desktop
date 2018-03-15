@@ -5,7 +5,7 @@
  */
 package IService;
 
-import Entity.Loisir;
+import Entity.Album;
 import Entity.User;
 import java.util.List;
 
@@ -13,14 +13,11 @@ import java.util.List;
  *
  * @author Achrafoun
  */
-public interface ILoisirService {
+public interface IAlbumService {
     
-    public List<Loisir> getAllLoisirsByUser(User u);
+    public List<Album> getPhotosByUser(User u);
     
-    public void ajouterLoisir(Loisir l);
+    public void ajouterPhoto(Album a);
     
-    public void modifierLoisir(Loisir l);
-    
-    public void supprimerLoisir(Loisir l);
-    
+    public void supprimerPhoto(Album a);
 }

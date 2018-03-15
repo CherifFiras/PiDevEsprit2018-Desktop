@@ -10,7 +10,6 @@ package Entity;
  *
  * @author Achrafoun
  */
-
 public class Emploi {
 
     private Integer id;

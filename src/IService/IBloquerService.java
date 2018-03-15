@@ -5,17 +5,15 @@
  */
 package IService;
 
-import Entity.Signaler;
 import Entity.User;
-import java.util.List;
 
 /**
  *
  * @author Achrafoun
  */
-public interface ISignalerService {
+public interface IBloquerService {
     
-    public List<Signaler> getSignaledUsers();
+    public void bloquerUser(User u);
     
-    public void ajouterSignal(User u);
+    public void debloquerUser(User u);
 }

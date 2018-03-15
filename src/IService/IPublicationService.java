@@ -5,7 +5,7 @@
  */
 package IService;
 
-import Entity.Loisir;
+import Entity.Publication;
 import Entity.User;
 import java.util.List;
 
@@ -13,14 +13,13 @@ import java.util.List;
  *
  * @author Achrafoun
  */
-public interface ILoisirService {
+public interface IPublicationService {
     
-    public List<Loisir> getAllLoisirsByUser(User u);
+    public List<Publication> getPublicationByUser(User u);
     
-    public void ajouterLoisir(Loisir l);
+    public void ajouterPublication(Publication p);
     
-    public void modifierLoisir(Loisir l);
+    public void modifierPublication(Publication p);
     
-    public void supprimerLoisir(Loisir l);
-    
+    public void supprimerPublication(Publication p);
 }
