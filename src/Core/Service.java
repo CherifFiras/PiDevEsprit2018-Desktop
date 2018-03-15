@@ -26,6 +26,10 @@ public class Service {
     private IEvenementService evenementService;
     private IAvisEvenementService avisEvenementService;
     private IParticipationService participationService;
+    private IEspaceService espaceService;
+    private IEspaceCopyService espaceCopyService;
+    private IAvisEspaceService avisEspaceService;
+    private IPhotoEspaceService photoEspaceService;
     private Service()
     {
         
@@ -119,5 +123,33 @@ public class Service {
         if(avisEvenementService == null)
             avisEvenementService = new AvisEvenementService();
         return avisEvenementService;
+    }
+    
+    public IEspaceService getEspaceService()
+    {
+        if(espaceService == null)
+            espaceService = new EspaceService();
+        return espaceService;
+    }
+    
+    public IEspaceCopyService getEspaceCopyService()
+    {
+        if(espaceCopyService == null)
+            espaceCopyService = new EspaceCopyService();
+        return espaceCopyService;
+    }
+    
+    public IAvisEspaceService getAvisEspaceService()
+    {
+        if(avisEspaceService == null)
+            avisEspaceService = new AvisEspaceService();
+        return avisEspaceService;
+    }
+    
+    public IPhotoEspaceService getPhotoEspaceService()
+    {
+        if(photoEspaceService == null)
+            photoEspaceService = new PhotoEspaceService();
+        return photoEspaceService;
     }
 }

@@ -25,15 +25,21 @@ public class AvisEvenement{
     public AvisEvenement() {
     }
 
-    public AvisEvenement(Integer id) {
-        this.id = id;
+    public AvisEvenement(String contenu, Date dateAvis, short valeur,int idEvenement,int idUser) {
+        this.contenu = contenu;
+        this.dateAvis = dateAvis;
+        this.valeur = valeur;
+        this.idEvenement = idEvenement;
+        this.idUser = idUser;
     }
 
-    public AvisEvenement(Integer id, String contenu, Date dateAvis, short valeur) {
+    public AvisEvenement(Integer id, String contenu, Date dateAvis, short valeur,int idEvenement,int idUser) {
         this.id = id;
         this.contenu = contenu;
         this.dateAvis = dateAvis;
         this.valeur = valeur;
+        this.idEvenement = idEvenement;
+        this.idUser = idUser;
     }
 
     public Integer getId() {
