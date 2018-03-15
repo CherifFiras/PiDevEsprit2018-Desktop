@@ -12,10 +12,8 @@ import java.util.Date;
  * @author hero
  */
 public class Evenement{
-    private static final long serialVersionUID = 1L;
     private Integer id;
     private String imageEve;
-    private Integer vue;
     private int nbplaces;
     private Date dateEvenement;
     private String titre;
@@ -25,20 +23,27 @@ public class Evenement{
     public Evenement() {
     }
 
-    public Evenement(Integer id, int nbplaces, String titre, String description, String titreCordination) {
+    public Evenement(Integer id, String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
         this.id = id;
+        this.imageEve = imageEve;
         this.nbplaces = nbplaces;
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
+    }
+
+   
+    public Evenement(String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
+        this.imageEve = imageEve;
+        this.nbplaces = nbplaces;
+        this.dateEvenement = dateEvenement;
         this.titre = titre;
         this.description = description;
         this.titreCordination = titreCordination;
     }
     
-    public Evenement(int nbplaces, String titre, String description, String titreCordination) {
-        this.nbplaces = nbplaces;
-        this.titre = titre;
-        this.description = description;
-        this.titreCordination = titreCordination;
-    }
+    
 
     public Integer getId() {
         return id;
@@ -56,13 +61,6 @@ public class Evenement{
         this.imageEve = imageEve;
     }
 
-    public Integer getVue() {
-        return vue;
-    }
-
-    public void setVue(Integer vue) {
-        this.vue = vue;
-    }
 
     public int getNbplaces() {
         return nbplaces;
@@ -126,7 +124,9 @@ public class Evenement{
 
     @Override
     public String toString() {
-        return "Entity.Evenement[ id=" + id + " ]";
+        return "Evenement{" + "nbplaces=" + nbplaces + ", dateEvenement=" + dateEvenement + ", titre=" + titre + ", description=" + description + ", titreCordination=" + titreCordination + '}';
     }
+
+    
     
 }
