@@ -5,18 +5,14 @@
  */
 package Entity;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
  * @author hero
  */
 
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class User {
     private Integer id;
     private String username;
     private String usernameCanonical;
@@ -49,13 +45,23 @@ public class User implements Serializable {
 
     public User() {
     }
-
-    public User(Integer id) {
-        this.id = id;
-    }
-
+    
     public User(Integer id, String username, String usernameCanonical, String email, String emailCanonical, boolean enabled, String password, String roles, String nom, String prenom, Date dateNaissance, String genre) {
         this.id = id;
+        this.username = username;
+        this.usernameCanonical = usernameCanonical;
+        this.email = email;
+        this.emailCanonical = emailCanonical;
+        this.enabled = enabled;
+        this.password = password;
+        this.roles = roles;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.genre = genre;
+    }
+    
+    public User(String username, String usernameCanonical, String email, String emailCanonical, boolean enabled, String password, String roles, String nom, String prenom, Date dateNaissance, String genre) {
         this.username = username;
         this.usernameCanonical = usernameCanonical;
         this.email = email;
