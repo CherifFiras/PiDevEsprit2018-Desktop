@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.IRelationService;
+
 /**
  *
  * @author hero
  */
-public class RelationService {
+public class RelationService implements IRelationService{
     
 }

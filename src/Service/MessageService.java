@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.IMessageService;
+
 /**
  *
  * @author hero
  */
-public class MessageService {
+public class MessageService implements IMessageService {
     
 }

@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.ISignalerService;
+
 /**
  *
  * @author hero
  */
-public class SignalerService {
+public class SignalerService implements ISignalerService {
     
 }

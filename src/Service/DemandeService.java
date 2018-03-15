@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.IDemandeService;
+
 /**
  *
  * @author hero
  */
-public class DemandeService {
+public class DemandeService implements IDemandeService{
     
 }

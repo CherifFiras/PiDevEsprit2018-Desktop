@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.ILoisirService;
+
 /**
  *
  * @author hero
  */
-public class LoisirService {
+public class LoisirService implements ILoisirService {
     
 }

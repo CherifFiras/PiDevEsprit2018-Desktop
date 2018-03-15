@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.IScolariteService;
+
 /**
  *
  * @author hero
  */
-public class ScolariteService {
+public class ScolariteService implements IScolariteService {
     
 }

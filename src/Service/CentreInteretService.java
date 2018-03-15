@@ -5,10 +5,12 @@
  */
 package Service;
 
+import IService.ICentreInteretService;
+
 /**
  *
  * @author hero
  */
-public class CentreInteretService {
+public class CentreInteretService implements ICentreInteretService {
     
 }
