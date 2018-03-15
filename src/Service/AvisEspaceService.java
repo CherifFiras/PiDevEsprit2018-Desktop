@@ -6,13 +6,13 @@
 package Service;
 
 import Core.DataSource;
-import IService.ILoisirService;
+import IService.IAvisEspaceService;
 import java.sql.Connection;
 
 /**
  *
  * @author hero
  */
-public class LoisirService implements ILoisirService {
+public class AvisEspaceService implements IAvisEspaceService {
     private Connection con = DataSource.getInstance().getCon();
 }

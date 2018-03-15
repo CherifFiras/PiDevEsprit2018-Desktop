@@ -23,6 +23,13 @@ public class Service {
     private IRelationService relationService;
     private IScolariteService scolariteService;
     private ISignalerService signalerService;
+    private IEvenementService evenementService;
+    private IAvisEvenementService avisEvenementService;
+    private IParticipationService participationService;
+    private IEspaceService espaceService;
+    private IEspaceCopyService espaceCopyService;
+    private IAvisEspaceService avisEspaceService;
+    private IPhotoEspaceService photoEspaceService;
     private Service()
     {
         
@@ -95,5 +102,54 @@ public class Service {
         if(signalerService == null)
             signalerService = new SignalerService();
         return signalerService;
+    }
+    
+    public IEvenementService getEvenementService()
+    {
+        if(evenementService == null)
+            evenementService = new EvenementService();
+        return evenementService;
+    }
+    
+    public IParticipationService getParticipationService()
+    {
+        if(participationService == null)
+            participationService = new ParticipationService();
+        return participationService;
+    }
+    
+    public IAvisEvenementService getAvisEvenementService()
+    {
+        if(avisEvenementService == null)
+            avisEvenementService = new AvisEvenementService();
+        return avisEvenementService;
+    }
+    
+    public IEspaceService getEspaceService()
+    {
+        if(espaceService == null)
+            espaceService = new EspaceService();
+        return espaceService;
+    }
+    
+    public IEspaceCopyService getEspaceCopyService()
+    {
+        if(espaceCopyService == null)
+            espaceCopyService = new EspaceCopyService();
+        return espaceCopyService;
+    }
+    
+    public IAvisEspaceService getAvisEspaceService()
+    {
+        if(avisEspaceService == null)
+            avisEspaceService = new AvisEspaceService();
+        return avisEspaceService;
+    }
+    
+    public IPhotoEspaceService getPhotoEspaceService()
+    {
+        if(photoEspaceService == null)
+            photoEspaceService = new PhotoEspaceService();
+        return photoEspaceService;
     }
 }
