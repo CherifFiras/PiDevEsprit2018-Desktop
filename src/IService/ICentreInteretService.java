@@ -5,10 +5,27 @@
  */
 package IService;
 
+import Entity.CentreInteret;
+import Entity.User;
+import java.util.List;
+
 /**
  *
- * @author hero
+ * @author Achrafoun
  */
 public interface ICentreInteretService {
     
+    public List<CentreInteret> getFilmsByUser(User u);
+    
+    public List<CentreInteret> getSeriesByUser(User u);
+    
+    public List<CentreInteret> getArtistsByUser(User u);
+    
+    public List<CentreInteret> getLivresByUser(User u);
+    
+    public void ajouterCentreInteret(CentreInteret c,User u);
+    
+    public void modifierCentreInteret(CentreInteret c);
+    
+    public void supprimerCentreInteret(CentreInteret c);
 }

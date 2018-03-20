@@ -6,8 +6,18 @@
 package Service;
 
 import Core.DataSource;
+import Entity.Demande;
+import Entity.User;
 import IService.IDemandeService;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,4 +25,70 @@ import java.sql.Connection;
  */
 public class DemandeService implements IDemandeService{
     private Connection con = DataSource.getInstance().getCon();
+
+    @Override
+    public Demande insertDemande(Demande demande) {
+        try {
+            String query  = "insert into `demande` (`requester`,`acceptor`,`dateDemande`) Values (?,?,?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1,demande.getRequester().getId());
+            ps.setInt(2,demande.getAcceptor().getId());
+            ps.setDate(3, new Date(demande.getDateDemande().getTime()));
+            int id = ps.executeUpdate();
+            demande.setId(id);
+            return demande;
+        } catch (SQLException ex) {
+            Logger.getLogger(DemandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteDemande(Demande demande) {
+        try {
+            String query  = "delete from `demande` where id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1,demande.getId());
+            return ps.executeUpdate() > 0 ;
+        } catch (SQLException ex) {
+            Logger.getLogger(DemandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public List<Demande> getDemandesByUser(User user) {
+        try {
+            List<Demande> demandes = new ArrayList<>();
+            String query = "select * from demande where acceptor = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1,user.getId());
+            ResultSet rs = ps.executeQuery();
+            query = "select * from user where id = ?";
+            ps = con.prepareStatement(query);
+            while(rs.next())
+            {
+                User requester = new User();
+                ps.setInt(1, rs.getInt("requester"));
+                ResultSet rsu =  ps.executeQuery();
+                while(rsu.next())
+                {
+                    requester.setId(rsu.getInt("id"));
+                    requester.setUsername(rsu.getString("username"));
+                    requester.setNom(rsu.getString("nom"));
+                    requester.setPrenom(rsu.getString("prenom"));
+                    requester.setGenre(rsu.getString("genre"));
+                    requester.setPays(rsu.getString("pays"));
+                    requester.setDateNaissance(rsu.getDate("date_naissance"));
+                    requester.setOccupation(rsu.getString("occupation"));
+                }
+                Demande demande = new Demande(rs.getInt("id"), rs.getDate("dateDemande"), requester, user);
+                demandes.add(demande);
+            }
+            return demandes;
+        } catch (SQLException ex) {
+            Logger.getLogger(DemandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

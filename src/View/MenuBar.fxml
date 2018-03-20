@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<JFXToolbar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox prefHeight="50.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="50.0" prefWidth="70.0" text="Cherif Firas" />
+            <JFXComboBox prefHeight="50.0" prefWidth="180.0" />
+         </children>
+      </HBox>
+   </right>
+   <center>
+      <HBox prefHeight="50.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="50.0" prefWidth="56.0" text="Messages" />
+         </children>
+      </HBox>
+   </center>
+   <left>
+      <HBox prefHeight="50.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </left>
+</JFXToolbar>

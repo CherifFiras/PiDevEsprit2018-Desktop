@@ -75,6 +75,34 @@ public class User {
         this.genre = genre;
     }
 
+    public User(Integer id, String username, String email, boolean enabled, String salt, Date lastLogin, String roles, String nom, String prenom, Date dateNaissance, String genre, String pays, String region, String ville, String tel, String placeNaiss, String religion, String apropos, String facebook, String twitter, String instagram, String image, Date updatedAt, String occupation) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.enabled = enabled;
+        this.salt = salt;
+        this.lastLogin = lastLogin;
+        this.roles = roles;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.genre = genre;
+        this.pays = pays;
+        this.region = region;
+        this.ville = ville;
+        this.tel = tel;
+        this.placeNaiss = placeNaiss;
+        this.religion = religion;
+        this.apropos = apropos;
+        this.facebook = facebook;
+        this.twitter = twitter;
+        this.instagram = instagram;
+        this.image = image;
+        this.updatedAt = updatedAt;
+        this.occupation = occupation;
+    }
+        
+
     public Integer getId() {
         return id;
     }
@@ -330,7 +358,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User[ id=" + id + " ]";
+        return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", genre=" + genre + ", pays=" + pays + ", region=" + region + ", religion=" + religion + ", apropos=" + apropos + ", occupation=" + occupation + '}';
     }
+
+
     
 }

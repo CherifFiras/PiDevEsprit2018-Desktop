@@ -5,10 +5,17 @@
  */
 package IService;
 
+import Entity.Demande;
+import Entity.User;
+import java.util.List;
+
 /**
  *
  * @author hero
  */
 public interface IDemandeService {
     
+    public Demande insertDemande(Demande demande);
+    public boolean deleteDemande(Demande demande);
+    public List<Demande> getDemandesByUser(User user);
 }
