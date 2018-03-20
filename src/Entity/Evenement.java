@@ -32,6 +32,7 @@ public class Evenement{
         this.description = description;
         this.titreCordination = titreCordination;
     }
+    
 
    
     public Evenement(String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
@@ -42,6 +43,11 @@ public class Evenement{
         this.description = description;
         this.titreCordination = titreCordination;
     }
+
+    public Evenement(Integer id) {
+        this.id = id;
+    }
+
     
     
 

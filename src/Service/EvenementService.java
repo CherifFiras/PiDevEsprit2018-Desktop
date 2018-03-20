@@ -84,13 +84,39 @@ public class EvenementService implements IEvenementService {
         return null;
     }
 
-    @Override
-    public boolean deleteEvenement(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deleteEvenement(Evenement e) {
+        try {
+            Connection con = DataSource.getInstance().getCon();
+            String query="DELETE from evenement where id=?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, e.getId());
+            ps.executeUpdate();
+            System.out.println("Suppression avec Succés !");
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public boolean updateEvenement(Evenement e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "Update evenement set nbplaces=? , dateEvenement=?, titre=?, description=?, titreCordination=?";
+            PreparedStatement prs = con.prepareStatement(query);
+            prs.setInt(1, e.getNbplaces());
+            prs.setDate(2, new Date(e.getDateEvenement().getTime()));
+            prs.setString(3, e.getTitre());
+            prs.setString(4, e.getDescription());
+            prs.setString(5, e.getTitreCordination());
+            int id = prs.executeUpdate();
+            e.setId(id);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
+
+   
 }

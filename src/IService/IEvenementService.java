@@ -16,6 +16,6 @@ public interface IEvenementService {
     public Evenement getEvenementById(int id);
     public Evenement insertEvenement(Evenement e);
     public List<Evenement> getAll();
-    public boolean deleteEvenement(int id);
+    public boolean deleteEvenement(Evenement e);
     public boolean updateEvenement(Evenement e);
 }

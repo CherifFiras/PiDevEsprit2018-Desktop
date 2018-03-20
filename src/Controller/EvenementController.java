@@ -39,12 +39,27 @@ public class EvenementController extends Controller {
         Calendar c = Calendar.getInstance();
         c.set(2018, 03, 18);
         Date date = new Date(c.getTimeInMillis());
-        Evenement e = new Evenement("efezf", 100,date , "test", "description", "esprit");
+        Evenement e = new Evenement("efezf", 100, date , "test", "description", "esprit");
         evenementService.insertEvenement(e);
+    }
+    
+    public void updateEvenement()
+    {
+        Calendar c = Calendar.getInstance();
+        c.set(2019, 03, 18);
+        Date date = new Date(c.getTimeInMillis());
+        Evenement e = new Evenement("efezf", 100, date , "test", "description", "esprit");
+        evenementService.updateEvenement(e);
+    }
+    
+    public void deleteEvenement()
+    {
+        Evenement e = new Evenement(107);
+        evenementService.deleteEvenement(e);
     }
     public static void main(String[] Args)
     {
         EvenementController evenementController = new EvenementController();
-        evenementController.afficherEvenements();
+        evenementController.deleteEvenement();
     }
 }
