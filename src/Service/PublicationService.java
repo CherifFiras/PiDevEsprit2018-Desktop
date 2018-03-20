@@ -6,10 +6,11 @@
 package Service;
 
 import Core.DataSource;
-import Entity.Emploi;
+import Entity.Publication;
 import Entity.User;
-import IService.IEmploiService;
+import IService.IPublicationService;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,14 +21,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author hero
+ * @author Achrafoun
  */
-public class EmploiService implements IEmploiService {
+public class PublicationService implements IPublicationService{
     private Connection con = DataSource.getInstance().getCon();
 
     @Override
-    public List<Emploi> getAllEmploisByUser(User u) {
-        String req = "SELECT * FROM emploi where idUser=? orderby dateDebut asc";
+    public List<Publication> getPublicationByUser(User u) {
+        String req = "SELECT * FROM publication where idUser=? orderby datePublication desc";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
@@ -36,26 +37,28 @@ public class EmploiService implements IEmploiService {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<Emploi> e = new ArrayList<>();
+        List<Publication> p = new ArrayList<>();
         try {
             while (rs.next()){
-                e.add(new Emploi(rs.getInt("id"), rs.getString("contenu"), rs.getString("dateDebut"), rs.getString("dateFin"), (User) rs.getObject("idUser")));
+                p.add(new Publication(rs.getInt("id"), rs.getString("contenu"), rs.getDate("datePublication"), (User) rs.getObject("idUser")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return e;
+        return p;
     }
 
     @Override
-    public void ajouterEmploi(Emploi e, User u) {
+    public void ajouterPublication(Publication p) {
         try {
-            String req = "INSERT INTO centre_interet (contenu, dateDebut, dateFin, idUser) VALUES (?,?,?,?)";
+            String req = "INSERT INTO publication (contenu, datePublication, idUser) VALUES (?,?,?)";
             PreparedStatement pre = con.prepareStatement(req);
-            pre.setString(1, e.getContenu());
-            pre.setString(2, e.getDateDebut());
-            pre.setString(3, e.getDateFin());
-            pre.setInt(4, e.getId());
+            pre.setString(1, p.getContenu());
+            
+            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+            pre.setTimestamp(2, date);
+            
+            pre.setInt(3, p.getIdUser().getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,14 +66,16 @@ public class EmploiService implements IEmploiService {
     }
 
     @Override
-    public void modifierEmploi(Emploi e) {
+    public void modifierPublication(Publication p) {
         try {
-            String req = "update emploi set contenu=?, dateDebut=?, dateFin=? where idUser=? ";
+            String req = "update publication set contenu=?, datePublication=? where idUser=? ";
             PreparedStatement pre = con.prepareStatement(req);
-            pre.setString(1, e.getContenu());
-            pre.setString(2, e.getDateDebut());
-            pre.setString(3, e.getDateFin());
-            pre.setInt(4, e.getIdUser().getId());
+            pre.setString(1, p.getContenu());
+            
+            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+            pre.setTimestamp(2, date);
+            
+            pre.setInt(3, p.getIdUser().getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,14 +83,15 @@ public class EmploiService implements IEmploiService {
     }
 
     @Override
-    public void supprimerEmploi(Emploi e) {
+    public void supprimerPublication(Publication p) {
         try {
-            String req = "delete from emploi where id=? ";
+            String req = "delete from publication where id=? ";
             PreparedStatement pre = con.prepareStatement(req);
-            pre.setInt(1, e.getId());
+            pre.setInt(1, p.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

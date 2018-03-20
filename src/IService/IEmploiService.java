@@ -5,10 +5,21 @@
  */
 package IService;
 
+import Entity.Emploi;
+import Entity.User;
+import java.util.List;
+
 /**
  *
- * @author hero
+ * @author Achrafoun
  */
 public interface IEmploiService {
     
+    public List<Emploi> getAllEmploisByUser(User u);
+    
+    public void ajouterEmploi(Emploi e, User u);
+    
+    public void modifierEmploi(Emploi e);
+    
+    public void supprimerEmploi(Emploi e);
 }

@@ -5,10 +5,21 @@
  */
 package IService;
 
+import Entity.Scolarite;
+import Entity.User;
+import java.util.List;
+
 /**
  *
- * @author hero
+ * @author Achrafoun
  */
 public interface IScolariteService {
     
+    public List<Scolarite> getAllScolariteByUser(User u);
+    
+    public void ajouterScolarite(Scolarite e, User u);
+    
+    public void modifierScolarite(Scolarite e);
+    
+    public void supprimerScolarite(Scolarite e);
 }

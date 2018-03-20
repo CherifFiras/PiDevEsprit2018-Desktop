@@ -8,6 +8,10 @@ package Controller;
 import Core.Controller;
 import Entity.Evenement;
 import IService.IEvenementService;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  *
@@ -22,9 +26,25 @@ public class EvenementController extends Controller {
         System.out.println(e.getTitre());
     }
     
+    public void afficherEvenements()
+    {
+        List<Evenement> evenements = evenementService.getAll();
+        evenements.forEach((e) -> {
+            System.out.println(e);
+        });
+    }
+    
+    public void ajouterEvenement()
+    {
+        Calendar c = Calendar.getInstance();
+        c.set(2018, 03, 18);
+        Date date = new Date(c.getTimeInMillis());
+        Evenement e = new Evenement("efezf", 100,date , "test", "description", "esprit");
+        evenementService.insertEvenement(e);
+    }
     public static void main(String[] Args)
     {
         EvenementController evenementController = new EvenementController();
-        evenementController.getEvenement();
+        evenementController.afficherEvenements();
     }
 }
