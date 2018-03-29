@@ -7,6 +7,7 @@ package IService;
 
 import Entity.Evenement;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,7 +16,8 @@ import java.util.List;
 public interface IEvenementService {
     public Evenement getEvenementById(int id);
     public Evenement insertEvenement(Evenement e);
-    public List<Evenement> getAll();
-    public boolean deleteEvenement(Evenement e);
-    public boolean updateEvenement(Evenement e);
+    public ObservableList<Evenement> getAll();
+    public ObservableList<Evenement> getEv();
+    public boolean deleteEvenement(int ide);
+    public boolean updateEvenement(int id, String object, Object obj);
 }
