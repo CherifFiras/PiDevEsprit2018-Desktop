@@ -23,7 +23,7 @@ public class hajji extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/ramy.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/AfficherAdmin.fxml"));
         
         
        Scene scene = new Scene(root);
