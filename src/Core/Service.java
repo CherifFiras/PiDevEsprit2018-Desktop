@@ -30,6 +30,7 @@ public class Service {
     private IEspaceCopyService espaceCopyService;
     private IAvisEspaceService avisEspaceService;
     private IPhotoEspaceService photoEspaceService;
+    private INotificationService notificationService;
     private Service()
     {
         
@@ -151,5 +152,12 @@ public class Service {
         if(photoEspaceService == null)
             photoEspaceService = new PhotoEspaceService();
         return photoEspaceService;
+    }
+    
+    public INotificationService getNotificationService()
+    {
+        if(notificationService == null)
+            notificationService = new NotificationService();
+        return notificationService;
     }
 }

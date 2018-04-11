@@ -5,7 +5,10 @@
  */
 package Core;
 
+import APIs.ChatListener;
+import Controller.NotificationController;
 import Entity.User;
+import IService.IUserService;
 
 /**
  *
@@ -13,8 +16,10 @@ import Entity.User;
  */
 public class Controller {
     private static int userId;
-    private Service service = Service.getInstance();
-    protected static void setUserId(int id)
+    private static NotificationController notificationController;
+    private final Service service = Service.getInstance();
+    private final IUserService userService = service.getUserService();
+    public static void setUserId(int id)
     {
         if(id == 0) return ;
         Controller.userId = id ;
@@ -26,10 +31,19 @@ public class Controller {
     
     public User getUser()
     {
-        return new User();
+        return userService.getUserById(userId);
     }
     public Service getService()
     {
         return service;
     }
+    
+    public static NotificationController getNotificationController() {
+        return notificationController;
+    }
+
+    public static void setNotificationController(NotificationController notificationController) {
+        Controller.notificationController = notificationController;
+    }
+    
 }

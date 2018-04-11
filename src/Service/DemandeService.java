@@ -10,10 +10,10 @@ import Entity.Demande;
 import Entity.User;
 import IService.IDemandeService;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,7 +33,7 @@ public class DemandeService implements IDemandeService{
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1,demande.getRequester().getId());
             ps.setInt(2,demande.getAcceptor().getId());
-            ps.setDate(3, new Date(demande.getDateDemande().getTime()));
+            ps.setTimestamp(3, (Timestamp) demande.getDateDemande());
             int id = ps.executeUpdate();
             demande.setId(id);
             return demande;
@@ -46,9 +46,10 @@ public class DemandeService implements IDemandeService{
     @Override
     public boolean deleteDemande(Demande demande) {
         try {
-            String query  = "delete from `demande` where id = ?";
+            String query  = "delete from `demande` where (requester = ? AND acceptor = ?)";
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1,demande.getId());
+            ps.setInt(1,demande.getRequester().getId());
+            ps.setInt(2, demande.getAcceptor().getId());
             return ps.executeUpdate() > 0 ;
         } catch (SQLException ex) {
             Logger.getLogger(DemandeService.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,5 +91,26 @@ public class DemandeService implements IDemandeService{
             Logger.getLogger(DemandeService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public boolean checkDemande(User cUser, User oUser) {
+        String query="SELECT * FROM demande where (requester in (?,?) AND acceptor in (?,?))";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, cUser.getId());
+            ps.setInt(2, oUser.getId());
+            ps.setInt(3, cUser.getId());
+            ps.setInt(4, oUser.getId());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                rs.close();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RelationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
