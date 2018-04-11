@@ -8,6 +8,8 @@ package Service;
 import Core.DataSource;
 import IService.IMessageService;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,4 +17,5 @@ import java.sql.Connection;
  */
 public class MessageService implements IMessageService {
     private Connection con = DataSource.getInstance().getCon();
+    
 }

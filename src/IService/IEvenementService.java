@@ -19,5 +19,8 @@ public interface IEvenementService {
     public ObservableList<Evenement> getAll();
     public ObservableList<Evenement> getEv();
     public boolean deleteEvenement(int ide);
-    public boolean updateEvenement(int id, String object, Object obj);
+    public void updateEvenement(Evenement e, int id);
+//    public int statistique();
+
+   
 }

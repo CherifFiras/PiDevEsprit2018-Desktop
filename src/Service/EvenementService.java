@@ -9,10 +9,12 @@ import Core.DataSource;
 import Entity.Evenement;
 import IService.IEvenementService;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -77,7 +79,8 @@ public class EvenementService implements IEvenementService {
             ResultSet rs = ste.executeQuery(query);
             ObservableList<Evenement> evenements = FXCollections.observableArrayList();
             while (rs.next()) {
-                evenements.add(new Evenement(rs.getInt("id"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination")));
+                evenements.add(new Evenement(rs.getInt("id"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"),
+                            rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination")));
 
             }
             return evenements;
@@ -86,16 +89,18 @@ public class EvenementService implements IEvenementService {
         }
         return null;
     }
-    
+   
     public ObservableList<Evenement> getEv() {
         try {
-            String query = "select * from evenement";
+            String query = "select * from evenement WHERE dateEvenement > NOW()";
+
             Statement ste = con.createStatement();
             ResultSet rs = ste.executeQuery(query);
             ObservableList<Evenement> evenements = FXCollections.observableArrayList();
             while (rs.next()) {
                 evenements.add(new Evenement(rs.getInt("id"), rs.getString("imageEve") , rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination")));
             }
+            System.out.println(evenements.size());
             return evenements;
         } catch (SQLException ex) {
             Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,26 +123,34 @@ public class EvenementService implements IEvenementService {
         return false;
     }
 
-    @Override
-    public boolean updateEvenement(int id, String object, Object obj) {
-        try {
-            String query = "Update evenement set ?=? where id= ?";
-            PreparedStatement prs = con.prepareStatement(query);
-            prs.setString(1, object);
+    
+    public void updateEvenement(Evenement e, int id) {
 
-            prs.setObject(2, obj);
-            prs.setInt(3, id);
-            String ch = prs.toString().replaceFirst("\'", "");
-            String ch2 = ch.replaceFirst("\'", "");
-            int pos = ch2.indexOf("UPDATE");
-            String ch3 = ch2.substring(pos, ch2.length());
-            prs = con.prepareStatement(ch3);
+        try {
+            String query ="Update evenement set titre = ?,titreCordination=?,description=?,dateEvenement=? where id = "+id;
+            PreparedStatement prs = con.prepareStatement(query);
+            
+            prs.setString(1,e.getTitre());
+            prs.setString(2,e.getTitreCordination());
+            prs.setString(3,e.getDescription());
+            prs.setDate(4,(Date) e.getDateEvenement());
             prs.executeUpdate();
-            return true;
         } catch (SQLException ex) {
-ex.printStackTrace();
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+            
     }
+//        public void ModifierFormation(Formation f,int id) throws SQLException{
+//            String req ="UPDATE Formation SET nomFor = ?,place=?,idTypeFor=?,description=?,dateFor=? where idFor = "+idFor;
+//            PreparedStatement ps = con.prepareStatement(req);
+//            ps.setString(1,f.getNomFor());
+//            ps.setString(2,f.getPlace());
+//            ps.setInt(3,f.getIdTypeFor().getIdTypeFor());
+//            ps.setString(4,f.getDescriptionFor());
+//            ps.setDate(5,(Date) f.getDateFor());
+//            
+//            ps.executeUpdate();
+//    }
+
 
 }

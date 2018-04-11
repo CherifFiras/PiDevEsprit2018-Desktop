@@ -5,10 +5,13 @@
  */
 package IService;
 
+import Entity.Evenement;
+
 /**
  *
  * @author hero
  */
 public interface IParticipationService {
-    
+    public void increment(Evenement ev, int id);
+    public void decrement(Evenement ev, int id);
 }

@@ -13,7 +13,6 @@ package Entity;
 public class Participation {
 
     private Integer id;
-
     private int idEvenement;
     private int idUser;
 

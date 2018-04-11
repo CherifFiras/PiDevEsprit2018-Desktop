@@ -15,13 +15,20 @@ import java.sql.Date;
 public class Evenement extends RecursiveTreeObject<Evenement>{
     private Integer id;
     private String imageEve;
-    private int nbplaces;
+    public int nbplaces;
     private Date dateEvenement;
     private String titre;
     private String description;
     private String titreCordination;
 
     public Evenement()  {
+    }
+
+    public Evenement(Date dateEvenement, String titre, String description, String titreCordination) {
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
     }
 
     public Evenement(Integer id, String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
@@ -41,6 +48,12 @@ public class Evenement extends RecursiveTreeObject<Evenement>{
         this.titre = titre;
         this.description = description;
         this.titreCordination = titreCordination;
+    }
+
+    public Evenement(String imageEve, Date dateEvenement, String titre) {
+        this.imageEve = imageEve;
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
     }
 
     

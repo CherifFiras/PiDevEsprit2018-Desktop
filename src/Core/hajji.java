@@ -19,15 +19,15 @@ import javafx.stage.Stage;
  *
  * @author DJAZIA
  */
-public class ramy extends Application {
+public class hajji extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/AfficherAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/LayoutFront.fxml"));
         
         
        Scene scene = new Scene(root);
-        primaryStage.setTitle("EventAdminSpace");
+        primaryStage.setTitle("EventSpace");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

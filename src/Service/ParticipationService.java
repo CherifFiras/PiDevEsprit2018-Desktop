@@ -6,8 +6,13 @@
 package Service;
 
 import Core.DataSource;
+import Entity.Evenement;
 import IService.IParticipationService;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,4 +20,49 @@ import java.sql.Connection;
  */
 public class ParticipationService implements IParticipationService {
     private Connection con = DataSource.getInstance().getCon();
+//     {
+//         try {
+//             String req="UPDATE `event` SET `participants`=? WHERE `id`=?";
+//             PreparedStatement prs = con.prepareStatement(req);
+//             prs.setInt(1,(ev.getNbreParticipants())+1);
+//             prs.setInt(2,ev.getId());
+//             prs.executeUpdate();
+//             System.out.println("services.ServiceEvents.increment()");  
+//  
+//         } catch (SQLException e) {
+//             System.out.println("404");
+//         }
+//         
+//     }
+    @Override
+       public   void increment(Evenement ev,int id)
+     {
+         try {
+             String req="UPDATE `Evenement` SET `nbplaces`=? WHERE `id`=?";
+             PreparedStatement prs = con.prepareStatement(req);
+             prs.setInt(1,(ev.getNbplaces())+1);
+             prs.setInt(2,ev.getId());
+             prs.executeUpdate();
+
+  
+         } catch (SQLException e) {
+             System.out.println("404");
+         }
+         
+     }
+    @Override
+         public   void decrement(Evenement ev,int id)
+     {
+         try {
+             String req="UPDATE `Evenement` SET `nbplaces`=? WHERE `id`=?";
+             PreparedStatement prs = con.prepareStatement(req);
+             prs.setInt(1,(ev.getNbplaces())-1);
+             prs.setInt(2,ev.getId());
+             prs.executeUpdate();
+  
+         } catch (SQLException e) {
+             System.out.println("404");
+         }
+         
+     }
 }

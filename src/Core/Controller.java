@@ -6,6 +6,7 @@
 package Core;
 
 import Entity.User;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -13,6 +14,7 @@ import Entity.User;
  */
 public class Controller {
     private static int userId;
+    public static AnchorPane holderPane;
     private Service service = Service.getInstance();
     protected static void setUserId(int id)
     {
