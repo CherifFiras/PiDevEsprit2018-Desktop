@@ -107,8 +107,8 @@ public class EvenementAfficherClientController extends Controller implements Ini
             image.setFitWidth(195.0);
             image.setPickOnBounds(true);
             image.setPreserveRatio(true);
-            File f = new File(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
-            Image img = new Image(f.toURI().toString());
+            //File f = new File("G:/PiDev/Sprint2/PiDevEsprit2018-Desktop/src/Images/" + rs.getString("imageEve"));
+            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
             image.setImage(img);
             
             Label label1 = new Label();
@@ -247,8 +247,8 @@ public class EvenementAfficherClientController extends Controller implements Ini
             image.setPickOnBounds(true);
             image.setPreserveRatio(true);
             System.out.print(rs.getString("imageEve"));
-            File f = new File(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
-            Image img = new Image(f.toURI().toString());
+            //File f = new File(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
+            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
             image.setImage(img);
             
             Label label1 = new Label();

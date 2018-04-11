@@ -100,8 +100,8 @@ private final IAvisEvenementService as = this.getService().getAvisEvenementServi
     }
 
     public void setImageEve(String imageEve) {
-        File f = new File("C:/Users/DJAZIA/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + imageEve );
-        Image img = new Image(f.toURI().toString());
+        //File f = new File( );
+        Image img = new Image(getClass().getResource("../Images/").toExternalForm() + imageEve);
 
         this.imageEve.setImage(img);
     }
