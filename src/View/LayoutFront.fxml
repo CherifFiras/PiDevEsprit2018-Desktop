@@ -57,7 +57,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#eventAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
