@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -61,6 +62,7 @@ public class EvenementController extends Controller implements Initializable {
     private Label nbplaces = new Label();
     @FXML
     private AnchorPane holderPane;
+    public static Evenement evenement;
 private final IParticipationService es = this.getService().getParticipationService();
 private Connection con = DataSource.getInstance().getCon();
 private final IAvisEvenementService as = this.getService().getAvisEvenementService();
@@ -74,6 +76,14 @@ private final IAvisEvenementService as = this.getService().getAvisEvenementServi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(evenement.getDateEvenement());
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
         WebEngine webEngine = webView.getEngine();
         String lien = getClass().getResource("../View/CountDown.html").toExternalForm();
         webEngine.load(lien);
@@ -82,7 +92,7 @@ private final IAvisEvenementService as = this.getService().getAvisEvenementServi
             if( newValue != Worker.State.SUCCEEDED ) {
                 return;  
             }
-            webEngine.executeScript("document.init(2018,04,15,12,30)");
+            webEngine.executeScript("document.init("+year+","+month+","+day+","+hour+","+minute+","+second+")");
         });
     }    
 

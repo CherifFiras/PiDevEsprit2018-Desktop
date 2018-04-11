@@ -18,12 +18,15 @@
                             output += "s: " + s + "\n";
                             alert(output);
                         }
-						document.init = function init(year,month,day,hour,minute)
+						document.init = function init(year,month,day,hour,minute,second)
 						{
 							var myCountdownTest = new Countdown({
 								year: year,
 								month	: month,
 								day		: day,
+								hour:hour,
+								minute:minute,
+								second:second,
 								width	: 400,
 								height	: 80,
 								onComplete : doneHandler

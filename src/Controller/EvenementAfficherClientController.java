@@ -140,6 +140,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("imageEve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
             btn.setOnAction(e -> {
                 try {
+                    EvenementController.evenement = evenement;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/evenement.fxml"));
                     AnchorPane root = loader.load();
                     
