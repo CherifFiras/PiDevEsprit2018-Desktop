@@ -96,4 +96,9 @@ public class LayoutFrontController implements Initializable {
     private void eventAction(MouseEvent event) {
         loadView("../View/ramy.fxml");
     }
+
+    @FXML
+    private void espaceAction(MouseEvent event) {
+        loadView("../View/Espace_front.fxml");
+    }
 }

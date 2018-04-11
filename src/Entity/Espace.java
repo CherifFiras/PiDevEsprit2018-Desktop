@@ -5,6 +5,9 @@
  */
 package Entity;
 
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
 
 
 /**
@@ -12,7 +15,7 @@ package Entity;
  * @author hero
  */
 
-public class Espace {
+public class Espace extends RecursiveTreeObject<Espace>{
     
     private Integer id;
     private String titre;
@@ -20,32 +23,39 @@ public class Espace {
     private String adresse;
     private String photo;
     private int etat;
-    private int nbrating;
-    private int rating;
+    private double longi;
+    private double lat;
+    private String email;
     private int idUser;
 
     public Espace() {
     }
     
-    public Espace(Integer id, String titre, String description, String adresse, String photo, int etat, int nbrating, int rating) {
+    public Espace(Integer id, String titre, String description,String email, String adresse, String photo, int etat,int idUser,double longi,double lat) {
         this.id = id;
         this.titre = titre;
         this.description = description;
+        this.email= email;
         this.adresse = adresse;
         this.photo = photo;
         this.etat = etat;
-        this.nbrating = nbrating;
-        this.rating = rating;
+        this.idUser=idUser;
+        this.longi=longi;
+        this.lat=lat;
+       
     }
     
-    public Espace(String titre, String description, String adresse, String photo, int etat, int nbrating, int rating) {
+    public Espace(String titre, String description,String email, String adresse, String photo, int etat,int idUser,double longi,double lat) {
         this.titre = titre;
         this.description = description;
+        this.email= email;
         this.adresse = adresse;
         this.photo = photo;
         this.etat = etat;
-        this.nbrating = nbrating;
-        this.rating = rating;
+        this.idUser=idUser;
+        this.longi=longi;
+        this.lat=lat;
+       
     }
 
     public Integer getId() {
@@ -96,23 +106,20 @@ public class Espace {
         this.etat = etat;
     }
 
-    public int getNbrating() {
-        return nbrating;
+    public double getLongi() {
+        return longi;
     }
 
-    public void setNbrating(int nbrating) {
-        this.nbrating = nbrating;
+    public void setLongi(double longi) {
+        this.longi = longi;
+    }
+      public double getLat() {
+        return lat;
     }
 
-    public int getRating() {
-        return rating;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-
     public int getIdUser() {
         return idUser;
     }
@@ -120,7 +127,12 @@ public class Espace {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
-
+     public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
+    }     
     @Override
     public int hashCode() {
         int hash = 0;
@@ -141,9 +153,9 @@ public class Espace {
         return true;
     }
 
-    @Override
+     @Override
     public String toString() {
-        return "Entity.Espace[ id=" + id + " ]";
+        return "Espace{" + "Titre=" + titre + ", Description=" + description + ", Email"+ email +", Adresse=" + adresse + ", Photo=" + photo + " , Longitutde=" +longi+ ", Latitude=" +lat+ '}';
     }
     
 }

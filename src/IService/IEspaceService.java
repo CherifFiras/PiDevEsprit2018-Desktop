@@ -6,6 +6,7 @@
 package IService;
 
 import Entity.Espace;
+import Entity.PhotoEspace;
 import java.util.List;
 
 /**
@@ -14,5 +15,12 @@ import java.util.List;
  */
 public interface IEspaceService {
     public Espace getEspaceById(int id);
-    public List<Espace> getAll();
+    public List<Espace> getEspaceConfirmer();
+    public List<Espace> getEspaceNonConfirmer();
+    public void removeEspace(int id);
+    public void confirmeEspace(int id);
+    public void send_mail(Espace espace);
+    public Espace ajoutEspace(Espace e);
+    public Espace lastEspaces();
+    public List<Espace> findByDistance(double latitude, double longitude, double distance);
 }
