@@ -14,5 +14,5 @@ import java.sql.Connection;
  * @author hero
  */
 public class AvisEspaceService implements IAvisEspaceService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 }

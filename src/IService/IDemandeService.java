@@ -17,5 +17,6 @@ public interface IDemandeService {
     
     public Demande insertDemande(Demande demande);
     public boolean deleteDemande(Demande demande);
+    public boolean checkDemande(User cUser,User oUser);
     public List<Demande> getDemandesByUser(User user);
 }

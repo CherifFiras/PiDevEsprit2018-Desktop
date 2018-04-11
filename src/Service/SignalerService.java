@@ -17,7 +17,7 @@ import java.util.List;
  * @author hero
  */
 public class SignalerService implements ISignalerService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Signaler> getSignaledUsers() {

@@ -14,5 +14,5 @@ import java.sql.Connection;
  * @author hero
  */
 public class PhotoEspaceService implements IPhotoEspaceService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 }

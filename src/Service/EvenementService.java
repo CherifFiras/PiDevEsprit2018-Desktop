@@ -26,7 +26,7 @@ import javafx.collections.ObservableList;
  */
 public class EvenementService implements IEvenementService {
 
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public Evenement getEvenementById(int id) {
@@ -110,7 +110,7 @@ public class EvenementService implements IEvenementService {
 
     public boolean deleteEvenement(int ide) {
         try {
-            Connection con = DataSource.getInstance().getCon();
+            Connection con = DataSource.getInstance().getConnection();
             String query = "DELETE from evenement where id=?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, ide);

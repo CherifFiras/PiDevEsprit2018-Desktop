@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox layoutX="79.0" prefHeight="70.0" prefWidth="1300.0" style="-fx-background-color: #494c62;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuBarController">
+   <children>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-y: 20; -fx-translate-x: 20;" text="The Pentagon" wrappingWidth="762.6123046875">
+         <font>
+            <Font name="Ebrima Bold" size="22.0" />
+         </font>
+      </Text>
+      <HBox prefHeight="70.0" prefWidth="372.0">
+         <children>
+            <HBox prefHeight="70.0" prefWidth="74.0">
+               <children>
+                  <Label prefHeight="12.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="34.0" fitWidth="33.0" translateY="20.0">
+                     <image>
+                        <Image url="@../Images/icons8-notification-center-filled-96.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="70.0" prefWidth="74.0">
+               <children>
+                  <Label prefHeight="14.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="29.0" fitWidth="34.0" style="-fx-translate-y: 20;">
+                     <image>
+                        <Image url="@../Images/icons8-chat-room-96.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="70.0" prefWidth="74.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="25.0" text="10" textFill="WHITE" translateY="20.0">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="34.0" style="-fx-translate-y: 20;">
+                     <image>
+                        <Image url="@../Images/icons8-alarm-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="70.0" prefWidth="74.0">
+               <children>
+                  <ImageView fitHeight="34.0" fitWidth="34.0" translateY="20.0">
+                     <image>
+                        <Image url="@../Images/icons8-houzz-96.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="70.0" prefWidth="74.0">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="77.0">
+                     <image>
+                        <Image url="@../Images/icons8-administrator-male-160.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets left="80.0" />
+         </HBox.margin>
+      </HBox>
+   </children>
+</HBox>

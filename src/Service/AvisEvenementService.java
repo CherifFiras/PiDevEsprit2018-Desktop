@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
  * @author hero
  */
 public class AvisEvenementService implements IAvisEvenementService {
+<<<<<<< HEAD
     private Connection con = DataSource.getInstance().getCon();
     
     @Override
@@ -83,4 +84,7 @@ public class AvisEvenementService implements IAvisEvenementService {
         return null;
     }
 
+=======
+    private Connection con = DataSource.getInstance().getConnection();
+>>>>>>> 9016e8775a264a50e6e0402d3c9f8ed5e92458f9
 }
