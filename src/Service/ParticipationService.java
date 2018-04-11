@@ -19,8 +19,7 @@ import java.sql.Statement;
  * @author hero
  */
 public class ParticipationService implements IParticipationService {
-<<<<<<< HEAD
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 //     {
 //         try {
 //             String req="UPDATE `event` SET `participants`=? WHERE `id`=?";
@@ -66,7 +65,4 @@ public class ParticipationService implements IParticipationService {
          }
          
      }
-=======
-    private Connection con = DataSource.getInstance().getConnection();
->>>>>>> 9016e8775a264a50e6e0402d3c9f8ed5e92458f9
 }

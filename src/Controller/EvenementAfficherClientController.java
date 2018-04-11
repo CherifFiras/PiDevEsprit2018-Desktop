@@ -59,7 +59,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
     public static VBox vbox;
     @FXML
     private HBox hbox;
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     /**
      * Initializes the controller class.

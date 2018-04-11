@@ -64,7 +64,7 @@ public class EvenementController extends Controller implements Initializable {
     private AnchorPane holderPane;
     public static Evenement evenement;
 private final IParticipationService es = this.getService().getParticipationService();
-private Connection con = DataSource.getInstance().getCon();
+private Connection con = DataSource.getInstance().getConnection();
 private final IAvisEvenementService as = this.getService().getAvisEvenementService();
     @FXML
     private TextArea contenuu;

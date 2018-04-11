@@ -55,7 +55,7 @@ public class RamyController implements Initializable {
     @FXML
     private JFXTextField recherche;
     ObservableList<Evenement> list;
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     /**
      * Initializes the controller class.

@@ -41,7 +41,7 @@ public class BarchartEventController extends Controller implements Initializable
     private CategoryAxis x;
     
     private final IEvenementService ess = this.getService().getEvenementService();
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
                 
     /**

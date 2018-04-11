@@ -11,9 +11,7 @@ import Entity.User;
 import IService.IMessageService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-<<<<<<< HEAD
 import java.sql.SQLException;
-=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,17 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> 9016e8775a264a50e6e0402d3c9f8ed5e92458f9
 
 /**
  *
  * @author hero
  */
 public class MessageService implements IMessageService {
-<<<<<<< HEAD
-    private Connection con = DataSource.getInstance().getCon();
-    
-=======
     private Connection con = DataSource.getInstance().getConnection();
 
     @Override
@@ -120,5 +113,4 @@ public class MessageService implements IMessageService {
         }
         return null;
     }
->>>>>>> 9016e8775a264a50e6e0402d3c9f8ed5e92458f9
 }
