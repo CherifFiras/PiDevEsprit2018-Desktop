@@ -91,4 +91,9 @@ public class LayoutFrontController implements Initializable {
     private void matchingAction(MouseEvent event) {
         MatchingListener.setController((MatchingController) loadView("../View/Matching.fxml"));
     }
+
+    @FXML
+    private void eventAction(MouseEvent event) {
+        loadView("../View/ramy.fxml");
+    }
 }

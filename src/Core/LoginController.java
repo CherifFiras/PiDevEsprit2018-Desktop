@@ -79,7 +79,7 @@ public class LoginController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        String VUrl ="file:/G:/PiDev/Sprint2/PiDevEsprit2018-Desktop/src/Images/pp.mp4";
+        String VUrl =getClass().getResource("../Images/").toExternalForm()+"pp.mp4";
         Media media = new Media(VUrl);
         mediaplayer = new MediaPlayer(media);
         mv.setMediaPlayer(mediaplayer);
