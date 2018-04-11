@@ -14,7 +14,6 @@ import IService.IEvenementService;
 import IService.IParticipationService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
