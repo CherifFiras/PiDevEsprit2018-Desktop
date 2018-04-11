@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <HBox layoutX="79.0" prefHeight="70.0" prefWidth="1300.0" style="-fx-background-color: #494c62;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuBarController">
    <children>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-y: 20; -fx-translate-x: 20;" text="The Pentagon" wrappingWidth="762.6123046875">
@@ -16,6 +17,27 @@
          </font>
       </Text>
       <HBox prefHeight="70.0" prefWidth="372.0">
+=======
+
+<JFXToolbar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox prefHeight="50.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="50.0" prefWidth="70.0" text="Cherif Firas" />
+            <JFXComboBox prefHeight="50.0" prefWidth="180.0" />
+         </children>
+      </HBox>
+   </right>
+   <center>
+      <HBox prefHeight="50.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="50.0" prefWidth="56.0" text="Messages" />
+         </children>
+      </HBox>
+   </center>
+   <left>
+      <HBox prefHeight="50.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+>>>>>>> 2b177d175b9cffcbeaa6612e3c622c7bc14dedc0
          <children>
             <HBox prefHeight="70.0" prefWidth="74.0">
                <children>
