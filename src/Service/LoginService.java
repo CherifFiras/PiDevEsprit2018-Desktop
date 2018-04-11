@@ -30,7 +30,7 @@ public class LoginService {
     
          PreparedStatement pst;
     ResultSet rs;
-    Connection cnx= DataSource.getInstance().getCon();
+    Connection cnx= DataSource.getInstance().getConnection();
     public Statement ste;
     
      public LoginService() {
@@ -82,5 +82,55 @@ public class LoginService {
                 Logger.getLogger(LoginService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+          public ResultSet info(String email) throws SQLException {
+     
+          String req= "Select username,password from user where email=? ";
+          PreparedStatement prs= cnx.prepareStatement(req);
+          prs.setString(1, email);
+          rs= prs.executeQuery();
+          return rs;
+    }
+    
+    
+       public ResultSet userbyid(Integer id) throws SQLException {
+     
+          String req= "Select * from user where id=? ";
+          PreparedStatement prs= cnx.prepareStatement(req);
+          prs.setInt(1, id);
+          rs= prs.executeQuery();
+          return rs;
+    }
+       
+        public ResultSet user(String username , String password) throws SQLException {
+     
+          String req= "Select * from user where (username=? or email=?) and password=?";
+          PreparedStatement prs= cnx.prepareStatement(req);
+          prs.setString(1, username);
+          prs.setString(2, password);
+          rs= prs.executeQuery();
+          return rs;
+    }
+       
+         public void AjouterUtilisateur(String username , String prenom , String nom , String email , String password , String date_naissance) throws SQLException{
+        String req= "INSERT INTO user  (username,prenom,nom,email,password,date_naissance) VALUES (?,?,?,?,?,?)";
+        PreparedStatement prs= cnx.prepareStatement(req);
+        prs.setString(1, username);
+        prs.setString(2, prenom);
+        prs.setString(3, nom);
+        prs.setString(4, email);
+        prs.setString(5, password);
+        prs.setString(6, date_naissance);
+        
+        int executeUpdate = prs.executeUpdate();
+        System.out.println(" utilisateur Ajoutée");
+    }
+       public ResultSet check_email(String email) throws SQLException {
+     
+          String req= "Select * from user where email=?";
+          PreparedStatement prs= cnx.prepareStatement(req);
+          prs.setString(1, email);
+          rs= prs.executeQuery();
+          return rs;
     }   
 }

@@ -114,7 +114,7 @@ public class LoginController extends Controller implements Initializable {
     @FXML
     private void LoginAction(ActionEvent event) throws SQLException, IOException {
        
-        Connection conn = DataSource.getInstance().getCon();
+        Connection conn = DataSource.getInstance().getConnection();
         String req= "Select * from user where (username=? or email=?) and password=?";
         PreparedStatement prs= conn.prepareStatement(req);
         prs.setString(1, username.getText());

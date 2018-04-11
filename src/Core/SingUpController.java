@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class SingUpController implements Initializable {
 
     @FXML
     private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException {
-        Connection conn = DataSource.getInstance().getCon(); 
+        Connection conn = DataSource.getInstance().getConnection(); 
         String req= "INSERT INTO user  (username,prenom,nom,email,password,date_naissance) VALUES (?,?,?,?,?,?)";
         String req1= "SELECT * FROM user WHERE email=?";
         PreparedStatement prs= conn.prepareStatement(req);
@@ -89,7 +90,7 @@ public class SingUpController implements Initializable {
         prs.setString(3, nom.getText());
         prs.setString(4, email.getText());
         prs.setString(5, password.getText());
-        prs.setString(6, date_naissance.getText());
+        prs.setDate(6, new java.sql.Date(new Date().getTime()));
         if (username.getText().equals(""))
         {   info.setText("username is empty");  }
         else if (rs.next()){

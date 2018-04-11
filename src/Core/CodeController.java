@@ -83,7 +83,7 @@ public class CodeController implements Initializable {
         if( mailid.getText().equals(this.code)    )
         {
             
-          Connection conn = DataSource.getInstance().getCon();
+          Connection conn = DataSource.getInstance().getConnection();
           String req= "Select username,password from user where email=? ";
           PreparedStatement prs= conn.prepareStatement(req);
           prs.setString(1, this.email);

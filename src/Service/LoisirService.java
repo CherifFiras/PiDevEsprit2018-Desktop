@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class LoisirService implements ILoisirService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Loisir> getAllLoisirsByUser(User u) {

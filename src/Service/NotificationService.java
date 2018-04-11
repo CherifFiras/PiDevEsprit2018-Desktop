@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class NotificationService implements INotificationService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
     
     @Override
     public void insertNotification(Notifiable notifiable, Notification notification) {

@@ -7,18 +7,14 @@ package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  *
- * @author DJAZIA
+ * @author ASUS
  */
-public class AfficherClientController implements Initializable {
-
+public class Partager_fbController implements Initializable {
 
     /**
      * Initializes the controller class.

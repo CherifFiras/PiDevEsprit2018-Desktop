@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class RelationService implements IRelationService{
-    private final Connection con = DataSource.getInstance().getCon();
+    private final Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Relation> fetchMembers(User user) {

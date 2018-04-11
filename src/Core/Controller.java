@@ -9,12 +9,14 @@ import APIs.ChatListener;
 import Controller.NotificationController;
 import Entity.User;
 import IService.IUserService;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author hero
  */
 public class Controller {
+    public static AnchorPane holderPane;
     private static int userId;
     private static NotificationController notificationController;
     private final Service service = Service.getInstance();

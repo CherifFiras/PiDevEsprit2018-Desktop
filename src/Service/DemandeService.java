@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class DemandeService implements IDemandeService{
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public Demande insertDemande(Demande demande) {

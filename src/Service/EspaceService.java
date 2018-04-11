@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class EspaceService implements IEspaceService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public Espace getEspaceById(int id) {

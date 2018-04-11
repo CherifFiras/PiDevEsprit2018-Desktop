@@ -74,7 +74,7 @@ public class ForgotPassController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                String VUrl ="file:/C:/Users/ASUS/Desktop/gif.mp4";
+        String VUrl = getClass().getResource("../Images/gif.mp4").toExternalForm();
         Media media = new Media(VUrl);
         mediaplayer = new MediaPlayer(media);
         mv.setMediaPlayer(mediaplayer);
@@ -99,7 +99,7 @@ public class ForgotPassController implements Initializable {
         if (mailid.getText().isEmpty()){ label.setText("remarque : email vide");  }
         else if (!mailid.getText().matches("[a-zA-Z0-9\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9]{3}") ){ label.setText("remarque : email non valide");  }
         else {
-          Connection conn = DataSource.getInstance().getCon();
+          Connection conn = DataSource.getInstance().getConnection();
           String req= "Select username,password from user where email=? ";
           PreparedStatement prs= conn.prepareStatement(req);
           prs.setString(1, mailid.getText());
@@ -147,7 +147,7 @@ public class ForgotPassController implements Initializable {
            System.out.println("message sent successfully");  
            mediaplayer.stop();
            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("code.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Code.fxml"));
             Parent root= loader.load();
             CodeController ccc = loader.getController();
             ccc.setEmail(z);

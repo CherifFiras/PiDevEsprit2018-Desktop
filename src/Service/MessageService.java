@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class MessageService implements IMessageService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Message> fetchMessage(User cUser,User oUser) {

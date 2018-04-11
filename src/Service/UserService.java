@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class UserService implements IUserService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
 
     @Override

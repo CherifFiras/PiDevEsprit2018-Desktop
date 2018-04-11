@@ -48,7 +48,7 @@ public class LayoutFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        Controller.holderPane = holderPane;
     }    
 
     @FXML
@@ -84,7 +84,7 @@ public class LayoutFrontController implements Initializable {
 
     @FXML
     private void searchAction(MouseEvent event) {
-        loadView("../View/RechercheProfile.fxml");
+        loadView("../View/cat.fxml");
     }
 
     @FXML
