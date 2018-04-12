@@ -20,7 +20,6 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
@@ -84,7 +83,7 @@ public class LayoutFrontController implements Initializable {
 
     @FXML
     private void searchAction(MouseEvent event) {
-        loadView("../View/cat.fxml");
+        loadView("../View/RechercheProfile.fxml");
     }
 
     @FXML
@@ -100,5 +99,9 @@ public class LayoutFrontController implements Initializable {
     @FXML
     private void espaceAction(MouseEvent event) {
         loadView("../View/Espace_front.fxml");
+    }
+
+    @FXML
+    private void forumAction(MouseEvent event) {
     }
 }
