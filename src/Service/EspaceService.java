@@ -33,24 +33,25 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javafx.scene.image.ImageView;
+
 /**
  *
  * @author hero
  */
 public class EspaceService implements IEspaceService {
+
     private final Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public Espace getEspaceById(int id) {
-                try {
+        try {
             String query = "select * from espace where id = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Espace espace;
-            while(rs.next())
-            {
-                espace = new Espace(rs.getInt("id"),rs.getString("titre"), rs.getString("description"),rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"),rs.getInt("idUser"),rs.getDouble("longi"), rs.getDouble("lat"));
+            while (rs.next()) {
+                espace = new Espace(rs.getInt("id"), rs.getString("titre"), rs.getString("description"), rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"), rs.getInt("idUser"), rs.getDouble("longi"), rs.getDouble("lat"));
                 return espace;
             }
         } catch (SQLException ex) {
@@ -67,8 +68,8 @@ public class EspaceService implements IEspaceService {
             ResultSet rs = ste.executeQuery(query);
             List<Espace> espaces = new ArrayList<>();
             while (rs.next()) {
-                espaces.add(new Espace(rs.getInt("id"),rs.getString("titre"), rs.getString("description"),rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"),rs.getInt("idUser"),rs.getDouble("longi"), rs.getDouble("lat")));
-                
+                espaces.add(new Espace(rs.getInt("id"), rs.getString("titre"), rs.getString("description"), rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"), rs.getInt("idUser"), rs.getDouble("longi"), rs.getDouble("lat")));
+
             }
             return espaces;
         } catch (SQLException ex) {
@@ -76,8 +77,8 @@ public class EspaceService implements IEspaceService {
         }
         return null;
     }
-    
-        @Override
+
+    @Override
     public List<Espace> getEspaceNonConfirmer() {
         try {
             String query = "select * from espace where etat=0";
@@ -86,9 +87,9 @@ public class EspaceService implements IEspaceService {
 
             List<Espace> espaces = new ArrayList<>();
             while (rs.next()) {
-                
-                espaces.add(new Espace(rs.getInt("id"),rs.getString("titre"), rs.getString("description"),rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"),rs.getInt("idUser"), rs.getDouble("longi"), rs.getDouble("lat")));
-                
+
+                espaces.add(new Espace(rs.getInt("id"), rs.getString("titre"), rs.getString("description"), rs.getString("email"), rs.getString("adresse"), rs.getString("photo"), rs.getInt("etat"), rs.getInt("idUser"), rs.getDouble("longi"), rs.getDouble("lat")));
+
             }
             return espaces;
         } catch (SQLException ex) {
@@ -97,112 +98,110 @@ public class EspaceService implements IEspaceService {
         return null;
     }
 
-  
-
     @Override
     public void removeEspace(int id) {
         try {
             String query = "delete from espace where id =?";
-             PreparedStatement pstmt = con.prepareStatement(query);
- 
+            PreparedStatement pstmt = con.prepareStatement(query);
+
             // set the corresponding param
             pstmt.setInt(1, id);
             // execute the delete statement
             pstmt.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EspaceService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        @Override
+
+    @Override
     public void confirmeEspace(int id) {
         try {
             String query = "Update espace set etat=1 where id =?";
-             PreparedStatement pstmt = con.prepareStatement(query);
- 
+            PreparedStatement pstmt = con.prepareStatement(query);
+
             // set the corresponding param
             pstmt.setInt(1, id);
             // execute the delete statement
             pstmt.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EspaceService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       public void send_mail(Espace espace)
-   {
-     		final String username = "thepentagon@gmail.com"; // enter your mail id
-		final String password = "Azerty1234567";// enter ur password
 
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+    public void send_mail(Espace espace) {
+        final String username = "thepentagon@gmail.com"; // enter your mail id
+        final String password = "Azerty1234567";// enter ur password
 
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-Session session = Session.getInstance(props,
-          new javax.mail.Authenticator() {
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-          });
-		try {
+        });
+        try {
 
-			Message message = new MimeMessage(session);
+            Message message = new MimeMessage(session);
 
-                        message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
-			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
-			message.setSubject("Confirmation d'Espace"+espace.getTitre());
-			message.setText("Votre Espace a été confirmé ! ");
+            message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
+            message.setSubject("Confirmation d'Espace" + espace.getTitre());
+            message.setText("Votre Espace a été confirmé ! ");
 
-			Transport.send(message);
+            Transport.send(message);
 
-			System.out.println("Done");
+            System.out.println("Done");
 
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-   }
-       public void send_maildel(Espace espace)
-   {
-     		final String username = "thepentagon@gmail.com"; // enter your mail id
-		final String password = "Azerty1234567";// enter ur password
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+    public void send_maildel(Espace espace) {
+        final String username = "thepentagon@gmail.com"; // enter your mail id
+        final String password = "Azerty1234567";// enter ur password
 
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-Session session = Session.getInstance(props,
-          new javax.mail.Authenticator() {
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-          });
-		try {
+        });
+        try {
 
-			Message message = new MimeMessage(session);
+            Message message = new MimeMessage(session);
 
-                        message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
-			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
-			message.setSubject("Confirmation d'Espace"+espace.getTitre());
-			message.setText("Votre Espace a été annuler ! ");
+            message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
+            message.setSubject("Confirmation d'Espace" + espace.getTitre());
+            message.setText("Votre Espace a été annuler ! ");
 
-			Transport.send(message);
+            Transport.send(message);
 
-			System.out.println("Done");
+            System.out.println("Done");
 
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-   }
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public Espace ajoutEspace(Espace e) {
         try {
@@ -248,7 +247,8 @@ Session session = Session.getInstance(props,
         }
         return null;
     }
-        @Override
+
+    @Override
     public List<Espace> findByDistance(double latitude, double longitude, double distance) {
         try {
             String req = "select * from espace where  (((acos(sin((?*pi()/180)) * sin((`longi`*pi()/180))+cos((?*pi()/180)) * cos((`longi`*pi()/180)) * cos(((? - `lat`)*pi()/180))))*180/pi())*60*1.1515)  < ?";
@@ -256,28 +256,24 @@ Session session = Session.getInstance(props,
             PreparedStatement prs = con.prepareStatement(req);
 
             prs.setDouble(1, longitude);
-            prs.setDouble(2,longitude);
+            prs.setDouble(2, longitude);
 
             prs.setDouble(3, latitude);
             prs.setDouble(4, distance);
-             ResultSet resultSet = prs.executeQuery();
+            ResultSet resultSet = prs.executeQuery();
             try {
-               
+
                 while (resultSet.next()) {
                     Espace esp = new Espace();
                     esp.setId(resultSet.getInt(1));
-                    esp.setAdresse(resultSet.getString(4));
-                    esp.setTitre(resultSet.getString(2));
-                    esp.setLat(resultSet.getInt(9));
-                    esp.setLongi(resultSet.getInt(8));
-                    
+
                     espaces.add(esp);
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
             return espaces;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EspaceService.class.getName()).log(Level.SEVERE, null, ex);
         }

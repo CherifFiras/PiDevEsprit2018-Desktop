@@ -33,11 +33,11 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import com.lynden.gmapsfx.service.geocoding.GeocodingServiceCallback;
 import javafx.event.EventHandler;
-import com.lynden.gmapsfx.javascript.event.EventHandlers; 
-import com.lynden.gmapsfx.javascript.event.GFXEventHandler; 
+import com.lynden.gmapsfx.javascript.event.EventHandlers;
+import com.lynden.gmapsfx.javascript.event.GFXEventHandler;
 import Entity.Espace;
-import com.lynden.gmapsfx.javascript.event.UIEventHandler; 
-import com.lynden.gmapsfx.javascript.event.UIEventType; 
+import com.lynden.gmapsfx.javascript.event.UIEventHandler;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import Entity.PhotoEspace;
 import IService.IEspaceService;
 import IService.IPhotoEspaceService;
@@ -105,14 +105,16 @@ import javax.swing.JLabel;
 import static javax.swing.Spring.height;
 import static javax.swing.Spring.width;
 import netscape.javascript.JSObject;
+
 /**
  * FXML Controller class
  *
  * @author Nayer Ben Jaber
  */
-public class Espace_frontController extends Controller implements Initializable,MapComponentInitializedListener, 
+public class Espace_frontController extends Controller implements Initializable, MapComponentInitializedListener,
         ElevationServiceCallback, GeocodingServiceCallback, DirectionsServiceCallback {
-      protected GoogleMapView mapComponent;
+
+    protected GoogleMapView mapComponent;
     protected GoogleMap map;
     protected DirectionsPane directions;
 
@@ -122,16 +124,16 @@ public class Espace_frontController extends Controller implements Initializable,
     private Label lblCenter;
     private Label lblClick;
     private ComboBox<MapTypeIdEnum> mapTypeCombo;
-	
-	private MarkerOptions markerOptions2;
-	private Marker myMarker2;
-	private Button btnHideMarker;
-	private Button btnDeleteMarker;
-       FileChooser saveFileChooser = new FileChooser();    
+
+    private MarkerOptions markerOptions2;
+    private Marker myMarker2;
+    private Button btnHideMarker;
+    private Button btnDeleteMarker;
+    FileChooser saveFileChooser = new FileChooser();
     File saveFile;
     File srcFile, destFile;
-      private final IEspaceService espaceService = new EspaceService();
-      private final IPhotoEspaceService photoService = this.getService().getPhotoEspaceService();
+    private final IEspaceService espaceService = new EspaceService();
+    private final IPhotoEspaceService photoService = this.getService().getPhotoEspaceService();
     @FXML
     private AnchorPane holderPane;
     @FXML
@@ -152,10 +154,10 @@ public class Espace_frontController extends Controller implements Initializable,
     private JFXButton photo11;
     @FXML
     private JFXButton photo12;
-       private GeocodingService geocodingService;
+    private GeocodingService geocodingService;
     @FXML
     private JFXButton photo13;
- 
+
     private StringProperty address = new SimpleStringProperty();
     @FXML
     private AnchorPane AnchorPane;
@@ -167,41 +169,38 @@ public class Espace_frontController extends Controller implements Initializable,
     private TextField lat;
     @FXML
     private TextField longi;
-     /**
+
+    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-                     
-        
 
-        
-    }  
-        @FXML
+    }
+
+    @FXML
     private void ajouter(ActionEvent event) throws IOException {
 
-        Espace e = new Espace(titre.getText(),description.getText(),email.getText(), adresse.getText(),srcFile.getName(), 0,1,Float.valueOf(longi.getText()),Float.valueOf(lat.getText()));
+        Espace e = new Espace(titre.getText(), description.getText(), email.getText(), adresse.getText(), srcFile.getName(), 0, 1, Float.valueOf(longi.getText()), Float.valueOf(lat.getText()));
         espaceService.ajoutEspace(e);
-        PhotoEspace p = new PhotoEspace(srcFile.getName(),srcFile.getName(),srcFile.getName(),srcFile.getName(),0);
+        PhotoEspace p = new PhotoEspace(srcFile.getName(), srcFile.getName(), srcFile.getName(), srcFile.getName(), 0);
         photoService.ajoutPhoto(p);
-       AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View/InfoEspacefront.fxml")));
+        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View/InfoEspacefront.fxml")));
 
-       holderPane.getChildren().clear();
-          holderPane.getChildren().setAll(parentContent); 
- 
+        holderPane.getChildren().clear();
+        holderPane.getChildren().setAll(parentContent);
 
-    
     }
+
     @FXML
     private void UploadImage(ActionEvent event) {
-        
-                File file = saveFileChooser.showOpenDialog(null);  
-        if (file != null) {                
+
+        File file = saveFileChooser.showOpenDialog(null);
+        if (file != null) {
             srcFile = file;
             if (srcFile != null) {
                 try {
-                    String p = System.getProperty("user.dir")+"/src/images/"+srcFile.getName();
+                    String p = System.getProperty("user.dir") + "/src/images/" + srcFile.getName();
                     copyFile(srcFile, new File(p));
                 } catch (IOException ex) {
                     Logger.getLogger(Espace_frontController.class.getName()).log(Level.SEVERE, null, ex);
@@ -210,26 +209,28 @@ public class Espace_frontController extends Controller implements Initializable,
             }
         }
     }
-    
-     public void copyFile(File sourceFile, File destFile) throws IOException {
-        if ( !destFile.exists() ) { destFile.createNewFile(); }
 
-    try (
-        FileChannel in = new FileInputStream( sourceFile ).getChannel();
-        FileChannel out = new FileOutputStream( destFile ).getChannel(); ) {
+    public void copyFile(File sourceFile, File destFile) throws IOException {
+        if (!destFile.exists()) {
+            destFile.createNewFile();
+        }
 
-        out.transferFrom( in, 0, in.size() );
+        try (
+                FileChannel in = new FileInputStream(sourceFile).getChannel();
+                FileChannel out = new FileOutputStream(destFile).getChannel();) {
+
+            out.transferFrom(in, 0, in.size());
+        }
     }
-     }
+
     @FXML
     private void GetMap(ActionEvent event) {
-        
-              
+
         System.out.println("Java version: " + System.getProperty("java.home"));
         mapComponent = new GoogleMapView(Locale.getDefault().getLanguage(), null);
         mapComponent.addMapInializedListener(this);
-                             mapComponent.setPrefWidth(400);
-        mapComponent.setPrefHeight(300);   
+        mapComponent.setPrefWidth(400);
+        mapComponent.setPrefHeight(300);
         BorderPane bp = new BorderPane();
         ToolBar tb = new ToolBar();
 
@@ -248,45 +249,45 @@ public class Espace_frontController extends Controller implements Initializable,
         lblZoom = new Label();
         lblCenter = new Label();
         lblClick = new Label();
-        
+
         mapTypeCombo = new ComboBox<>();
-        mapTypeCombo.setOnAction( e -> {
-           map.setMapType(mapTypeCombo.getSelectionModel().getSelectedItem() );
+        mapTypeCombo.setOnAction(e -> {
+            map.setMapType(mapTypeCombo.getSelectionModel().getSelectedItem());
         });
         mapTypeCombo.setDisable(true);
-        
+
         Button btnType = new Button("Map type");
         btnType.setOnAction(e -> {
             map.setMapType(MapTypeIdEnum.ROADMAP);
         });
-		
-		btnHideMarker = new Button("");
-		btnHideMarker.setOnAction(e -> {});
-		
-		btnDeleteMarker = new Button("");
-		btnDeleteMarker.setOnAction(e -> {});
-		   
+
+        btnHideMarker = new Button("");
+        btnHideMarker.setOnAction(e -> {
+        });
+
+        btnDeleteMarker = new Button("");
+        btnDeleteMarker.setOnAction(e -> {
+        });
+
         AnchorPane.getChildren().addAll(btnZoomIn, btnZoomOut, mapTypeCombo,
                 new Label("Zoom: "), lblZoom,
                 new Label("Center: "), lblCenter,
                 new Label("Click: "), lblClick,
-				btnHideMarker, btnDeleteMarker);
+                btnHideMarker, btnDeleteMarker);
 
-        
-     
         AnchorPane.getChildren().add(mapComponent);
     }
-        
-     DirectionsRenderer renderer;
+
+    DirectionsRenderer renderer;
 
     @Override
     public void mapInitialized() {
- LatLong center = new LatLong(500.606189, -500.335842);
+        LatLong center = new LatLong(500.606189, -500.335842);
         mapComponent.addMapReadyListener(() -> {
             // This call will fail unless the map is completely ready.
             checkCenter(center);
         });
-                mapComponent.setPrefWidth(400);
+        mapComponent.setPrefWidth(400);
         mapComponent.setPrefHeight(300);
         MapOptions options = new MapOptions();
         options.center(center)
@@ -299,72 +300,65 @@ public class Espace_frontController extends Controller implements Initializable,
                 .streetViewControl(false)
                 .zoomControl(false)
                 .mapType(MapTypeIdEnum.ROADMAP);
-        
+
         //[{\"featureType\":\"landscape\",\"stylers\":[{\"saturation\":-100},{\"lightness\":65},{\"visibility\":\"on\"}]},{\"featureType\":\"poi\",\"stylers\":[{\"saturation\":-100},{\"lightness\":51},{\"visibility\":\"simplified\"}]},{\"featureType\":\"road.highway\",\"stylers\":[{\"saturation\":-100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"road.arterial\",\"stylers\":[{\"saturation\":-100},{\"lightness\":30},{\"visibility\":\"on\"}]},{\"featureType\":\"road.local\",\"stylers\":[{\"saturation\":-100},{\"lightness\":40},{\"visibility\":\"on\"}]},{\"featureType\":\"transit\",\"stylers\":[{\"saturation\":-100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"administrative.province\",\"stylers\":[{\"visibility\":\"off\"}]},{\"featureType\":\"water\",\"elementType\":\"labels\",\"stylers\":[{\"visibility\":\"on\"},{\"lightness\":-25},{\"saturation\":-100}]},{\"featureType\":\"water\",\"elementType\":\"geometry\",\"stylers\":[{\"hue\":\"#ffff00\"},{\"lightness\":-25},{\"saturation\":-97}]}]
-        map = mapComponent.createMap(options,false);
+        map = mapComponent.createMap(options, false);
         directions = mapComponent.getDirec();
-        
+
         map.setHeading(123.2);
-        
+
         map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
-             
+
             LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
             System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
             lblClick.setText(ll.toString());
-           lat.setText(String.valueOf(ll.getLatitude()));
-           longi.setText(String.valueOf(ll.getLongitude()));
-          
-                    
+            lat.setText(String.valueOf(ll.getLatitude()));
+            longi.setText(String.valueOf(ll.getLongitude()));
+
         });
 
         btnZoomIn.setDisable(false);
         btnZoomOut.setDisable(false);
         mapTypeCombo.setDisable(false);
-        mapTypeCombo.getItems().addAll( MapTypeIdEnum.ALL );
-        
+        mapTypeCombo.getItems().addAll(MapTypeIdEnum.ALL);
+
         GeocodingService gs = new GeocodingService();
-        
+
         DirectionsService ds = new DirectionsService();
         renderer = new DirectionsRenderer(true, map, directions);
-        String z=adresse.getText();
+        String z = adresse.getText();
         DirectionsWaypoint[] dw = new DirectionsWaypoint[1];
         dw[0] = new DirectionsWaypoint(z);
-                System.out.println("location testing "+dw[0].getJSObject());
+        System.out.println("location testing " + dw[0].getJSObject());
 
         //dw[1] = new DirectionsWaypoint("Juiz de Fora - MG");
-        
         DirectionsRequest dr = new DirectionsRequest(
                 z,
                 z,
                 TravelModes.DRIVING,
                 dw);
         ds.getRoute(dr, this, renderer);
-        
 
-        
-        
     }
-    
-    
-    	private void hideMarker() {
+
+    private void hideMarker() {
 //		System.out.println("deleteMarker");
-		
-		boolean visible = myMarker2.getVisible();
-		
-		//System.out.println("Marker was visible? " + visible);
-		
-		myMarker2.setVisible(! visible);
+
+        boolean visible = myMarker2.getVisible();
+
+        //System.out.println("Marker was visible? " + visible);
+        myMarker2.setVisible(!visible);
 
 //				markerOptions2.visible(Boolean.FALSE);
 //				myMarker2.setOptions(markerOptions2);
 //		System.out.println("deleteMarker - made invisible?");
-	}
-	
-	private void deleteMarker() {
-		//System.out.println("Marker was removed?");
-		map.removeMarker(myMarker2);
-	}
-	
+    }
+
+    private void deleteMarker() {
+        //System.out.println("Marker was removed?");
+        map.removeMarker(myMarker2);
+    }
+
     private void checkCenter(LatLong center) {
 //        System.out.println("Testing fromLatLngToPoint using: " + center);
 //        Point2D p = map.fromLatLngToPoint(center);
@@ -372,26 +366,16 @@ public class Espace_frontController extends Controller implements Initializable,
 //        System.out.println("Testing fromLatLngToPoint expected: " + mapComponent.getWidth()/2 + ", " + mapComponent.getHeight()/2);
     }
 
-    
     public void elevationsReceived(ElevationResult[] ers, ElevationStatus es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     public void geocodedResultsReceived(GeocodingResult[] grs, GeocoderStatus gs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     public void directionsReceived(DirectionsResult dr, DirectionStatus ds) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
-
-    
     }
-    
 
-     
-
-
-
+}

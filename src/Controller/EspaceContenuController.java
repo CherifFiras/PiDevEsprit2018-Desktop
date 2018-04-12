@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Core.Controller;
 import Entity.AvisEspace;
 import Entity.Espace;
 import Entity.PhotoEspace;
@@ -40,7 +41,7 @@ import org.controlsfx.control.Rating;
  *
  * @author Nayer Ben Jaber
  */
-public class EspaceContenuController implements Initializable {
+public class EspaceContenuController extends Controller implements Initializable {
     public static int ide;
     @FXML
     private AnchorPane holderPane;
@@ -104,6 +105,9 @@ public class EspaceContenuController implements Initializable {
         email.setText(espace.getEmail());
         adresse.setWrapText(true);
         ratings = avis.getRating(espace.getId());
+        if(this.getUser().getId() == espace.getIdUser())
+            switchUpdate.setVisible(true);
+        else switchUpdate.setVisible(false);
         if (!ratings.isEmpty()) {
             int h = 0;
             int d = 0;
@@ -119,20 +123,15 @@ public class EspaceContenuController implements Initializable {
         }
         rating.setTranslateX(0);
         rating.setDisable(true);
-        File f = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + espace.getPhoto());
-        Image img = new Image(f.toURI().toString());
+        Image img = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
         image.setImage(img);
-        File f1 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + photo.getPhoto1());
-        Image img1 = new Image(f1.toURI().toString());
+        Image img1 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
         image1.setImage(img1);
-        File f2 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + photo.getPhoto2());
-        Image img2 = new Image(f2.toURI().toString());
+        Image img2 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
         image3.setImage(img2);
-        File f3 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + photo.getPhoto3());
-        Image img3 = new Image(f3.toURI().toString());
+        Image img3 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
         image11.setImage(img3);
-        File f4 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + photo.getPhoto4());
-        Image img4 = new Image(f4.toURI().toString());
+        Image img4 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
         image31.setImage(img4);
     }
 
