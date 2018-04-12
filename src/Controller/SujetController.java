@@ -222,7 +222,7 @@ for (int i=0 ; i<count ; i++) {
               hbox.setStyle("-fx-background-color: #dae1ea; -fx-border-color: black;");
               
               
-                 File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs.getString("image"));
+                 File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs.getString("image"));
             Image img = new Image(ff.toURI().toString());
               
               ImageView image = new ImageView();
@@ -294,14 +294,14 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAEYVjUKysblcKLwMsWlzZAZCzZAZCsqOLiZAU4JdogXFHvqZCoDwrs3yykZBjv20POrNZCSRdbFFXrEho18Okel24u5vFCFOYZCVXYlISHVsW0kyFOM7qF2pgIJmdoE2NwKhZAEMjjXhv1y8qZBhhVrCqZB880rhui3sAZB3ZACSd4LNHnY8pFt1nzaHOAh3mpWaxZBBAZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAM6FlNZACK6emq5tZAq0CkpCzUdhnyAuI9mHOWIuXE7sLmZBMAOa1ETr8iwSISPcW82FGfvNlw96jHYgyeg7ZBLrhAovENqSp8qbzgDKdodb05Uu5wcWvEzRmTn3dg9aSqwQthmlhvAmzx20pfSzeDWriXwBT7eQZAVt7FDJQo3jp5p9R4qccJyqedpTDHQZDZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        
         System.out.println(me.getLanguages());
         FileInputStream fis = null;
                   try {
-                      fis = new FileInputStream(new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/"+u ));
+                      fis = new FileInputStream(new File(System.getProperty("user.dir")+"/src/Images/"+u ));
                   } catch (FileNotFoundException ex) {
                       Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -429,7 +429,7 @@ for (int i=0 ; i<count ; i++) {
         while (rs3.next()) 
         {
          hbox3.getChildren().clear();
-         hbox3.getChildren().addAll(btn1,partager,btn3);
+         hbox3.getChildren().addAll(btn1,partager);
          
                        if(now == Controller.getUserId()){ 
         
@@ -440,9 +440,23 @@ for (int i=0 ; i<count ; i++) {
                  btn2.setStyle("-fx-background-color: #26B99A; -fx-text-fill: white;");
                  btn2.setText("Supprimer votre sujet");
  
-         hbox3.getChildren().add(btn2);
+         hbox3.getChildren().addAll(btn2,btn3);
          
-         
+                  btn3.setOnAction(e->{
+          
+            anchorpane.getChildren().clear();
+                     beblio b = new beblio();
+ 
+        b.setIdc(this.idc);
+   b.setIds(Integer.parseInt(x.getText()));
+                      FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/modifier_sujet.fxml")));
+    try {
+        anchorpane.getChildren().add(fxmlloader.load())
+                ;
+    } catch (IOException ex) {
+        Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                 });
          
          btn2.setOnAction(e->{
  
@@ -491,7 +505,7 @@ for (int i=0 ; i<count ; i++) {
               vbox2.getChildren().add(label);
               
               ImageView imageView = new ImageView();
-               File fff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs1.getString("photoprofil"));
+               File fff = new File(System.getProperty("user.dir")+"/src/Images/" + rs1.getString("image"));
             Image img1 = new Image(fff.toURI().toString());
               imageView.setFitHeight(105);
               imageView.setFitWidth(100);
@@ -572,8 +586,8 @@ return pp;
 public void hb1() throws SQLException, FileNotFoundException, IOException {
     
     
-    
-  VBox anchorpane = new VBox();
+ScrollPane pp = new ScrollPane();
+VBox anchorpane = new VBox();
 HBox f = new HBox();
 JFXButton ajouter = new JFXButton();
                  ajouter.setPrefHeight(26);
@@ -613,20 +627,24 @@ JFXButton favorie = new JFXButton();
                  favorie.setStyle("-fx-background-color: #f2218a; -fx-text-fill: white;");
                  favorie.setText("Liste Des Favories");
                  
-                 
-                 JFXTextField field = new JFXTextField();
+    JFXTextField field = new JFXTextField();
                   field.setPrefHeight(26);
                  field.setPrefWidth(300);
 
                  field.setPromptText("Recherche");
-
+                 
+                 
+                 
                  f.getChildren().addAll(ajouter,quitter,favorie,field);
-                 String x1=field.getText();
-           field.setOnAction(e->{
-              
-       
-                 });
-
+                 
+               
+                 
+                 
+                 
+                 
+                 
+                 
+                 
                   quitter.setOnAction(e->{
  
         
@@ -666,7 +684,7 @@ anchorpane.setPrefWidth(1013);
         stage.setResizable(false);
                       
                   });
-         
+
     serviceSujet ss = new serviceSujet();
     LoginService s = new LoginService();
 
@@ -681,7 +699,7 @@ for (int i=0 ; i<count ; i++) {
               hbox.setStyle("-fx-background-color: #dae1ea; -fx-border-color: black;");
               
               
-                 File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs.getString("image"));
+                 File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs.getString("image"));
             Image img = new Image(ff.toURI().toString());
               
               ImageView image = new ImageView();
@@ -753,14 +771,14 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAEYVjUKysblcKLwMsWlzZAZCzZAZCsqOLiZAU4JdogXFHvqZCoDwrs3yykZBjv20POrNZCSRdbFFXrEho18Okel24u5vFCFOYZCVXYlISHVsW0kyFOM7qF2pgIJmdoE2NwKhZAEMjjXhv1y8qZBhhVrCqZB880rhui3sAZB3ZACSd4LNHnY8pFt1nzaHOAh3mpWaxZBBAZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAM6FlNZACK6emq5tZAq0CkpCzUdhnyAuI9mHOWIuXE7sLmZBMAOa1ETr8iwSISPcW82FGfvNlw96jHYgyeg7ZBLrhAovENqSp8qbzgDKdodb05Uu5wcWvEzRmTn3dg9aSqwQthmlhvAmzx20pfSzeDWriXwBT7eQZAVt7FDJQo3jp5p9R4qccJyqedpTDHQZDZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        
         System.out.println(me.getLanguages());
         FileInputStream fis = null;
                   try {
-                      fis = new FileInputStream(new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/"+u ));
+                      fis = new FileInputStream(new File(System.getProperty("user.dir")+"/src/Images/"+u ));
                   } catch (FileNotFoundException ex) {
                       Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -774,29 +792,12 @@ for (int i=0 ; i<count ; i++) {
                   }); 
               
               
-              Button btn3 = new Button();
+               Button btn3 = new Button();
                  btn3.setPrefHeight(26);
                  btn3.setPrefWidth(100);
                  
                  btn3.setStyle("-fx-background-color: #86B49F; -fx-text-fill: white;");
                  btn3.setText("Modifier");
-                 
-                 btn3.setOnAction(e->{
-          
-            anchorpane.getChildren().clear();
-                     beblio b = new beblio();
- 
-        b.setIdc(this.idc);
-   b.setIds(Integer.parseInt(x.getText()));
-                      FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/modifier_sujet.fxml")));
-    try {
-        anchorpane.getChildren().add(fxmlloader.load())
-                ;
-    } catch (IOException ex) {
-        Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-                 });
-        
               
               if(now == Controller.getUserId()){ 
         
@@ -806,6 +807,8 @@ for (int i=0 ; i<count ; i++) {
                  
                  btn2.setStyle("-fx-background-color: #26B99A; -fx-text-fill: white;");
                  btn2.setText("Supprimer votre sujet");
+                 
+                 
  
          hbox3.getChildren().addAll(btn2,btn3);
          
@@ -839,7 +842,23 @@ for (int i=0 ; i<count ; i++) {
             stage.setScene(new Scene(root));
                       
                   });
-         
+          btn3.setOnAction(e->{
+          
+            anchorpane.getChildren().clear();
+                     beblio b = new beblio();
+ 
+        b.setIdc(this.idc);
+   b.setIds(Integer.parseInt(x.getText()));
+                      FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/modifier_sujet.fxml")));
+    try {
+        anchorpane.getChildren().add(fxmlloader.load())
+                ;
+    } catch (IOException ex) {
+        Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                 });
+        
+       
          
         }
               
@@ -883,11 +902,11 @@ for (int i=0 ; i<count ; i++) {
          
          
         ResultSet rs3 = ss.ConditionButton(Controller.getUserId(), Integer.parseInt(x.getText()));
-       
+        
         while (rs3.next()) 
         {
          hbox3.getChildren().clear();
-         hbox3.getChildren().addAll(btn1,partager,btn3);
+         hbox3.getChildren().addAll(btn1,partager);
          
                        if(now == Controller.getUserId()){ 
         
@@ -898,9 +917,23 @@ for (int i=0 ; i<count ; i++) {
                  btn2.setStyle("-fx-background-color: #26B99A; -fx-text-fill: white;");
                  btn2.setText("Supprimer votre sujet");
  
-         hbox3.getChildren().add(btn2);
+         hbox3.getChildren().addAll(btn2,btn3);
          
-         
+          btn3.setOnAction(e->{
+          
+            anchorpane.getChildren().clear();
+                     beblio b = new beblio();
+ 
+        b.setIdc(this.idc);
+   b.setIds(Integer.parseInt(x.getText()));
+                      FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/modifier_sujet.fxml")));
+    try {
+        anchorpane.getChildren().add(fxmlloader.load())
+                ;
+    } catch (IOException ex) {
+        Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                 });
          
          btn2.setOnAction(e->{
  
@@ -949,7 +982,7 @@ for (int i=0 ; i<count ; i++) {
               vbox2.getChildren().add(label);
               
               ImageView imageView = new ImageView();
-               File fff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs1.getString("photoprofil"));
+               File fff = new File(System.getProperty("user.dir")+"/src/Images/" + rs1.getString("image"));
             Image img1 = new Image(fff.toURI().toString());
               imageView.setFitHeight(105);
               imageView.setFitWidth(100);
@@ -1004,11 +1037,25 @@ for (int i=0 ; i<count ; i++) {
      
     
     rs.next();
-            
             }
-AnchorPane ty = new AnchorPane();
-ty.getChildren().add(anchorpane);
-BIG.setContent(ty);
+  
+                  field.setOnAction(e->{
+                      
+                      beblio.setIdc(this.idc);
+                      beblio.setRecherche(field.getText());
+           Parent root = null;
+                 try {
+                     root = FXMLLoader.load(getClass().getResource("../View/LayoutFront_1_1.fxml"));
+                 } catch (IOException ex) {
+                     Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        
+        Node node =(Node)e.getSource();
+                 Stage stage = (Stage)node.getScene().getWindow();
+            stage.setScene(new Scene(root));
+           
+                 });
+BIG.setContent(anchorpane);
 
 
 }

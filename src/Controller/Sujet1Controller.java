@@ -207,7 +207,7 @@ for (int i=0 ; i<count ; i++) {
               hbox.setStyle("-fx-background-color: #dae1ea; -fx-border-color: black;");
               
               
-                 File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs.getString("image"));
+                 File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs.getString("image"));
             Image img = new Image(ff.toURI().toString());
               
               ImageView image = new ImageView();
@@ -279,14 +279,14 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAEYVjUKysblcKLwMsWlzZAZCzZAZCsqOLiZAU4JdogXFHvqZCoDwrs3yykZBjv20POrNZCSRdbFFXrEho18Okel24u5vFCFOYZCVXYlISHVsW0kyFOM7qF2pgIJmdoE2NwKhZAEMjjXhv1y8qZBhhVrCqZB880rhui3sAZB3ZACSd4LNHnY8pFt1nzaHOAh3mpWaxZBBAZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAM6FlNZACK6emq5tZAq0CkpCzUdhnyAuI9mHOWIuXE7sLmZBMAOa1ETr8iwSISPcW82FGfvNlw96jHYgyeg7ZBLrhAovENqSp8qbzgDKdodb05Uu5wcWvEzRmTn3dg9aSqwQthmlhvAmzx20pfSzeDWriXwBT7eQZAVt7FDJQo3jp5p9R4qccJyqedpTDHQZDZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        
         System.out.println(me.getLanguages());
         FileInputStream fis = null;
                   try {
-                      fis = new FileInputStream(new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/"+u ));
+                      fis = new FileInputStream(new File(System.getProperty("user.dir")+"/src/Images/"+u ));
                   } catch (FileNotFoundException ex) {
                       Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -475,7 +475,7 @@ for (int i=0 ; i<count ; i++) {
               vbox2.getChildren().add(label);
               
               ImageView imageView = new ImageView();
-               File fff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs1.getString("photoprofil"));
+               File fff = new File(System.getProperty("user.dir")+"/src/Images/" + rs1.getString("image"));
             Image img1 = new Image(fff.toURI().toString());
               imageView.setFitHeight(105);
               imageView.setFitWidth(100);

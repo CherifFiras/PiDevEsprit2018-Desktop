@@ -154,7 +154,7 @@ public class CatController implements Initializable {
                   btn2.setStyle("-fx-background-color: #26B99A; -fx-text-fill: white; -fx-font-size: 14;");
                   btn2.setText("signler");
                  
-                 File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs.getString("image"));
+                 File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs.getString("image"));
             Image img = new Image(ff.toURI().toString());
                   String x= "-fx-border-box:box-sizing";
                   imageview.setStyle(x);

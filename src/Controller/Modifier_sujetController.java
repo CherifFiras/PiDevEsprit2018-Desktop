@@ -8,8 +8,12 @@ package Controller;
 import Core.DataSource;
 import Entity.sujet;
 import Service.serviceSujet;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +34,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static org.testng.internal.Utils.copyFile;
 
 /**
  * FXML Controller class
@@ -44,7 +50,7 @@ public class Modifier_sujetController extends beblio implements Initializable {
     @FXML
     private TextField libelle;
     @FXML
-    private TextField image;
+    private Button image;
     @FXML
     private Button modifier;
          PreparedStatement pst;
@@ -53,6 +59,9 @@ public class Modifier_sujetController extends beblio implements Initializable {
     public Statement ste;
     @FXML
     private Label label;
+      FileChooser saveFileChooser = new FileChooser();    
+    File saveFile;
+    File srcFile, destFile;
 
     /**
      * Initializes the controller class.
@@ -109,7 +118,7 @@ public class Modifier_sujetController extends beblio implements Initializable {
              label.setText("*contenu est vide !");
          }
          else{
-             sujet V = new sujet(libelle.getText(),image.getText(),contenu.getText());
+             sujet V = new sujet(libelle.getText(),contenu.getText(),srcFile.getName());
             SV.ModifierSujet(V,beblio.getIdc());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
@@ -127,5 +136,33 @@ public class Modifier_sujetController extends beblio implements Initializable {
         }
     
     }
+
+    @FXML
+    private void insertion(ActionEvent event) throws IOException {
+        
+           File file = saveFileChooser.showOpenDialog(null);  
+        if (file != null) {                
+            srcFile = file;
+            if (srcFile != null) {         
+                    String p = System.getProperty("user.dir")+"/src/images/"+srcFile.getName();
+                    copyFile(srcFile, new File(p));
+
+            }
+        }
+    }
+    
+        public void copyFile(File sourceFile, File destFile) throws IOException {
+        if ( !destFile.exists() ) { destFile.createNewFile(); }
+
+    try (
+        FileChannel in = new FileInputStream( sourceFile ).getChannel();
+        FileChannel out = new FileOutputStream( destFile ).getChannel(); ) {
+
+        out.transferFrom( in, 0, in.size() );
+    }
+    }
+    
+    
+    
     
 }
