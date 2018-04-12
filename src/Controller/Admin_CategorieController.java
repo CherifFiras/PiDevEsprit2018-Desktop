@@ -6,6 +6,7 @@
 package Controller;
 
 import Core.DataSource;
+import interfaceadmin1.UIController;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -134,13 +135,10 @@ public class Admin_CategorieController implements Initializable {
            Parent root = null;
                  try {
                      root = FXMLLoader.load(getClass().getResource("../View/Liste_categrorie.fxml"));
+                     UIController.setNode(root);
                  } catch (IOException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
-        
-        Node node =(Node)event.getSource();
-                 Stage stage = (Stage)node.getScene().getWindow();
-            stage.setScene(new Scene(root));
  
          }
         
@@ -160,4 +158,6 @@ public class Admin_CategorieController implements Initializable {
     }
     
     
+     
+     
 }

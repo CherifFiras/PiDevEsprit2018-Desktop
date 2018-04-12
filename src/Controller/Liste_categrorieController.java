@@ -10,6 +10,7 @@ import Core.DataSource;
 import Entity.Category;
 import Entity.sujet;
 import Service.serviceCategory;
+import interfaceadmin1.UIController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -33,6 +34,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -111,14 +113,10 @@ public class Liste_categrorieController implements Initializable {
            Parent root = null;
                  try {
                      root = FXMLLoader.load(getClass().getResource("../View/Admin_categorie.fxml"));
+                     UIController.setNode(root);
                  } catch (IOException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-        
-        Node node =(Node)event.getSource();
-                 Stage stage = (Stage)node.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        
+                 }  
         
     }
 
@@ -126,9 +124,20 @@ public class Liste_categrorieController implements Initializable {
     private void deleteData(ActionEvent event) throws SQLException {
 
           serviceCategory spa= new serviceCategory();
-          spa.deleteData(event, list, table);
-
-        
+          spa.deleteData(event, list, table);        
     }
+
+
+    @FXML
+    private void update_libelle(CellEditEvent edit) throws SQLException {
+        serviceCategory spa= new serviceCategory();
+        spa.update_libelle(edit, list, table);
+    }
+
+    
+    @FXML
+    private void udpate_description(TableColumn.CellEditEvent event) {
+    }
+
     
 }

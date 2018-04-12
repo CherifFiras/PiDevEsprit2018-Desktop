@@ -52,7 +52,7 @@ public class MapareaController implements Initializable, MapComponentInitialized
     public void initialize(URL url, ResourceBundle rb) {
 
         slider.setMin(0);
-        slider.setMax(20000);
+        slider.setMax(700);
         slider.setValue(0);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);

@@ -5,14 +5,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1013.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="Controller.Liste_categrorieController">
+<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Liste_categrorieController">
    <children>
       <TableView fx:id="table" layoutX="115.0" layoutY="130.0" prefHeight="469.0" prefWidth="783.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="76.00003051757812" text="id" />
-          <TableColumn fx:id="libelle" prefWidth="239.9999542236328" text="libelle" />
-            <TableColumn fx:id="description" prefWidth="345.6000671386719" text="description" />
+          <TableColumn fx:id="libelle" onEditCommit="#update_libelle" prefWidth="239.9999542236328" text="libelle" />
+            <TableColumn fx:id="description" onEditCommit="#udpate_description" prefWidth="345.6000671386719" text="description" />
             <TableColumn fx:id="date" minWidth="0.0" prefWidth="121.59991455078125" text="date" />
         </columns>
       </TableView>

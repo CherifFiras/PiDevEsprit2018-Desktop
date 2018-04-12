@@ -10,6 +10,7 @@ import Entity.Notification;
 import IService.INotificationService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,10 +19,16 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -44,6 +51,8 @@ public class MenuBarController extends Controller implements Initializable {
     private Label demandeNotifLabel;
     @FXML
     private Label acceptNotifLabel;
+    @FXML
+    private ImageView Maparea;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -112,6 +121,15 @@ public class MenuBarController extends Controller implements Initializable {
     @FXML
     private void acceptNotification(MouseEvent event) {
         Controller.getNotificationController().showWindow("Accept");
+    }
+
+    @FXML
+    private void switchMap(MouseEvent event) throws IOException {
+        Stage stage = new Stage();
+          Parent root = FXMLLoader.load(getClass().getResource("../View/Maparea.fxml")); 
+        Scene scene = new Scene(root,1100,700);     
+        stage.setScene(scene);
+        stage.show();
     }
     
 }
