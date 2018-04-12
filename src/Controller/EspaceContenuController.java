@@ -123,15 +123,15 @@ public class EspaceContenuController extends Controller implements Initializable
         }
         rating.setTranslateX(0);
         rating.setDisable(true);
-        Image img = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
+        Image img = new Image(getClass().getResource("../Images/").toExternalForm() + espace.getPhoto());
         image.setImage(img);
-        Image img1 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
+        Image img1 = new Image(getClass().getResource("../Images/").toExternalForm() + photo.getPhoto1());
         image1.setImage(img1);
-        Image img2 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
+        Image img2 = new Image(getClass().getResource("../Images/").toExternalForm() + photo.getPhoto2());
         image3.setImage(img2);
-        Image img3 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
+        Image img3 = new Image(getClass().getResource("../Images/").toExternalForm() + photo.getPhoto3());
         image11.setImage(img3);
-        Image img4 = new Image(getClass().getResource("../Images/").toExternalForm() + photo);
+        Image img4 = new Image(getClass().getResource("../Images/").toExternalForm() + photo.getPhoto4());
         image31.setImage(img4);
     }
 
