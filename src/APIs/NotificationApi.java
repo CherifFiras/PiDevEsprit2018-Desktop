@@ -9,6 +9,7 @@ import Entity.Demande;
 import Entity.Message;
 import Entity.Notifiable;
 import Entity.Notification;
+import Entity.User;
 import IService.INotificationService;
 import Service.NotificationService;
 import java.util.Date;
@@ -42,6 +43,18 @@ public class NotificationApi {
         notification.setMessage(demande.getAcceptor().getId().toString());
         notification.setLink(demande.getRequester().getId().toString());
         notificationService.insertNotification(notifiable, notification);
+    }
+    
+    public static void createAcceptNotification(User cUser,User oUser)
+    {
+        Notifiable notifiable = new Notifiable();
+        notifiable.setIdentifier(oUser.getId());
+        Notification notification = new Notification();
+        notification.setDate(new Date());
+        notification.setSubject("Accept");
+        notification.setMessage(cUser.getNom()+" "+cUser.getPrenom());
+        notification.setLink(cUser.getImage());
+        notificationService.insertNotification(notifiable, notification);     
     }
     
     public static void deleteMessageNotification(Message message)

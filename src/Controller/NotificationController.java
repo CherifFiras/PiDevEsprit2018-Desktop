@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import APIs.NotificationApi;
 import Core.Controller;
 import Entity.Demande;
 import Entity.Message;
@@ -18,6 +19,7 @@ import IService.IUserService;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -59,6 +61,8 @@ public class NotificationController extends Controller implements Initializable 
     private List<Notification> unseenAcceptNotifications;
     private VBox seenDemandeNotificationsVBox;
     private VBox unseenDemandeNotificationsVBox;
+    private VBox seenAcceptNotificationsVBox;
+    private VBox unseenAcceptNotificationsVBox;
     private VBox seenMessageNotificationsVBox;
     private VBox unseenMessageNotificationsVBox;
     private Font prefFont;
@@ -96,6 +100,7 @@ public class NotificationController extends Controller implements Initializable 
         {
             case"Demande":scrollContainer.setContent(unseenDemandeNotificationsVBox);break;
             case"Message":scrollContainer.setContent(unseenMessageNotificationsVBox);break;
+            case"Accept":scrollContainer.setContent(unseenAcceptNotificationsVBox);break;
         }
         if(!stage.isShowing())
             stage.show();
@@ -184,6 +189,8 @@ public class NotificationController extends Controller implements Initializable 
     {
         seenDemandeNotificationsVBox = demandeNotificationsListItem(seenDemandeNotifications);
         unseenDemandeNotificationsVBox = demandeNotificationsListItem(unseenDemandeNotifications);
+        seenAcceptNotificationsVBox = acceptNotificationsListItem(seenAcceptNotifications);
+        unseenAcceptNotificationsVBox = acceptNotificationsListItem(unseenAcceptNotifications);
         seenMessageNotificationsVBox = messageNotificationsListItem(seenMessageNotifications);
         unseenMessageNotificationsVBox = messageNotificationsListItem(unseenMessageNotifications);
     }
@@ -198,6 +205,17 @@ public class NotificationController extends Controller implements Initializable 
             vBox.getChildren().add(demandeNotificationItem(user, notification));
         });
         return vBox;
+    }
+    
+    private VBox acceptNotificationsListItem(List<Notification> notifications)
+    {
+        VBox vBox = new VBox();
+        vBox.setPrefSize(485, 350);
+        HBox.setMargin(vBox, new Insets(0, 0, 0, 10));
+        notifications.forEach((notification) -> {
+            vBox.getChildren().add(acceptNotificationItem(notification));
+        });
+        return vBox; 
     }
     
     private VBox messageNotificationsListItem(List<Notification> notifications)
@@ -229,7 +247,7 @@ public class NotificationController extends Controller implements Initializable 
         Label notificationUser = new Label(message.getSender().getPrenom()+" "+message.getSender().getNom());
         notificationUser.setPrefSize(330, 30);
         notificationUser.setFont(prefFont);
-        Label notificationDate = new Label("12:56am");
+        Label notificationDate = new Label(this.getLongDateFormat(message.getDate()));
         notificationDate.setPrefSize(100, 30);
         hBoxChild.getChildren().add(notificationUser);
         hBoxChild.getChildren().add(notificationDate);
@@ -255,9 +273,16 @@ public class NotificationController extends Controller implements Initializable 
         userImage.setPickOnBounds(true);
         userImage.setPreserveRatio(true);
         userImage.setClip(new Circle(30, 30, 30));
+        VBox vBox = new VBox();
+        vBox.setPrefSize(120, 60);
         Label notificationUser = new Label(user.getPrenom()+" "+user.getNom());
-        notificationUser.setPrefSize(120, 60);
+        notificationUser.setPrefSize(120, 30);
         notificationUser.setFont(prefFont);
+        Label notificationDate = new Label(this.getLongDateFormat(notification.getDate()));
+        notificationDate.setPrefSize(120, 30);
+        notificationDate.setFont(prefFont);
+        vBox.getChildren().add(notificationUser);
+        vBox.getChildren().add(notificationDate);
         Label notificationText = new Label("a envoyé une demande");
         notificationText.setPrefSize(140, 60);
         Button acceptButton = new Button("Accepter");
@@ -274,13 +299,40 @@ public class NotificationController extends Controller implements Initializable 
         rejectButton.setOnAction(this::rejectDemande);
         ObservableList<Node> childs = hBox.getChildren();
         childs.add(userImage);
-        childs.add(notificationUser);
+        childs.add(vBox);
         childs.add(notificationText);
         childs.add(acceptButton);
         childs.add(rejectButton);
-        HBox.setMargin(notificationUser, new Insets(0, 0, 0, 5));
+        HBox.setMargin(vBox, new Insets(0, 0, 0, 5));
         HBox.setMargin(acceptButton, new Insets(0, 0, 0, 5));
         HBox.setMargin(rejectButton, new Insets(0, 0, 0, 5));
+        VBox.setMargin(hBox, new Insets(5, 0, 0, 0));
+        return hBox;
+    }
+    
+    private HBox acceptNotificationItem(Notification notification)
+    {
+        HBox hBox = new HBox();
+        hBox.setPrefSize(485, 60);
+        ImageView userImage = new ImageView(getClass().getResource("../Images/"+notification.getLink()).toExternalForm());
+        userImage.setFitWidth(60);
+        userImage.setFitHeight(60);
+        userImage.setPickOnBounds(true);
+        userImage.setPreserveRatio(true);
+        userImage.setClip(new Circle(30, 30, 30));
+        Label notificationUser = new Label(notification.getMessage());
+        notificationUser.setPrefSize(120, 60);
+        notificationUser.setFont(prefFont);
+        Label notificationText = new Label("a accepté votre demande");
+        Label notificationDate = new Label(this.getLongDateFormat(notification.getDate()));
+        notificationText.setPrefSize(140, 60);
+        notificationDate.setPrefSize(100, 60);
+        ObservableList<Node> childs = hBox.getChildren();
+        childs.add(userImage);
+        childs.add(notificationUser);
+        childs.add(notificationText);
+        childs.add(notificationDate);
+        HBox.setMargin(notificationUser, new Insets(0, 0, 0, 5));
         VBox.setMargin(hBox, new Insets(5, 0, 0, 0));
         return hBox;
     }
@@ -331,8 +383,8 @@ public class NotificationController extends Controller implements Initializable 
         Button demandeButton = (Button)event.getSource();
         int requesterId = Integer.parseInt(demandeButton.getId());
         deleteDemande(requesterId);
-        User requester = new User();
-        requester.setId(requesterId);
+        User requester = userService.getUserById(requesterId);
+        NotificationApi.createAcceptNotification(this.getUser(),requester);
         relationService.insertRelation(this.getUser(),requester);
         demandeButton.setVisible(false);
         Notifications.create().text("Félicitation tu as un nouveau amis !!!").position(Pos.CENTER).hideAfter(Duration.seconds(3)).showConfirm();
@@ -356,6 +408,7 @@ public class NotificationController extends Controller implements Initializable 
         {
             case"Demande":scrollContainer.setContent(unseenDemandeNotificationsVBox);break;
             case"Message":scrollContainer.setContent(unseenMessageNotificationsVBox);break;
+            case"Accept":scrollContainer.setContent(unseenAcceptNotificationsVBox);break;
         }
     }
 
@@ -368,6 +421,7 @@ public class NotificationController extends Controller implements Initializable 
         {
             case"Demande":scrollContainer.setContent(seenDemandeNotificationsVBox);break;
             case"Message":scrollContainer.setContent(seenMessageNotificationsVBox);break;
+            case"Accept":scrollContainer.setContent(seenAcceptNotificationsVBox);break;
         }
     }
 
@@ -391,6 +445,15 @@ public class NotificationController extends Controller implements Initializable 
                 unseenMessageNotificationsVBox = messageNotificationsListItem(unseenMessageNotifications);
                 seenMessageNotificationsVBox = messageNotificationsListItem(seenMessageNotifications);
                 scrollContainer.setContent(seenMessageNotificationsVBox);
+                break;
+            }
+            case"Accept":{
+                notificationService.makeNotificationsAsSeen(this.getUser(), unseenAcceptNotifications);
+                seenAcceptNotifications.addAll(unseenAcceptNotifications);
+                unseenAcceptNotifications.clear();
+                unseenAcceptNotificationsVBox = acceptNotificationsListItem(unseenAcceptNotifications);
+                seenAcceptNotificationsVBox = acceptNotificationsListItem(seenAcceptNotifications);
+                scrollContainer.setContent(seenAcceptNotificationsVBox);
                 break;
             }
         }

@@ -114,7 +114,7 @@ public class Notification implements Serializable {
     {
         Notification notification = new Notification();
         notification.setId(rs.getInt("id"));
-        notification.setDate(rs.getDate("date"));
+        notification.setDate(rs.getTimestamp("date"));
         notification.setSubject(rs.getString("subject"));
         notification.setMessage(rs.getString("message"));
         notification.setLink(rs.getString("link"));

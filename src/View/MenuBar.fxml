@@ -19,7 +19,7 @@
          <children>
             <HBox prefHeight="70.0" prefWidth="74.0">
                <children>
-                  <Label prefHeight="12.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
+                  <Label fx:id="demandeNotifLabel" prefHeight="12.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -27,7 +27,7 @@
                         <Font name="Ebrima" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="34.0" fitWidth="33.0" translateY="20.0">
+                  <ImageView fitHeight="34.0" fitWidth="33.0" onMouseClicked="#demandeNotification" translateY="20.0">
                      <image>
                         <Image url="@../Images/icons8-notification-center-filled-96.png" />
                      </image>
@@ -36,7 +36,7 @@
             </HBox>
             <HBox prefHeight="70.0" prefWidth="74.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
+                  <Label fx:id="messageNotifLabel" prefHeight="14.0" prefWidth="26.0" text="10" textFill="WHITE" translateY="20.0">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -44,7 +44,7 @@
                         <Font name="Ebrima" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="29.0" fitWidth="34.0" style="-fx-translate-y: 20;">
+                  <ImageView fitHeight="29.0" fitWidth="34.0" onMouseClicked="#messageNotification" style="-fx-translate-y: 20;">
                      <image>
                         <Image url="@../Images/icons8-chat-room-96.png" />
                      </image>
@@ -53,7 +53,7 @@
             </HBox>
             <HBox prefHeight="70.0" prefWidth="74.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="25.0" text="10" textFill="WHITE" translateY="20.0">
+                  <Label fx:id="acceptNotifLabel" prefHeight="20.0" prefWidth="25.0" text="10" textFill="WHITE" translateY="20.0">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -61,7 +61,7 @@
                         <Font name="Ebrima" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="34.0" style="-fx-translate-y: 20;">
+                  <ImageView fitHeight="30.0" fitWidth="34.0" onMouseClicked="#acceptNotification" style="-fx-translate-y: 20;">
                      <image>
                         <Image url="@../Images/icons8-alarm-100.png" />
                      </image>
