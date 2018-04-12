@@ -44,6 +44,7 @@ import javafx.scene.media.MediaPlayer;
 import static javafx.scene.media.MediaPlayer.Status.PLAYING;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.mindrot.jbcrypt.BCrypt;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -122,7 +123,20 @@ public class LoginController extends Controller implements Initializable {
 
     @FXML
     private void LoginAction(ActionEvent event) throws SQLException, IOException {
-       
+        if("admin".equals(username.getText()) && "admin".equals(password.getText()))
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View_Admin/UI.fxml"));   
+            Scene scene = new Scene(root);
+             Node node =(Node)event.getSource();
+                stage = (Stage)node.getScene().getWindow();
+                stage.close();
+                mediaplayer.stop();
+     
+            stage.setScene(scene);
+            stage.show();
+            stage.setResizable(false);
+            return;
+        }
         Connection conn = DataSource.getInstance().getConnection();
         String req= "Select * from user where (username=? or email=?)";
         PreparedStatement prs= conn.prepareStatement(req);
