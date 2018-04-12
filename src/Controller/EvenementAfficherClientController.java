@@ -160,11 +160,13 @@ public class EvenementAfficherClientController extends Controller implements Ini
                     nbr.setLayoutX(764);
                     nbr.setLayoutY(446);
                     nbr.setText(String.valueOf(evenement.getNbplaces()));
+                    
                     root.getChildren().add(nbr);
                     //setFont(Font.font("Verdana", FontWeight.BOLD, 70));
                     participer.setFont(new Font("Cambria", 15));
                     participer.setStyle("-fx-background-color: #724848; ");
                     participer.setTextFill(Color.web("#e8f8ff"));
+                    
                     root.getChildren().add(participer); 
                     participer.setOnMouseClicked(s
                                 -> {
