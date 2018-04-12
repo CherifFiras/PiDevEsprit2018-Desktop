@@ -167,13 +167,25 @@ public class EvenementAfficherClientController extends Controller implements Ini
                     participer.setStyle("-fx-background-color: #724848; ");
                     participer.setTextFill(Color.web("#e8f8ff"));
                     
-                    root.getChildren().add(participer); 
+                    root.getChildren().add(participer);
+                    if(p.checkParticipation(evenement, this.getUser()))
+                    {
+                        participer.setDisable(true);
+                        annuler.setDisable(false);
+                    }
+                    else
+                    {
+                        participer.setDisable(false);
+                        annuler.setDisable(true);
+                    }
                     participer.setOnMouseClicked(s
                                 -> {
                                                  
                        nbr.setText(String.valueOf(Integer.parseInt(nbr.getText())+1));
                        evenement.setNbplaces(Integer.parseInt(nbr.getText())-1);
-                        p.increment(evenement, evenement.getId());                
+                        p.increment(evenement,this.getUser());
+                        participer.setDisable(true);
+                        annuler.setDisable(false);
                     });
 
                     annuler.setFont(new Font("Cambria", 15));
@@ -184,7 +196,9 @@ public class EvenementAfficherClientController extends Controller implements Ini
                                 -> {                    
                        nbr.setText(String.valueOf(Integer.parseInt(nbr.getText())-1));
                        evenement.setNbplaces(Integer.parseInt(nbr.getText())+1);
-                        p.decrement(evenement, evenement.getId());
+                        p.decrement(evenement, this.getUser());
+                        participer.setDisable(false);
+                        annuler.setDisable(true);
                                                         
                     });
                     EvenementController ec = loader.getController();
@@ -305,13 +319,25 @@ public class EvenementAfficherClientController extends Controller implements Ini
                     participer.setFont(new Font("Cambria", 15));
                     participer.setStyle("-fx-background-color: #f4c3c3; ");
                     participer.setTextFill(Color.web("#e8f8ff"));
-                    root.getChildren().add(participer); 
+                    root.getChildren().add(participer);
+                    if(p.checkParticipation(evenement, this.getUser()))
+                    {
+                        participer.setDisable(true);
+                        annuler.setDisable(false);
+                    }
+                    else
+                    {
+                        participer.setDisable(false);
+                        annuler.setDisable(true);
+                    }
                     participer.setOnMouseClicked(s
                                 -> {
                                                  
                        nbr.setText(String.valueOf(Integer.parseInt(nbr.getText())+1));
                        evenement.setNbplaces(Integer.parseInt(nbr.getText())-1);
-                        p.increment(evenement, evenement.getId());                
+                        p.increment(evenement, this.getUser());
+                        participer.setDisable(true);
+                        annuler.setDisable(false);
                     });
 
                     annuler.setFont(new Font("Cambria", 15));
@@ -322,7 +348,9 @@ public class EvenementAfficherClientController extends Controller implements Ini
                                 -> {                    
                        nbr.setText(String.valueOf(Integer.parseInt(nbr.getText())-1));
                        evenement.setNbplaces(Integer.parseInt(nbr.getText())+1);
-                        p.decrement(evenement, evenement.getId());
+                        p.decrement(evenement, this.getUser());
+                        participer.setDisable(false);
+                        annuler.setDisable(true);
                                                         
                     });
                     EvenementController ec = loader.getController();

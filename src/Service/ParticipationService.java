@@ -7,12 +7,15 @@ package Service;
 
 import Core.DataSource;
 import Entity.Evenement;
+import Entity.User;
 import IService.IParticipationService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +38,7 @@ public class ParticipationService implements IParticipationService {
 //         
 //     }
     @Override
-       public   void increment(Evenement ev,int id)
+       public   void increment(Evenement ev,User user)
      {
          try {
              String req="UPDATE `Evenement` SET `nbplaces`=? WHERE `id`=?";
@@ -43,15 +46,18 @@ public class ParticipationService implements IParticipationService {
              prs.setInt(1,(ev.getNbplaces())+1);
              prs.setInt(2,ev.getId());
              prs.executeUpdate();
-
-  
+             req = "INSERT INTO participation (IdEvenement,IdUser) VALUES (?,?)";
+             prs = con.prepareStatement(req);
+             prs.setInt(1, ev.getId());
+             prs.setInt(2, user.getId());
+             prs.executeUpdate();
          } catch (SQLException e) {
              System.out.println("404");
          }
          
      }
     @Override
-         public   void decrement(Evenement ev,int id)
+         public   void decrement(Evenement ev,User user)
      {
          try {
              String req="UPDATE `Evenement` SET `nbplaces`=? WHERE `id`=?";
@@ -59,10 +65,30 @@ public class ParticipationService implements IParticipationService {
              prs.setInt(1,(ev.getNbplaces())-1);
              prs.setInt(2,ev.getId());
              prs.executeUpdate();
+             req = "DELETE FROM participation WHERE IdEvenement = ? and IdUser=?";
+             prs = con.prepareStatement(req);
+             prs.setInt(1, ev.getId());
+             prs.setInt(2, user.getId());
+             prs.executeUpdate();
   
          } catch (SQLException e) {
              System.out.println("404");
          }
          
      }
+
+    @Override
+    public boolean checkParticipation(Evenement evenement, User user) {
+        String query = "select * from participation where IdEvenement = ? and IdUser = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, evenement.getId());
+            ps.setInt(2, user.getId());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ParticipationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
