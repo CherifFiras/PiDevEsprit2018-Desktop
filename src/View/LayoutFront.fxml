@@ -33,7 +33,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -45,7 +45,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane onMouseClicked="#espaceAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#espaceAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -57,7 +57,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane onMouseClicked="#eventAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#eventAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -69,7 +69,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -81,7 +81,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane onMouseClicked="#matchingAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#matchingAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -93,7 +93,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>

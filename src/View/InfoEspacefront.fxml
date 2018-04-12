@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="holderPane" prefHeight="730.0" prefWidth="1013.0" style="-fx-background-color: #edf2f6;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InfoEspacefrontController">
    <children>
-      <FlowPane fx:id="flow" layoutY="22.0" prefHeight="730.0" prefWidth="1013.0" stylesheets="@layoutfront.css">
+      <FlowPane fx:id="flow" layoutY="22.0" prefHeight="730.0" prefWidth="1013.0" stylesheets="@../styles/layoutfront.css">
          <padding>
             <Insets left="20.0" />
          </padding></FlowPane>

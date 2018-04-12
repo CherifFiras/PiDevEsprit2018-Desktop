@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Core.Controller;
 import Entity.AvisEspace;
 import Entity.Espace;
 import Service.AvisEspaceService;
@@ -41,7 +42,7 @@ import org.controlsfx.control.Rating;
  *
  * @author Nayer Ben Jaber
  */
-public class InfoEspacefrontController implements Initializable {
+public class InfoEspacefrontController extends Controller implements Initializable {
 
     @FXML
     private AnchorPane holderPane;
@@ -64,8 +65,6 @@ public class InfoEspacefrontController implements Initializable {
         EspaceService esp = new EspaceService();
         List<Espace> espace = new ArrayList<Espace>();
         espace = esp.getEspaceConfirmer();
-        List<Espace> espace1 = new ArrayList<Espace>();
-        espace1 = esp.getEspaceNonConfirmer();
         List<AvisEspace> ratings = new ArrayList<AvisEspace>();
         AvisEspaceService avis = new AvisEspaceService();
         AvisEspace rate = new AvisEspace();
@@ -112,7 +111,17 @@ public class InfoEspacefrontController implements Initializable {
             adresse.setTranslateY(10);
             p.getChildren().add(im);
             Rating rating = new Rating();
-            if(!ratings.isEmpty()){
+            int w=0;
+            for(int k = 0;k< ratings.size();k++)
+            {           
+            if(this.getUser().getId() == ratings.get(k).getIdUser()){
+                   w++;
+                   break;
+            }
+            }
+            if(w==0|| espace.get(i).getIdUser() == this.getUser().getId() )
+                rating.setDisable(true);
+                        if(!ratings.isEmpty()){
                 int h = 0;int d = 0;
                    for (int a = 0; a < ratings.size(); a++)   
                 {
