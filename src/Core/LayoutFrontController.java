@@ -103,5 +103,6 @@ public class LayoutFrontController implements Initializable {
 
     @FXML
     private void forumAction(MouseEvent event) {
+        loadView("../View/Ajouter_categorie.fxml");
     }
 }

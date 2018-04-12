@@ -107,7 +107,7 @@ public class Ajouter_categorieController implements Initializable {
              remarque.setText("veuillez insérer une image");
          }
          else{
-            String req= "INSERT INTO categorie  (libelle,description,date_ajout,image) VALUES (?,?,?,?)";
+            String req= "INSERT INTO categorie  (libelle,description,date_ajout,image,nombrePost) VALUES (?,?,?,?,0)";
         PreparedStatement prs= cnx.prepareStatement(req);
         prs.setString(1, libelle.getText());
         prs.setString(2, description.getText());
