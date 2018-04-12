@@ -122,4 +122,9 @@ public class RamyController implements Initializable {
 
         });
     }
+
+    @FXML
+    private void showCalendar(ActionEvent event) throws Exception {
+        CalendarApp.startCalendar();
+    }
 }
