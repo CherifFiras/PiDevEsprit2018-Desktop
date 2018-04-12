@@ -22,6 +22,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -86,11 +87,13 @@ public class ChatController extends Controller implements Initializable{
         profileImage.setFitWidth(32);
         profileImage.setClip(new Circle(16, 16, 16));
         bl6.setText(msg.getText());
+        Label dateLabel = new Label(this.getLongDateFormat(msg.getDate()));
+        dateLabel.setPrefSize(100, 32);
         if (msg.getReceiver().getId().intValue() == this.getUser().getId().intValue())
         {
-            bl6.setBackground(new Background(new BackgroundFill(Color.WHITE,null, null)));
+            bl6.setBackground(new Background(new BackgroundFill(Color.ORANGE,null, null)));
             bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
-            hBox.getChildren().addAll(profileImage, bl6);
+            hBox.getChildren().addAll(profileImage, bl6,dateLabel);
         }
         else
         {
@@ -98,7 +101,7 @@ public class ChatController extends Controller implements Initializable{
             bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
             hBox.setMaxWidth(chatPane.getPrefWidth() - 20);
             hBox.setAlignment(Pos.TOP_RIGHT);
-            hBox.getChildren().addAll(bl6,profileImage);
+            hBox.getChildren().addAll(dateLabel,bl6,profileImage);
         }
         return hBox;
     }
@@ -115,10 +118,12 @@ public class ChatController extends Controller implements Initializable{
                 profileImage.setClip(new Circle(16, 16, 16));
                 BubbledLabel bl6 = new BubbledLabel();
                 bl6.setText(msg.getText());
-                bl6.setBackground(new Background(new BackgroundFill(Color.WHITE,null, null)));
+                bl6.setBackground(new Background(new BackgroundFill(Color.ORANGE,null, null)));
                 HBox x = new HBox();
                 bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
-                x.getChildren().addAll(profileImage, bl6);                
+                Label dateLabel = new Label(getLongDateFormat(msg.getDate()));
+                dateLabel.setPrefSize(100, 32);
+                x.getChildren().addAll(profileImage, bl6,dateLabel);                
                 return x;
             }
         };
@@ -144,7 +149,9 @@ public class ChatController extends Controller implements Initializable{
                 x.setMaxWidth(chatPane.getPrefWidth() - 20);
                 x.setAlignment(Pos.TOP_RIGHT);
                 bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
-                x.getChildren().addAll(bl6, profileImage);                
+                Label dateLabel = new Label(getLongDateFormat(msg.getDate()));
+                dateLabel.setPrefSize(100, 32);
+                x.getChildren().addAll(dateLabel,bl6, profileImage);                
                 return x;
             }
         };

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Core.LayoutFrontController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Core.LayoutFrontController">
    <children>
       <AnchorPane fx:id="holderPane" layoutX="79.0" layoutY="70.0" prefHeight="730.0" prefWidth="1013.0" style="-fx-background-color: #edf2f6;;" />
       <fx:include fx:id="menubar" source="Menubar.fxml" />
@@ -69,7 +69,11 @@
                               </ImageView>
                            </children>
                         </Pane>
+<<<<<<< HEAD
                         <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
+=======
+                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+>>>>>>> 0b1caa5455e08a0ca469eb8ecbbb348f1f936ce3
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -93,7 +97,11 @@
                               </ImageView>
                            </children>
                         </Pane>
+<<<<<<< HEAD
                         <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
+=======
+                        <Pane onMouseClicked="#forumAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+>>>>>>> 0b1caa5455e08a0ca469eb8ecbbb348f1f936ce3
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>

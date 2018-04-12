@@ -11,14 +11,18 @@ import Controller.FriendListController;
 import Controller.NotificationController;
 import Entity.User;
 import Service.LoginService;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +44,9 @@ import javafx.scene.media.MediaPlayer;
 import static javafx.scene.media.MediaPlayer.Status.PLAYING;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * FXML Controller class
@@ -73,6 +80,8 @@ public class LoginController extends Controller implements Initializable {
     private JFXCheckBox remember;
     private final String path="src\\LoginData.ini";
     LoginService loginService = new LoginService();
+    @FXML
+    private JFXButton facebook;
     /**
      * Initializes the controller class.
      */
@@ -115,16 +124,17 @@ public class LoginController extends Controller implements Initializable {
     private void LoginAction(ActionEvent event) throws SQLException, IOException {
        
         Connection conn = DataSource.getInstance().getConnection();
-        String req= "Select * from user where (username=? or email=?) and password=?";
+        String req= "Select * from user where (username=? or email=?)";
         PreparedStatement prs= conn.prepareStatement(req);
         prs.setString(1, username.getText());
         prs.setString(2, username.getText());
-        prs.setString(3, password.getText());
         ResultSet rs = prs.executeQuery();
         if (!rs.next()){
-            msg.setText("Username or Password incorrect");
+            msg.setText("Username incorrect");
         } 
         else {
+            if(BCrypt.checkpw(password.getText(),rs.getString("password").substring(0,2)+"a"+rs.getString("password").substring(3)))
+            {
             if (!remember.isSelected()){
                 String req1= "Select id from user where username=? ";
                 PreparedStatement prs1= conn.prepareStatement(req1);
@@ -170,6 +180,11 @@ public class LoginController extends Controller implements Initializable {
                 stage.show();
                 stage.setResizable(false);
 
+            }
+            }
+            else
+            {
+                msg.setText("Mot de passe incorrecte!");
             }
         }     
     }
@@ -225,6 +240,114 @@ public class LoginController extends Controller implements Initializable {
         }else {
         mediaplayer.setMute(false);
         }  
+    }
+
+    @FXML
+    private void Login_avec_facebook(ActionEvent event) throws SQLException, IOException {
+        
+                String domain = "https://google.fr/";
+        String appId = "132361634176800";
+       
+        String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id="+appId+"&redirect_uri="+domain+"&scope=email"
+                ;
+       
+        System.setProperty("webdirver.chrome.driver", "chromedriver.exe");
+       
+        WebDriver driver = new ChromeDriver();
+        driver.get(authUrl);
+        String accessToken;
+        while(true){
+                Connection conn = DataSource.getInstance().getConnection(); 
+            if(!driver.getCurrentUrl().contains("facebook.com")){
+            String url = driver.getCurrentUrl();
+            accessToken = url.replaceAll(".*#access_token=(.+)&.*", "$1");
+           
+            driver.close();
+           
+                FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+                com.restfb.types.User user = fbClient.fetchObject("me",com.restfb.types.User.class);
+            
+                System.out.println(user.getName());
+                System.out.println(user.getFirstName());
+                System.out.println(user.getLastName());
+                System.out.println(user.getBirthday());
+                System.out.println(user.getBirthdayAsDate());
+                System.out.println(user.getShortName());
+                        System.out.println(user.getTimezone());
+                        System.out.println(user.getEmail());
+                        
+                  String req2= "SELECT * FROM user WHERE email=?";   
+                  PreparedStatement prs2= conn.prepareStatement(req2);
+                  prs2.setString(1, user.getName());
+                 ResultSet rs = prs2.executeQuery();
+                 if(!rs.next()){
+                     
+                     String req= "INSERT INTO user  (username,prenom,nom,email,password,date_naissance) VALUES (?,?,?,?,?,?)";
+       
+        PreparedStatement prs= conn.prepareStatement(req);
+
+             
+            prs.setString(1, user.getName());
+        prs.setString(2, user.getName());
+        prs.setString(3, user.getName());
+        prs.setString(4, user.getName());
+        String pwd = BCrypt.hashpw(user.getName(),BCrypt.gensalt(13));
+        prs.setString(5, pwd.substring(0,2)+"y"+pwd.substring(3));
+        prs.setDate(6, new java.sql.Date(new Date().getTime()));
+            prs.executeUpdate();
+     String req1= "Select id from user where username=? ";
+                PreparedStatement prs1= conn.prepareStatement(req1);
+                prs1.setString(1, user.getName());
+                ResultSet res= prs1.executeQuery();
+                while (res.next()){
+                 x= res.getInt("id");       
+                }
+                User user1= new User();
+                user1.setId(x);
+                Controller.setUserId(x);
+                init();
+                Node node =(Node)event.getSource();
+                stage = (Stage)node.getScene().getWindow();
+                stage.close();
+                mediaplayer.stop();
+                Parent root = FXMLLoader.load(getClass().getResource("../View/LayoutFront.fxml"));   
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                stage.setResizable(false);  
+                 }
+                 else 
+                 
+               
+                 {
+
+     String req1= "Select id from user where username=? ";
+                PreparedStatement prs1= conn.prepareStatement(req1);
+                prs1.setString(1, user.getName());
+                ResultSet res= prs1.executeQuery();
+                while (res.next()){
+                 x= res.getInt("id");       
+                }
+                User user1= new User();
+                user1.setId(x);
+                Controller.setUserId(x);
+                init();
+                Node node =(Node)event.getSource();
+                stage = (Stage)node.getScene().getWindow();
+                stage.close();
+                mediaplayer.stop();
+                Parent root = FXMLLoader.load(getClass().getResource("../View/LayoutFront.fxml"));   
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                stage.setResizable(false);    }
+                  
+            
+            }
+      
+    }
+        
+          
     }
 
 }
