@@ -17,6 +17,8 @@ public interface IAlbumService {
     
     public List<Album> getPhotosByUser(User u);
     
+    public List<Album> getLastPhotosByUser(User u);
+    
     public void ajouterPhoto(Album a);
     
     public void supprimerPhoto(Album a);

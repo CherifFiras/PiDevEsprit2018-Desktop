@@ -28,22 +28,24 @@ public class PublicationService implements IPublicationService{
 
     @Override
     public List<Publication> getPublicationByUser(User u) {
-        String req = "SELECT * FROM publication where idUser=? orderby datePublication desc";
+        String req = "SELECT * FROM publication where idUser=? order by datePublication desc";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<Publication> p = new ArrayList<>();
         try {
             while (rs.next()){
-                p.add(new Publication(rs.getInt("id"), rs.getString("contenu"), rs.getDate("datePublication"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                p.add(new Publication(rs.getInt("id"), rs.getString("contenu"), rs.getDate("datePublication"), user));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return p;
     }
@@ -61,24 +63,24 @@ public class PublicationService implements IPublicationService{
             pre.setInt(3, p.getIdUser().getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public void modifierPublication(Publication p) {
         try {
-            String req = "update publication set contenu=?, datePublication=? where idUser=? ";
+            String req = "update publication set contenu=?, datePublication=? where id=? ";
             PreparedStatement pre = con.prepareStatement(req);
             pre.setString(1, p.getContenu());
             
             java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
             pre.setTimestamp(2, date);
             
-            pre.setInt(3, p.getIdUser().getId());
+            pre.setInt(3, p.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,8 +92,35 @@ public class PublicationService implements IPublicationService{
             pre.setInt(1, p.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public Publication getPublicationById(int id) {
+        String req = "SELECT * FROM publication where id=?";
+        ResultSet rs= null;
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Publication p = new Publication();
+        try {
+            while (rs.next()){
+                User user = new User();
+                p.setId(rs.getInt("id"));
+                p.setContenu(rs.getString("contenu"));
+                p.setDatePublication(rs.getTimestamp("datePublication"));
+                p.setIdUser(user);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
     }
     
 }

@@ -5,10 +5,18 @@
  */
 package IService;
 
+import Entity.Message;
+import Entity.User;
+import java.util.List;
+
 /**
  *
  * @author hero
  */
 public interface IMessageService {
     
+    public List<Message> fetchMessage(User cUser,User oUser);
+    public Message insertMessage(Message message);
+    public Message getMessageById(int id);
+    public Message getMessageSenderByUser(int id);
 }

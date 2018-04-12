@@ -32,31 +32,33 @@ public class LoisirService implements ILoisirService {
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<Loisir> l = new ArrayList<>();
         try {
             while (rs.next()){
-                l.add(new Loisir(rs.getInt("id"), rs.getString("contenu"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                l.add(new Loisir(rs.getInt("id"), rs.getString("contenu"), user));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoisirService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return l;
     }
 
     @Override
-    public void ajouterLoisir(Loisir l) {
+    public void ajouterLoisir(Loisir l, int u) {
         try {
             String req = "INSERT INTO loisir (contenu, idUser) VALUES (?,?)";
             PreparedStatement pre = con.prepareStatement(req);
             pre.setString(1, l.getContenu());
-            pre.setInt(2, l.getId());
+            pre.setInt(2, u);
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoisirService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -69,7 +71,7 @@ public class LoisirService implements ILoisirService {
             pre.setInt(4, l.getIdUser().getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoisirService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -81,7 +83,7 @@ public class LoisirService implements ILoisirService {
             pre.setInt(1, l.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoisirService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -5,7 +5,10 @@
  */
 package Entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -42,6 +45,7 @@ public class User {
     private String image;
     private Date updatedAt;
     private String occupation;
+    private List<Message> messageList;
 
     public User() {
     }
@@ -361,6 +365,27 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", genre=" + genre + ", pays=" + pays + ", region=" + region + ", religion=" + religion + ", apropos=" + apropos + ", occupation=" + occupation + '}';
     }
 
+    public static User createUser(ResultSet rs) throws SQLException
+    {
+        User u = new User();
+        u.setId(rs.getInt("id"));
+        u.setUsername(rs.getString("username"));
+        u.setNom(rs.getString("nom"));
+        u.setPrenom(rs.getString("prenom"));
+        u.setImage(rs.getString("image"));
+        u.setPays(rs.getString("pays"));
+        u.setVille(rs.getString("ville"));
+        u.setRegion(rs.getString("region"));
+        u.setDateNaissance(rs.getDate("date_naissance"));
+        return u;
+    }
 
+    public List<Message> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
+    }
     
 }
