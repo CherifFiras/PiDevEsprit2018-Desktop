@@ -28,8 +28,13 @@ import java.util.logging.Logger;
  *
  * @author hero
  */
+<<<<<<< HEAD
 public class MessageService extends Controller implements IMessageService {
     private Connection con = DataSource.getInstance().getCon();
+=======
+public class MessageService implements IMessageService {
+    private Connection con = DataSource.getInstance().getConnection();
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
 
     @Override
     public List<Message> fetchMessage(User cUser,User oUser) {
@@ -119,9 +124,12 @@ public class MessageService extends Controller implements IMessageService {
         }
         return null;
     }
+<<<<<<< HEAD
 
     @Override
     public Message getMessageSenderByUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+=======
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
 }

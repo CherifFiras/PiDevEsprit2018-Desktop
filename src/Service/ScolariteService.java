@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class ScolariteService implements IScolariteService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Scolarite> getAllScolariteByUser(User u) {

@@ -5,6 +5,10 @@
  */
 package Entity;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -15,7 +19,7 @@ import java.util.List;
  * @author hero
  */
 
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String username;
     private String usernameCanonical;
@@ -379,6 +383,7 @@ public class User {
         u.setDateNaissance(rs.getDate("date_naissance"));
         return u;
     }
+<<<<<<< HEAD
 
     public List<Message> getMessageList() {
         return messageList;
@@ -387,5 +392,7 @@ public class User {
     public void setMessageList(List<Message> messageList) {
         this.messageList = messageList;
     }
+=======
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
     
 }

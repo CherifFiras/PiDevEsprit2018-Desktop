@@ -25,6 +25,16 @@ public class AvisEvenement{
     public AvisEvenement() {
     }
 
+    public AvisEvenement(String contenu, int idEvenement) {
+        this.contenu = contenu;
+        this.idEvenement = idEvenement;
+    }
+
+    public AvisEvenement(String contenu) {
+        this.contenu = contenu;
+    }
+
+    
     public AvisEvenement(String contenu, Date dateAvis, short valeur,int idEvenement,int idUser) {
         this.contenu = contenu;
         this.dateAvis = dateAvis;
@@ -41,6 +51,8 @@ public class AvisEvenement{
         this.idEvenement = idEvenement;
         this.idUser = idUser;
     }
+
+
 
     public Integer getId() {
         return id;

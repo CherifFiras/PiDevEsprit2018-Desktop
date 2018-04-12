@@ -5,10 +5,13 @@
  */
 package IService;
 
+import Entity.PhotoEspace;
+
 /**
  *
  * @author hero
  */
 public interface IPhotoEspaceService {
-    
+    public PhotoEspace ajoutPhoto(PhotoEspace e);
+     public PhotoEspace getPhotoById(int id);
 }

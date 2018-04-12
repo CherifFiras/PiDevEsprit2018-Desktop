@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author Achrafoun
  */
 public class PublicationService implements IPublicationService{
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Publication> getPublicationByUser(User u) {

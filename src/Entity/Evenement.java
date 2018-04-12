@@ -5,22 +5,30 @@
  */
 package Entity;
 
-import java.util.Date;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.sql.Date;
 
 /**
  *
  * @author hero
  */
-public class Evenement{
+public class Evenement extends RecursiveTreeObject<Evenement>{
     private Integer id;
     private String imageEve;
-    private int nbplaces;
+    public int nbplaces;
     private Date dateEvenement;
     private String titre;
     private String description;
     private String titreCordination;
 
-    public Evenement() {
+    public Evenement()  {
+    }
+
+    public Evenement(Date dateEvenement, String titre, String description, String titreCordination) {
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
     }
 
     public Evenement(Integer id, String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
@@ -32,9 +40,7 @@ public class Evenement{
         this.description = description;
         this.titreCordination = titreCordination;
     }
-    
 
-   
     public Evenement(String imageEve, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
         this.imageEve = imageEve;
         this.nbplaces = nbplaces;
@@ -43,6 +49,33 @@ public class Evenement{
         this.description = description;
         this.titreCordination = titreCordination;
     }
+
+    public Evenement(String imageEve, Date dateEvenement, String titre) {
+        this.imageEve = imageEve;
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+    }
+
+    
+
+    public Evenement(Integer id, int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
+        this.id = id;
+        this.nbplaces = nbplaces;
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
+    }
+
+    public Evenement(int nbplaces, Date dateEvenement, String titre, String description, String titreCordination) {
+        this.nbplaces = nbplaces;
+        this.dateEvenement = dateEvenement;
+        this.titre = titre;
+        this.description = description;
+        this.titreCordination = titreCordination;
+    }
+    
+    
 
     public Evenement(Integer id) {
         this.id = id;

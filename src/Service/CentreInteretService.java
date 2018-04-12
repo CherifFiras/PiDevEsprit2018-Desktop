@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class CentreInteretService implements ICentreInteretService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
 
     @Override

@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class UserService implements IUserService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
 
     public UserService() {
@@ -118,16 +118,12 @@ public class UserService implements IUserService {
             ps.setInt(3, id);
             for(Map.Entry<Integer,String> entry:argsMap.entrySet())
             {
-                System.out.println(entry.getValue());
                 ps.setString(entry.getKey(), entry.getValue());
             }
             ResultSet rs = ps.executeQuery();
             while(rs.next())
             {
-                User u = new User();
-                u.setId(rs.getInt("id"));
-                u.setUsername(rs.getString("username"));
-                users.add(u);
+                users.add(User.createUser(rs));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -170,11 +166,15 @@ public class UserService implements IUserService {
             User u = null;
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, id);
+<<<<<<< HEAD
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 u = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getBoolean("enabled"), rs.getString("salt"), rs.getDate("last_Login"), rs.getString("roles"), rs.getString("nom"), rs.getString("prenom"), rs.getDate("date_Naissance"), rs.getString("genre"), rs.getString("pays"), rs.getString("region"), rs.getString("ville"), rs.getString("tel"), rs.getString("place_Naiss"), rs.getString("religion"), rs.getString("apropos"), rs.getString("facebook"), rs.getString("twitter"), rs.getString("instagram"), rs.getString("image"), rs.getDate("updated_At"), rs.getString("occupation"));
             }
             return u;
+=======
+            rs = ps.executeQuery();
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,6 +186,7 @@ public class UserService implements IUserService {
         String req = "SELECT count(*) as cu FROM user where roles not like '%ROLE_SUPER_ADMIN%'";
         ResultSet rs= null;
         try {
+<<<<<<< HEAD
             rs = ste.executeQuery(req);
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,6 +199,10 @@ public class UserService implements IUserService {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+=======
+            while (rs.next()){
+                u = User.createUser(rs);
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
             }
         }
         return cu;

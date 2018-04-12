@@ -105,4 +105,8 @@ public class Message implements Serializable {
         return "Entity.Message[ id=" + id + " ]";
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
