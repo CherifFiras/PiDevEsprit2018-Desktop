@@ -6,12 +6,14 @@
 package IService;
 
 import Entity.Evenement;
+import Entity.User;
 
 /**
  *
  * @author hero
  */
 public interface IParticipationService {
-    public void increment(Evenement ev, int id);
-    public void decrement(Evenement ev, int id);
+    public void increment(Evenement ev,User user);
+    public void decrement(Evenement ev, User user);
+    public boolean checkParticipation(Evenement evenement,User user);
 }
