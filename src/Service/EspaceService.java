@@ -131,7 +131,7 @@ public class EspaceService implements IEspaceService {
     }
 
     public void send_mail(Espace espace) {
-        final String username = "thepentagon@gmail.com"; // enter your mail id
+        final String username = "thepentagon4@gmail.com"; // enter your mail id
         final String password = "Azerty1234567";// enter ur password
 
         Properties props = new Properties();
@@ -151,7 +151,7 @@ public class EspaceService implements IEspaceService {
 
             Message message = new MimeMessage(session);
 
-            message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
+            message.setFrom(new InternetAddress("thepentagon4@gmail.com")); // same email id
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
             message.setSubject("Confirmation d'Espace" + espace.getTitre());
@@ -167,7 +167,7 @@ public class EspaceService implements IEspaceService {
     }
 
     public void send_maildel(Espace espace) {
-        final String username = "thepentagon@gmail.com"; // enter your mail id
+        final String username = "thepentagon4@gmail.com"; // enter your mail id
         final String password = "Azerty1234567";// enter ur password
 
         Properties props = new Properties();
@@ -187,7 +187,7 @@ public class EspaceService implements IEspaceService {
 
             Message message = new MimeMessage(session);
 
-            message.setFrom(new InternetAddress("thepentagon@gmail.com")); // same email id
+            message.setFrom(new InternetAddress("thepentagon4@gmail.com")); // same email id
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(espace.getEmail()));// whome u have to send mails that person id
             message.setSubject("Confirmation d'Espace" + espace.getTitre());
@@ -251,7 +251,7 @@ public class EspaceService implements IEspaceService {
     @Override
     public List<Espace> findByDistance(double latitude, double longitude, double distance) {
         try {
-            String req = "select * from espace where  (((acos(sin((?*pi()/180)) * sin((`longi`*pi()/180))+cos((?*pi()/180)) * cos((`longi`*pi()/180)) * cos(((? - `lat`)*pi()/180))))*180/pi())*60*1.1515)  < ?";
+            String req = "select * from espace where etat=1 AND (((acos(sin((?*pi()/180)) * sin((`longi`*pi()/180))+cos((?*pi()/180)) * cos((`longi`*pi()/180)) * cos(((? - `lat`)*pi()/180))))*180/pi())*60*1.1515)  < ?";
             List<Espace> espaces = new ArrayList<>();
             PreparedStatement prs = con.prepareStatement(req);
 
