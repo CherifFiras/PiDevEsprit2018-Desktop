@@ -69,11 +69,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-<<<<<<< HEAD
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
-=======
-                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu">
->>>>>>> 0b1caa5455e08a0ca469eb8ecbbb348f1f936ce3
+                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
