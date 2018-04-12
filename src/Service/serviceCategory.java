@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TableView;
 
 public class serviceCategory {
     
@@ -111,7 +115,27 @@ public class serviceCategory {
         }
     
     
+ public void deleteData(ActionEvent event,ObservableList<Category>data,TableView<Category> tablepanier) throws SQLException {
+        
+        data=FXCollections.observableArrayList();
 
+        Category panier = tablepanier.getSelectionModel().getSelectedItem();
+        int a = panier.getId_category();
+        System.out.println(a);
+        
+        
+        String queryy ="DELETE FROM categorie WHERE id=?";
+
+        
+        PreparedStatement prss= cnx.prepareStatement(queryy);
+        prss.setInt(1, a);
+        prss.executeUpdate();  
+        tablepanier.getItems().removeAll(tablepanier.getSelectionModel().getSelectedItem());
+        tablepanier.getSelectionModel().select(null);
+        
+        
+               
+    }
     
     
 }

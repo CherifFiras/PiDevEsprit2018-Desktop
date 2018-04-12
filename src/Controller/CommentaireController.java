@@ -151,7 +151,7 @@ public class CommentaireController extends beblio implements Initializable {
         LoginService service = new LoginService();
         ResultSet rs = service.userbyid(beblio.getId_user());
         rs.first();
-           File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs.getString("photoprofil"));
+           File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs.getString("image"));
             Image img = new Image(ff.toURI().toString());
 Circle clip = new Circle(30, 30, 30);
        
@@ -181,7 +181,7 @@ Circle clip = new Circle(30, 30, 30);
                      
         ResultSet rs2 = service.userbyid(id);
         rs2.first();
-        File fff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs2.getString("photoprofil"));
+        File fff = new File(System.getProperty("user.dir")+"/src/Images/" + rs2.getString("image"));
             Image img1 = new Image(fff.toURI().toString());
                      HBox hbox = new HBox();
                      hbox.setStyle("-fx-background-color: white; -fx-background-radius: 2em;-fx-border-color: black; -fx-border-radius: 2em;");
@@ -228,7 +228,7 @@ Circle clip = new Circle(30, 30, 30);
                      btntest.setVisible(false);
                      System.out.println(btntest);
                       btn2.setStyle("-fx-background-color: #26B99A; -fx-text-fill: white;");
-                     hbox3.getChildren().addAll(btn1,btn2);
+                     hbox3.getChildren().addAll(btn2);
                      
                                           btn2.setOnAction(e->{
                      

@@ -94,26 +94,32 @@ public class FriendListController extends Controller implements Initializable {
     
     @FXML
     private void openChatWindow(MouseEvent event) {
-        HBox hBox = (HBox) event.getSource();
-        User user = friendList.stream().filter((u)->{return ((User)u).getId() == Integer.parseInt(hBox.getId());}).findFirst().get();
+        ImageView image = (ImageView) event.getSource();
+        User user = friendList.stream().filter((u)->{return ((User)u).getId() == Integer.parseInt(image.getId());}).findFirst().get();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ChatWindow.fxml"));
-            Parent root = loader.load();
-            ChatController chatController = loader.getController();
-            chatController.setChatUser(user);
-            chatController.loadMessages();
-            ChatListener.addController(chatController);
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle(user.getNom()+" "+user.getPrenom());
-            stage.setScene(scene);
-            stage.setOnCloseRequest((WindowEvent windowsEvent) -> {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ChatWindow.fxml"));
+                Parent root = loader.load();
+                ChatController chatController = loader.getController();
+                chatController.setChatUser(user);
+                chatController.loadMessages();
+                ChatListener.addController(chatController);
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setTitle(user.getNom()+" "+user.getPrenom());
+                stage.setScene(scene);
+                stage.setOnCloseRequest((WindowEvent windowsEvent) -> {
                 ChatListener.removeController(chatController);
-            });
+                });
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FriendListController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @FXML
+    private void openProfile(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        System.out.println(label.getId());
     }
     
     private HBox userItem(User user)
@@ -121,17 +127,20 @@ public class FriendListController extends Controller implements Initializable {
         Font prefFont = new Font("System Bold", 12);
         HBox hBox = new HBox();
         hBox.setId(user.getId().toString());
-        hBox.setOnMousePressed(this::openChatWindow);
         hBox.setPrefSize(150,60);
         ImageView userImage = new ImageView(getClass().getResource("../Images/"+user.getImage()).toExternalForm());
+        userImage.setId(user.getId().toString());
         userImage.setFitWidth(60);
         userImage.setFitHeight(60);
         userImage.setPickOnBounds(true);
         userImage.setPreserveRatio(true);
         userImage.setClip(new Circle(30, 30, 30));
+        userImage.setOnMousePressed(this::openChatWindow);
         Label userName = new Label(user.getPrenom()+" "+user.getNom());
+        userName.setId(user.getId().toString());
         userName.setPrefSize(200, 60);
         userName.setFont(prefFont);
+        userName.setOnMousePressed(this::openProfile);
         HBox.setMargin(userName, new Insets(0, 0, 0, 5));
         HBox.setMargin(userImage, new Insets(5, 0, 0, 5));
         ObservableList<Node> childs = hBox.getChildren();

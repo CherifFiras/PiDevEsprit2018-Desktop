@@ -15,7 +15,10 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +53,7 @@ public class MessageService implements IMessageService {
                 resultUser = ps.executeQuery();
                 resultUser.next();
                 User receiver = User.createUser(resultUser);
-                Message message = new Message(rs.getInt("id"), sender, receiver, rs.getString("text"), rs.getDate("date"));
+                Message message = new Message(rs.getInt("id"), sender, receiver, rs.getString("text"), rs.getTimestamp("date"));
                 messages.add(message);
             }
         } catch (SQLException ex) {
@@ -62,12 +65,14 @@ public class MessageService implements IMessageService {
     @Override
     public Message insertMessage(Message message) {
         String query = "INSERT INTO message (sender,receiver,text,date) VALUES(?,?,?,?)";
+        Calendar c = Calendar.getInstance();
+        Timestamp ts = new Timestamp(c.getTimeInMillis());
         try {
             PreparedStatement ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, message.getSender().getId());
             ps.setInt(2, message.getReceiver().getId());
             ps.setString(3, message.getText());
-            ps.setDate(4, new java.sql.Date(message.getDate().getTime()));
+            ps.setTimestamp(4, ts);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

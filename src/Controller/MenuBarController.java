@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -31,26 +32,23 @@ import org.controlsfx.control.Notifications;
 public class MenuBarController extends Controller implements Initializable {
 
     private final INotificationService notificationService = this.getService().getNotificationService();
-    @FXML
-    private JFXButton messageNotifButton;
-    @FXML
-    private JFXToolbar toolBar;
-    @FXML
-    private Label messageNotifLabel;
-    @FXML
-    private JFXButton demandeNotifButton;
-    @FXML
-    private Label demandeNotifLabel;
     private int lastNotificationId = Integer.MAX_VALUE;
     private Timer timer;
     private List<Notification> notifications;
     private int messageNotifCount;
     private int demandeNotifCount;
+    private int acceptNotifCount;
+    @FXML
+    private Label messageNotifLabel;
+    @FXML
+    private Label demandeNotifLabel;
+    @FXML
+    private Label acceptNotifLabel;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //initTimer();
-        //Controller.getNotificationController().refreshUnseenNotifications(notificationService.getUnseenNotifications(this.getUser()));
+        initTimer();
+        Controller.getNotificationController().refreshUnseenNotifications(notificationService.getUnseenNotifications(this.getUser()));
     }
 
     private void refreshCounts()
@@ -65,19 +63,25 @@ public class MenuBarController extends Controller implements Initializable {
             }
             lastNotificationId = notifications.get(0).getId();
         }
+        else
+        {
+            lastNotificationId = 0;
+        }
         messageNotifCount = 0;
         demandeNotifCount = 0;
+        acceptNotifCount = 0;
         for(Notification notification:notifications)
         {
             switch(notification.getSubject())
             {
-                case"Accept":break;
+                case"Accept":acceptNotifCount++;break;
                 case"Demande":demandeNotifCount++;break;
                 case"Message":messageNotifCount++;break;
             }
         }
         messageNotifLabel.setText(String.valueOf(messageNotifCount));
         demandeNotifLabel.setText(String.valueOf(demandeNotifCount));
+        acceptNotifLabel.setText(String.valueOf(acceptNotifCount));
         System.gc();
     }
     
@@ -94,15 +98,20 @@ public class MenuBarController extends Controller implements Initializable {
         };
         timer.schedule(timerTask,0,5000);
     }
-    
+
     @FXML
-    private void messageNotification(ActionEvent event) {
+    private void demandeNotification(MouseEvent event) {
+        Controller.getNotificationController().showWindow("Demande");
+    }
+
+    @FXML
+    private void messageNotification(MouseEvent event) {
         Controller.getNotificationController().showWindow("Message");
     }
 
     @FXML
-    private void demandeNotification(ActionEvent event) {
-        Controller.getNotificationController().showWindow("Demande");
+    private void acceptNotification(MouseEvent event) {
+        Controller.getNotificationController().showWindow("Accept");
     }
     
 }

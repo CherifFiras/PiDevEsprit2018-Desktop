@@ -22,12 +22,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -49,7 +51,7 @@ public class SingUpController implements Initializable {
     @FXML
     private PasswordField password;
     @FXML
-    private TextField date_naissance;
+    private DatePicker date_naissance;
     @FXML
     private Button ajouter;
     
@@ -89,7 +91,8 @@ public class SingUpController implements Initializable {
         prs.setString(2, prenom.getText());
         prs.setString(3, nom.getText());
         prs.setString(4, email.getText());
-        prs.setString(5, password.getText());
+        String pwd = BCrypt.hashpw(password.getText(),BCrypt.gensalt(13));
+        prs.setString(5, pwd.substring(0,2)+"y"+pwd.substring(3));
         prs.setDate(6, new java.sql.Date(new Date().getTime()));
         if (username.getText().equals(""))
         {   info.setText("username is empty");  }
@@ -108,7 +111,7 @@ public class SingUpController implements Initializable {
          else if (prenom.getText().equals(""))
         {   info.setText("prenom is empty");  }
          
-         else if (date_naissance.getText().equals(""))
+         else if (date_naissance.toString().equals(""))
         {   info.setText("date de naissance est vide");  }
          
          else if (password.getText().equals(""))

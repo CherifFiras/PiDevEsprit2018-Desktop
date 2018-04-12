@@ -15,7 +15,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +31,8 @@ public class NotificationService implements INotificationService {
     
     @Override
     public void insertNotification(Notifiable notifiable, Notification notification) {
+        Calendar c = Calendar.getInstance();
+        Timestamp ts = new Timestamp(c.getTimeInMillis());
         String query = "select * from notifiable where identifier = ?";
         ResultSet keyResult;
         PreparedStatement ps;
@@ -56,7 +60,7 @@ public class NotificationService implements INotificationService {
             
             query = "INSERT INTO notification (date,subject,message,link) VALUES(?,?,?,?)";
             ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, new java.sql.Date(notification.getDate().getTime()));
+            ps.setTimestamp(1, ts);
             ps.setString(2, notification.getSubject());
             ps.setString(3, notification.getMessage());
             ps.setString(4, notification.getLink());

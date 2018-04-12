@@ -17,26 +17,25 @@ public class EspaceCopy {
     private String description;
     private String nom;
     private String prenom;
-    private int idEsp;
-
+    private int id_esp;
     public EspaceCopy() {
     }
 
-    public EspaceCopy(String titre, String description, String nom, String prenom, int idEsp) {
+    public EspaceCopy(String titre, String description, String nom, String prenom, int id_esp) {
         this.titre = titre;
         this.description = description;
         this.nom = nom;
         this.prenom = prenom;
-        this.idEsp = idEsp;
+        this.id_esp = id_esp;
     }
 
-    public EspaceCopy(Integer id, String titre, String description, String nom, String prenom, int idEsp) {
+    public EspaceCopy(Integer id, String titre, String description, String nom, String prenom, int id_esp) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.nom = nom;
         this.prenom = prenom;
-        this.idEsp = idEsp;
+        this.id_esp = id_esp;
     }
 
     public Integer getId() {
@@ -79,12 +78,12 @@ public class EspaceCopy {
         this.prenom = prenom;
     }
 
-    public int getIdEsp() {
-        return idEsp;
+    public int getId_esp() {
+        return id_esp;
     }
 
-    public void setIdEsp(int idEsp) {
-        this.idEsp = idEsp;
+    public void setId_esp(int idEsp) {
+        this.id_esp = id_esp;
     }
 
     @Override
@@ -109,7 +108,7 @@ public class EspaceCopy {
 
     @Override
     public String toString() {
-        return "Entity.EspaceCopy[ id=" + id + " ]";
+        return "Espace{" + "Titre=" + titre + ", Description=" + description + ", Nom=" + nom + ", Prenom=" + prenom + ", Id_Esp =" + id_esp + '}';
     }
     
 }

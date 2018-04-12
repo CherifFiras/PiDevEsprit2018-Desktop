@@ -8,6 +8,8 @@ package Core;
 import Controller.NotificationController;
 import Entity.User;
 import IService.IUserService;
+import java.util.Calendar;
+import java.util.Date;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -38,7 +40,12 @@ public class Controller {
     {
         return service;
     }
-    
+    public String getLongDateFormat(Date date)
+    {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return c.get(Calendar.DAY_OF_MONTH)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.YEAR)+" "+c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE);
+    }
     public static NotificationController getNotificationController() {
         return notificationController;
     }

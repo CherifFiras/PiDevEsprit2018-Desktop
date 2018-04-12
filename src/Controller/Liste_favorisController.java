@@ -99,7 +99,7 @@ for (int i=0 ; i<count ; i++)
                  image.setPickOnBounds(true);
                  image.setPreserveRatio(true);
                
-                   File ff = new File("C:/Users/ASUS/Documents/NetBeansProjects/pidev/src/Images/" + rs1.getString("image"));
+                   File ff = new File(System.getProperty("user.dir")+"/src/Images/" + rs1.getString("image"));
             Image img = new Image(ff.toURI().toString());
                  
                  image.setImage(img);
