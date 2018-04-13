@@ -20,5 +20,6 @@ public interface ISignalerService {
     
     public void ajouterSignal(Signaler u);
         
+    public List<Signaler> getAllSignalsByUser(User u);
     
 }

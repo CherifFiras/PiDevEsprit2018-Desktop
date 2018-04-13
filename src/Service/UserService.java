@@ -334,7 +334,7 @@ public class UserService implements IUserService {
     
     @Override
     public ResultSet getAllUsersRS() {
-        String req = "SELECT * FROM user";
+        String req = "SELECT * FROM user where roles NOT LIKE '%ROLE_SUPER_ADMIN%'";
         ResultSet rs = null;
         try {
             
@@ -406,6 +406,22 @@ public class UserService implements IUserService {
         return cu;
     }
 
+
+    @Override
+    public void updateLoginPlace(User u) {
+        try {
+            String req = "update user set salt=? where id=? ";
+            PreparedStatement pre = con.prepareStatement(req);
+            pre.setString(1, u.getSalt());
+            pre.setInt(2, u.getId());            
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+
     public void deleteData(ActionEvent event,ObservableList<User>list,TableView<User> table) throws SQLException {
         
            list=FXCollections.observableArrayList();
@@ -423,6 +439,7 @@ public class UserService implements IUserService {
              
        
     }
+
     
     
 }

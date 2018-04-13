@@ -202,14 +202,6 @@ public class ProfilController extends Controller implements Initializable {
         //--------------
         aproposButton.setId(connectedUser.getId().toString());
         //---------------
-        try {
-            Controller.getLocationByIp();
-            System.out.println("************");
-        } catch (IOException ex) {
-            Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (GeoIp2Exception ex) {
-            Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }
 
