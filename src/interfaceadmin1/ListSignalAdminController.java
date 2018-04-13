@@ -69,12 +69,13 @@ public class ListSignalAdminController extends Controller implements Initializab
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        List<String> lst = new ArrayList<>();
-        List<Message> lstM = new ArrayList<>();
-        List<Signaler> lstS = new ArrayList<>();
-        
+    public void initialize(URL url, ResourceBundle rb) {        
         System.out.println(signalerService.getSignaledUsers());
+        vboxRow.getChildren().clear();
+        for(User u :usersBloqued)
+        {
+            vboxRow.getChildren().add(hRowItem(u));
+        }
         
     }
     
@@ -120,7 +121,7 @@ public class ListSignalAdminController extends Controller implements Initializab
         bloquer.setMnemonicParsing(false);
         HBox.setMargin(bloquer, new Insets(7, 0, 0, 70));
         bloquer.setId(u.getId().toString());
-        bloquer.setOnAction(this::afficherPubAction);
+        bloquer.setOnAction(this::bloquerAction);
         
         hbox.getChildren().addAll(usernameL,nomL,prenomL,telL,mailL,affCause,affMsg,bloquer);
         
