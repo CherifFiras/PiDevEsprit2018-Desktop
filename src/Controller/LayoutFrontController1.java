@@ -5,7 +5,9 @@
  */
 package Controller;
 
-import Core.LayoutFrontController;
+import APIs.MatchingListener;
+import Controller.MatchingController;
+import Core.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,12 +18,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 /**
@@ -29,7 +28,7 @@ import javafx.util.Duration;
  *
  * @author Nayer Ben Jaber
  */
-public class LayoutFrontController1 extends beblio implements Initializable {
+public class LayoutFrontController1 implements Initializable {
 
     @FXML
     private ImageView home;
@@ -42,11 +41,8 @@ public class LayoutFrontController1 extends beblio implements Initializable {
     @FXML
     private ImageView interaction;
     @FXML
-    private ImageView forum;
-    @FXML
     private AnchorPane holderPane;
-    VBox v = new VBox();
-    AnchorPane an = new AnchorPane();
+
     /**
      * Initializes the controller class.
      */
@@ -61,30 +57,60 @@ public class LayoutFrontController1 extends beblio implements Initializable {
 
     @FXML
     private void home() throws IOException {
-        
+        loadView("../View/Journal.fxml");
                   
     }
-        private void setNode(Node node) {
+    private void setNode(Node node) {
         holderPane.getChildren().clear();
         holderPane.getChildren().add((Node) node);
-
+        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+        ft.setNode(node);
+        ft.setFromValue(0.1);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(false);
+        ft.play();
+    }
     
-        
+    private Object loadView(String path)
+    {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource((path)));
+        AnchorPane parentContent = null;
+        try {
+            parentContent = fxmlLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(LayoutFrontController1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setNode(parentContent);
+        System.gc();
+        return fxmlLoader.getController();
     }
 
     @FXML
-    private void forum(MouseEvent event) {
-       
-                FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/cat.fxml")));
-                     AnchorPane parentContent = null;
-        try {
-            parentContent = fxmlloader.load();
-        } catch (IOException ex) {
-            Logger.getLogger(LayoutFrontController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                     setNode(parentContent);                                      
+    private void searchAction(MouseEvent event) {
+        loadView("../View/RechercheProfile.fxml");
     }
 
+    @FXML
+    private void matchingAction(MouseEvent event) {
+        MatchingListener.setController((MatchingController) loadView("../View/Matching.fxml"));
+    }
+
+    @FXML
+    private void eventAction(MouseEvent event) {
+        loadView("../View/ramy.fxml");
+    }
+
+    @FXML
+    private void espaceAction(MouseEvent event) {
+        loadView("../View/InfoEspacefront.fxml");
+    }
+
+    @FXML
+    private void forumAction(MouseEvent event) {
+        loadView("../View/cat.fxml");
+    }
+    
     private void sujet() throws IOException {
         
               FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource(("../View/Sujet.fxml")));
@@ -96,8 +122,4 @@ public class LayoutFrontController1 extends beblio implements Initializable {
         
                                 
     }
-        
-
-
-    
 }

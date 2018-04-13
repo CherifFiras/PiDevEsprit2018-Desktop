@@ -135,10 +135,15 @@ public class MatchingServer {
         
         private User searchUser(User requester)
         {
-            User user = userQueue.poll();
-            if(user == null)
+            User suser = userQueue.poll();
+            if(suser == null)
+            {
                 userQueue.add(requester);
-            return user;              
+                return null;
+            }
+            if(user.getId().intValue() == suser.getId().intValue())
+                return null;
+            return suser;  
         }
         
         private void write(Message message) throws IOException {

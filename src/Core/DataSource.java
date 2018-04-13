@@ -21,7 +21,7 @@ public class DataSource {
     private Connection con;
     public String user = "root";
     public String password = "";
-    public String url = "jdbc:mysql://localhost:3306/pidev";
+    public String url = "jdbc:mysql://localhost:3306/pidevintegration";
     
     private DataSource(){        
         try {

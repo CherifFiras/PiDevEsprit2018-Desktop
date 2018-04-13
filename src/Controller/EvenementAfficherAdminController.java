@@ -164,7 +164,7 @@ public class EvenementAfficherAdminController extends Controller implements Init
     @FXML
     private void ajouter(ActionEvent event) {
         if (ValidateFields()) {
-           Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ajout impossible!");
             alert.setHeaderText(null);
             alert.setContentText("veuiller remplir les champs correctemenet SVP!");
