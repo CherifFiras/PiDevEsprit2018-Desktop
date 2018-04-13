@@ -1,58 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LayoutFrontController1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LayoutFrontController1">
    <children>
       <AnchorPane fx:id="holderPane" layoutX="79.0" layoutY="70.0" prefHeight="730.0" prefWidth="1013.0" style="-fx-background-color: #edf2f6;;" />
-      <HBox layoutX="79.0" prefHeight="70.0" prefWidth="1221.0" style="-fx-background-color: #494c62;">
-         <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-y: 20; -fx-translate-x: 20;" text="The Pentagon" wrappingWidth="159.6123046875">
-               <font>
-                  <Font name="Ebrima Bold" size="22.0" />
-               </font>
-            </Text>
-            <TextField prefHeight="70.0" prefWidth="410.0" promptText="Search here " style="-fx-background-color: #5d6075; -fx-translate-x: 100;">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <HBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="411.0" style="-fx-translate-x: 240;">
-               <children>
-                  <ImageView fitHeight="40.0" fitWidth="34.0" translateX="-35.0" translateY="15.0">
-                     <image>
-                        <Image url="@../Images/icons8-notification-center-filled-96.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="29.0" fitWidth="29.0" style="-fx-translate-y: 20;" translateX="-30.0">
-                     <image>
-                        <Image url="@../Images/icons8-chat-room-96.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="34.0" style="-fx-translate-y: 20;" translateX="-20.0">
-                     <image>
-                        <Image url="@../Images/icons8-alarm-100.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="63.0" style="-fx-translate-x: -20;">
-                     <image>
-                        <Image url="@../Images/icons8-administrator-male-160.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children></HBox>
+      <fx:include fx:id="menubar" source="Menubar.fxml" />
       <VBox prefHeight="800.0" prefWidth="80.0" style="-fx-background-color: #fff;" stylesheets="@layoutfront.css">
-
          <children>
             <Pane prefHeight="70.0" prefWidth="80.0" style="-fx-background-color: #ff5e3a;">
                <children>
@@ -74,7 +33,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -86,7 +45,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#espaceAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -98,7 +57,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#eventAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -110,7 +69,7 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#searchAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -122,24 +81,26 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+                        <Pane onMouseClicked="#matchingAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <children>
-                              <ImageView fx:id="interaction" fitHeight="37.0" fitWidth="34.0" layoutX="18.0" layoutY="14.0" onMouseClicked="#forum">
+                              <ImageView fx:id="interaction" fitHeight="37.0" fitWidth="34.0" layoutX="18.0" layoutY="14.0">
                                  <image>
                                     <Image url="@../Images/icons8-communication-100.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </Pane>
-                        <Pane prefHeight="62.0" prefWidth="80.0" styleClass="menu">
+
+                        <Pane onMouseClicked="#forumAction" prefHeight="62.0" prefWidth="80.0" styleClass="menu" stylesheets="@../styles/layoutfront.css">
+
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <children>
-                              <ImageView fx:id="forum" fitHeight="34.0" fitWidth="37.0" layoutX="18.0" layoutY="14.0">
+                              <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="18.0" layoutY="14.0">
                                  <image>
                                     <Image url="@../Images/icons8-forum-100.png" />
                                  </image>
@@ -154,215 +115,8 @@
       </VBox>
       <VBox layoutX="1092.0" layoutY="70.0" prefHeight="730.0" prefWidth="209.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1092.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="70.0">
          <children>
-            <VBox prefHeight="66.0" prefWidth="100.0" />
-            <VBox prefHeight="605.0" prefWidth="163.0">
-               <children>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199979244114951.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Nayer Ben Jaber" wrappingWidth="110.169921875">
-                                 <font>
-                                    <Font name="Ebrima" size="15.0" />
-                                 </font></Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199985597642427.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Mohamed Ramy Hajji" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199985539201153.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Nayer Ben Jaber" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/15219998559764242.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Cherif firas" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199979244114951.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Nayer Ben Jaber" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199979244114951.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Nayer Ben Jaber" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/1521999855942427.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Achraf Abdennadher" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="62.0" prefWidth="209.0">
-                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="58.0">
-                           <image>
-                              <Image url="@../Images/152199979244114951.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="7.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <VBox disable="true" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="108.0">
-                           <children>
-                              <Text fill="#5b5b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Nayer Ben Jaber" wrappingWidth="110.169921875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" top="-50.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox maxWidth="-Infinity" prefHeight="66.0" prefWidth="82.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <Pane prefHeight="88.0" prefWidth="100.0" style="-fx-background-color: #7c5ac2;">
+            <fx:include fx:id="rightbar" source="RightBar.fxml" />
+            <Pane prefHeight="88.0" prefWidth="209.0" style="-fx-background-color: #7c5ac2;">
                <children>
                   <ImageView fitHeight="54.0" fitWidth="63.0" layoutX="73.0" layoutY="13.0">
                      <image>
