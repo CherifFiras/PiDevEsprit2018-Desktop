@@ -7,6 +7,7 @@ package Core;
 
 import APIs.MatchingListener;
 import Controller.MatchingController;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,7 +100,7 @@ public class LayoutFrontController implements Initializable {
 
     @FXML
     private void espaceAction(MouseEvent event) {
-        loadView("../View/InfoEspacefront.fxml");
+        loadView("../View/Espace_front.fxml");
     }
 
     @FXML

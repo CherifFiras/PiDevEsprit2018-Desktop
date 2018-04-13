@@ -14,7 +14,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +44,7 @@ public class PublicationService implements IPublicationService{
             while (rs.next()){
                 User user = new User();
                 user.setId(rs.getInt("idUser"));
-                p.add(new Publication(rs.getInt("id"), rs.getString("contenu"), rs.getDate("datePublication"), user));
+                p.add(new Publication(rs.getInt("id"), rs.getString("contenu"), rs.getTimestamp("datePublication"), user));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PublicationService.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,13 +54,14 @@ public class PublicationService implements IPublicationService{
 
     @Override
     public void ajouterPublication(Publication p) {
+        Calendar c = Calendar.getInstance();
+        Timestamp ts = new Timestamp(c.getTimeInMillis());
         try {
             String req = "INSERT INTO publication (contenu, datePublication, idUser) VALUES (?,?,?)";
             PreparedStatement pre = con.prepareStatement(req);
             pre.setString(1, p.getContenu());
             
-            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            pre.setTimestamp(2, date);
+            pre.setTimestamp(2, ts);
             
             pre.setInt(3, p.getIdUser().getId());
             pre.executeUpdate();
@@ -69,13 +72,14 @@ public class PublicationService implements IPublicationService{
 
     @Override
     public void modifierPublication(Publication p) {
+        Calendar c = Calendar.getInstance();
+        Timestamp ts = new Timestamp(c.getTimeInMillis());
         try {
             String req = "update publication set contenu=?, datePublication=? where id=? ";
             PreparedStatement pre = con.prepareStatement(req);
             pre.setString(1, p.getContenu());
             
-            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            pre.setTimestamp(2, date);
+            pre.setTimestamp(2, ts);
             
             pre.setInt(3, p.getId());
             pre.executeUpdate();

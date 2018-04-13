@@ -46,6 +46,7 @@ import com.jfoenix.controls.JFXButton;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
+import com.lynden.gmapsfx.javascript.object.Animation;
 import com.lynden.gmapsfx.javascript.object.DirectionsPane;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.LatLong;
@@ -59,6 +60,8 @@ import com.lynden.gmapsfx.service.directions.DirectionsServiceCallback;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
+import static interfaceadmin1.UIController.rootP;
+import static java.awt.SystemColor.info;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -87,8 +90,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
+import javafx.animation.FadeTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -100,6 +105,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import static javax.swing.Spring.height;
@@ -169,6 +175,8 @@ public class Espace_frontController extends Controller implements Initializable,
     private TextField lat;
     @FXML
     private TextField longi;
+    @FXML
+    private Label info;
 
     /**
      * Initializes the controller class.
@@ -181,15 +189,33 @@ public class Espace_frontController extends Controller implements Initializable,
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
 
-        Espace e = new Espace(titre.getText(), description.getText(), email.getText(), adresse.getText(), srcFile.getName(), 0, 1, Float.valueOf(longi.getText()), Float.valueOf(lat.getText()));
-        espaceService.ajoutEspace(e);
+         if (titre.getText().equals(""))
+        {   info.setText("username is empty");  }
+         
+         else if (description.getText().isEmpty()){
+             info.setText("Please insert your description");
+         }
+         else if (email.getText().isEmpty()){
+             info.setText("Please insert your email");
+         }
+          else if (adresse.getText().isEmpty()){
+             info.setText("Please insert your addresse");
+         }
+         else if (!email.getText().matches("[a-zA-Z0-9\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9]{3}")){
+             info.setText("Incorrect Email");
+         }
+         else{
+             
+        Espace e = new Espace(titre.getText(), description.getText(), email.getText(), adresse.getText(), srcFile.getName(), 0, this.getUser().getId(), Float.valueOf(longi.getText()), Float.valueOf(lat.getText()));
+        
         PhotoEspace p = new PhotoEspace(srcFile.getName(), srcFile.getName(), srcFile.getName(), srcFile.getName(), 0);
+             espaceService.ajoutEspace(e);
         photoService.ajoutPhoto(p);
         AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View/InfoEspacefront.fxml")));
 
         holderPane.getChildren().clear();
         holderPane.getChildren().setAll(parentContent);
-
+         }
     }
 
     @FXML
@@ -310,6 +336,11 @@ public class Espace_frontController extends Controller implements Initializable,
         map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
 
             LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
+            map.clearMarkers();
+            Marker marker = new Marker(new MarkerOptions().position(ll).title(adresse.getText()).animation(Animation.DROP));
+           
+            map.addMarker(marker);
+            
             System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
             lblClick.setText(ll.toString());
             lat.setText(String.valueOf(ll.getLatitude()));
@@ -378,4 +409,12 @@ public class Espace_frontController extends Controller implements Initializable,
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @FXML
+    private void switchEspacefront(ActionEvent event) throws IOException {
+                FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(("../View/InfoEspacefront.fxml")));
+        AnchorPane parentContent = fxmlloader.load();
+        holderPane.getChildren().clear();
+        holderPane.getChildren().add(parentContent);
+    }
+    
 }

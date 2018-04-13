@@ -62,7 +62,7 @@
          </children></HBox>
             <Pane layoutX="129.0" layoutY="180.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Work 1" textFill="#6c6c6c">
+                  <Label layoutX="14.0" layoutY="14.0" text="Liste des espaces confirmés" textFill="#6c6c6c">
                      <font>
                         <Font name="Ebrima Bold" size="20.0" />
                      </font>
@@ -81,7 +81,7 @@
       </Pane>
       <Pane layoutX="598.0" layoutY="180.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Work 2" textFill="#6c6c6c">
+            <Label layoutX="14.0" layoutY="14.0" text="Liste des espaces a confirmer" textFill="#6c6c6c">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>
@@ -100,7 +100,7 @@
       </Pane>
       <Pane layoutX="349.0" layoutY="490.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Work 3" textFill="#6c6c6c">
+            <Label layoutX="14.0" layoutY="14.0" text="Liste des espaces modifier" textFill="#6c6c6c">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>

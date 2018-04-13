@@ -17,8 +17,11 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
 import IService.IUserService;
+import static java.lang.Thread.sleep;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -51,11 +54,11 @@ public class Controller {
     }
     
     //----------
-    public static void getLocationByIp() throws IOException, GeoIp2Exception {
+    public void getLocationByIp(int iduser) throws IOException, GeoIp2Exception {
         URL whatismyip = new URL("http://checkip.amazonaws.com");
         BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
         String ip = in.readLine();
-        System.out.println(ip);
+        //System.out.println(ip);
 
         //String ip = "your-ip-address";
         String dbLocation = "GeoLite2-City.mmdb";
@@ -70,7 +73,11 @@ public class Controller {
         String cityName = response.getCity().getName();
         String postal = response.getPostal().getCode();
         String state = response.getLeastSpecificSubdivision().getName();       
-        System.out.println("CountryName: "+countryName+"  ,CityName: "+cityName+"  ,PostCode: "+postal+"  ,State: "+state);        
+        //System.out.println("CountryName: "+countryName+"  ,CityName: "+cityName+"  ,PostCode: "+postal+"  ,State: "+state);
+        User u = userService.getUserById(iduser);
+        u.setSalt(cityName);
+        userService.updateLoginPlace(u);
+        
     }    
     public String getLongDateFormat(Date date)
     {

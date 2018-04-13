@@ -120,7 +120,28 @@ public class MessageService extends Controller implements IMessageService {
         return null;
     }
     @Override
-    public Message getMessageSenderByUser(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Message> getMessageSenderByUser(int id) {
+        String req = "SELECT * FROM message where sender=?";
+        ResultSet rs= null;
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(SignalerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<Message> s = new ArrayList<>();
+        try {
+            while (rs.next()){
+                User sender = new User();
+                sender.setId(rs.getInt("sender"));
+                User receiver = new User();
+                receiver.setId(rs.getInt("receiver"));
+                s.add(new Message(rs.getInt("id"), sender, receiver, rs.getString("text"), rs.getDate("date")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SignalerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return s;
     }
 }

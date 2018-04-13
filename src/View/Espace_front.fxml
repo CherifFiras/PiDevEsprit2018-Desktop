@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -66,6 +67,13 @@
          </children></Pane>
       <TextField fx:id="lat" layoutX="303.0" layoutY="14.0" opacity="0.0" />
       <TextField fx:id="longi" layoutX="523.0" layoutY="14.0" opacity="0.0" />
+      <Label layoutX="243.0" layoutY="679.0" style="-fx-background-color: #fff;" text="Vous pouvez passer cette étape" />
+      <JFXButton layoutX="491.0" layoutY="674.0" onAction="#switchEspacefront" style="-fx-background-color: #ff5e3a;" text="Button" />
+      <Label fx:id="info" layoutX="175.0" layoutY="35.0" textFill="#e81818">
+         <font>
+            <Font name="Ebrima" size="15.0" />
+         </font>
+      </Label>
 
 
   

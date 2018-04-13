@@ -45,5 +45,6 @@ public interface IUserService {
     
     public int getByInstagram();
         
+    public void updateLoginPlace(User u);
     
 }

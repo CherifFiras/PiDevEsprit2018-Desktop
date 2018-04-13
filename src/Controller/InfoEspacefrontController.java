@@ -71,8 +71,8 @@ public class InfoEspacefrontController extends Controller implements Initializab
         int i;
         for (i = 0; i < espace.size(); i++) {   
             ratings = avis.getRating(espace.get(i).getId());
-            File f = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + espace.get(i).getPhoto());
-            Image img = new Image(f.toURI().toString());
+            
+        Image img = new Image(getClass().getResource("../Images/").toExternalForm() + espace.get(i).getPhoto());
             VBox b = new VBox();
             b.setPadding(new Insets(20, 0, 0, 20));
             VBox p = new VBox();
@@ -115,11 +115,12 @@ public class InfoEspacefrontController extends Controller implements Initializab
             for(int k = 0;k< ratings.size();k++)
             {           
             if(this.getUser().getId() == ratings.get(k).getIdUser()){
-                   w++;
-                   break;
+                w++;
+                  
+                  
             }
             }
-            if(w==0|| espace.get(i).getIdUser() == this.getUser().getId() )
+            if(w>0 || this.getUser().getId()==espace.get(i).getIdUser()  )
                 rating.setDisable(true);
                         if(!ratings.isEmpty()){
                 int h = 0;int d = 0;
@@ -143,7 +144,7 @@ public class InfoEspacefrontController extends Controller implements Initializab
                     AvisEspace av = new AvisEspace();
                     double rate1 = rating.getRating();
                     av.setIdEspace(idesp);
-                    av.setIdUser(1);
+                    av.setIdUser(this.getUser().getId());
                     av.setNbrating(1);
                     av.setRating((int) rate1);
                     avis.ajouterRating(av);

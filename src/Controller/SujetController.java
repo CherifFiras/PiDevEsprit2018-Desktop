@@ -344,7 +344,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
               
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -465,7 +465,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
                  
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -821,7 +821,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
               
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -942,7 +942,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
                  
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
