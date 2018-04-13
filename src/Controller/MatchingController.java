@@ -20,6 +20,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -44,6 +45,12 @@ public class MatchingController extends Controller implements Initializable {
     private ImageView userImage;
     @FXML
     private Label userName;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Button stopButton;
+    @FXML
+    private Button nextButton;
 
 
     /**
@@ -51,6 +58,8 @@ public class MatchingController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stopButton.setDisable(true);
+        nextButton.setDisable(true);
         messageBox.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
             if (ke.getCode().equals(KeyCode.ENTER)) {
                 try {
@@ -84,6 +93,9 @@ public class MatchingController extends Controller implements Initializable {
         chatList.getItems().clear();
         try {
             MatchingListener.sendRequest();
+            startButton.setDisable(true);
+            nextButton.setDisable(false);
+            stopButton.setDisable(false);
         } catch (IOException ex) {
             Logger.getLogger(MatchingController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,6 +105,9 @@ public class MatchingController extends Controller implements Initializable {
     private void stopAction(ActionEvent event) {
         try {
             MatchingListener.sendStop();
+            startButton.setDisable(false);
+            stopButton.setDisable(true);
+            nextButton.setDisable(true);
         } catch (IOException ex) {
             Logger.getLogger(MatchingController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,6 +123,7 @@ public class MatchingController extends Controller implements Initializable {
             message.setDate(new Date());
             MatchingListener.send(message);
             messageBox.clear();
+            addToChat(message);
         }
     }
 
