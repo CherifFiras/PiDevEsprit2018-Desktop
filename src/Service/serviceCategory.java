@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 
@@ -119,7 +120,6 @@ public class serviceCategory {
  public void deleteData(ActionEvent event,ObservableList<Category>data,TableView<Category> tablepanier) throws SQLException {
         
         data=FXCollections.observableArrayList();
-
         Category panier = tablepanier.getSelectionModel().getSelectedItem();
         int a = panier.getId_category();
         System.out.println(a);
@@ -134,11 +134,11 @@ public class serviceCategory {
         tablepanier.getItems().removeAll(tablepanier.getSelectionModel().getSelectedItem());
         tablepanier.getSelectionModel().select(null);
         
-        
+      
                
     }
 
-    public void update_libelle(TreeTableColumn.CellEditEvent edit, ObservableList<Category> list, TableView<Category> table) throws SQLException {
+    public void update_libelle(TableColumn.CellEditEvent edit,ObservableList<Category>list,TableView<Category> table) throws SQLException {
          list=FXCollections.observableArrayList();
         Category p1= table.getSelectionModel().getSelectedItem();
         p1.setLibelle(edit.getNewValue().toString());
@@ -146,10 +146,26 @@ public class serviceCategory {
         String query ="update categorie set libelle=? WHERE (id =?) ";
         
         PreparedStatement prs= cnx.prepareStatement(query);
-        prs.setInt(1,Integer.parseInt(edit.getNewValue().toString()));
+        prs.setString(1,(edit.getNewValue().toString()));
          prs.setInt(2,table.getSelectionModel().getSelectedItem().getId_category());
         prs.executeUpdate();
         table.getSelectionModel().select(null);
+    }
+
+    public void update_description(TableColumn.CellEditEvent edit,ObservableList<Category>list,TableView<Category> table) throws SQLException {
+        
+            list=FXCollections.observableArrayList();
+        Category p1= table.getSelectionModel().getSelectedItem();
+        p1.setLibelle(edit.getNewValue().toString());
+        
+        String query ="update categorie set description=? WHERE (id =?) ";
+        
+        PreparedStatement prs= cnx.prepareStatement(query);
+        prs.setString(1,(edit.getNewValue().toString()));
+         prs.setInt(2,table.getSelectionModel().getSelectedItem().getId_category());
+        prs.executeUpdate();
+        table.getSelectionModel().select(null);
+       
     }
     
     

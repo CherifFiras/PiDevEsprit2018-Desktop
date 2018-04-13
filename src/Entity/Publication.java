@@ -21,6 +21,11 @@ public class Publication {
     public Publication() {
     }
 
+    public Publication(String contenu, User idUser) {
+        this.contenu = contenu;
+        this.idUser = idUser;
+    }
+    
     public Publication(String contenu, Date datePublication, User idUser) {
         this.contenu = contenu;
         this.datePublication = datePublication;

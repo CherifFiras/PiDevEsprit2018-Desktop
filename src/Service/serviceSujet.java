@@ -53,6 +53,21 @@ public class serviceSujet {
       public void AjouterSujet(sujet s , int idc) throws SQLException, IOException{
           System.out.println("hhhhcvxcvhhhh======>"+Controller.getUserId());
           
+           String req1= "SELECT * from categorie where id=?";
+        PreparedStatement prs1= cnx.prepareStatement(req1);
+        prs1.setInt(1, idc);
+        ResultSet rs = prs1.executeQuery();
+        rs.first();
+        int x = rs.getInt("nombrePost");
+        
+         String req2= "update categorie set nombrePost=? WHERE (id =?) ";
+        PreparedStatement prs2= cnx.prepareStatement(req2);
+        
+        prs2.setInt(1, x+1);
+        prs2.setInt(2, idc);
+        prs2.executeUpdate();
+        
+ 
                   String req= "INSERT INTO post  (titre,contenu,datePublication,image,IdCategorie,IdUser) VALUES (?,?,?,?,?,?)";
         PreparedStatement prs= cnx.prepareStatement(req);
         prs.setString(1, s.getTitre());
@@ -64,8 +79,6 @@ public class serviceSujet {
         prs.setString(4, s.getImage());
          prs.setObject(5, idc);
          prs.setObject(6, Controller.getUserId());
-  
-
 
         int executeUpdate = prs.executeUpdate();
        
@@ -74,8 +87,23 @@ public class serviceSujet {
        
     }
      
-      public void SupprimerSujet(int ids) throws SQLException{
+      public void SupprimerSujet(int ids , int idc) throws SQLException{
       
+           String req1= "SELECT * from categorie where id=?";
+        PreparedStatement prs1= cnx.prepareStatement(req1);
+        prs1.setInt(1, idc);
+        ResultSet rs = prs1.executeQuery();
+        rs.first();
+        int x = rs.getInt("nombrePost");
+        
+         String req2= "update categorie set nombrePost=? WHERE (id =?) ";
+        PreparedStatement prs2= cnx.prepareStatement(req2);
+        
+        prs2.setInt(1, x-1);
+        prs2.setInt(2, idc);
+        prs2.executeUpdate();
+          
+          
        String req = "DELETE from  post  WHERE id =?";
           PreparedStatement pre = cnx.prepareStatement(req);
             pre.setInt(1, ids);

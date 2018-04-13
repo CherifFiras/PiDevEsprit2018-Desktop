@@ -27,22 +27,24 @@ public class ScolariteService implements IScolariteService {
 
     @Override
     public List<Scolarite> getAllScolariteByUser(User u) {
-        String req = "SELECT * FROM scolarite where idUser=? orderby dateDebut asc";
+        String req = "SELECT * FROM scolarite where idUser=? order by dateDebut asc";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<Scolarite> s = new ArrayList<>();
         try {
             while (rs.next()){
-                s.add(new Scolarite(rs.getInt("id"), rs.getString("contenu"), rs.getString("dateDebut"), rs.getString("dateFin"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                s.add(new Scolarite(rs.getInt("id"), rs.getString("contenu"), rs.getString("dateDebut"), rs.getString("dateFin"), user));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
     }
@@ -55,25 +57,25 @@ public class ScolariteService implements IScolariteService {
             pre.setString(1, s.getContenu());
             pre.setString(2, s.getDateDebut());
             pre.setString(3, s.getDateFin());
-            pre.setInt(4, s.getId());
+            pre.setInt(4, u.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public void modifierScolarite(Scolarite s) {
         try {
-            String req = "update scolarite set contenu=?, dateDebut=?, dateFin=? where idUser=? ";
+            String req = "update scolarite set contenu=?, dateDebut=?, dateFin=? where id=? ";
             PreparedStatement pre = con.prepareStatement(req);
             pre.setString(1, s.getContenu());
             pre.setString(2, s.getDateDebut());
             pre.setString(3, s.getDateFin());
-            pre.setInt(4, s.getIdUser().getId());
+            pre.setInt(4, s.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -85,7 +87,35 @@ public class ScolariteService implements IScolariteService {
             pre.setInt(1, s.getId());
             pre.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CentreInteretService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public Scolarite getScolariteById(int s) {
+        String req = "SELECT * FROM scolarite where id=? ";
+        ResultSet rs= null;
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, s);
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scolarite sc = new Scolarite();
+        try {
+            while (rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                sc.setId(rs.getInt("id"));
+                sc.setContenu(rs.getString("contenu"));
+                sc.setDateDebut(rs.getString("dateDebut"));
+                sc.setDateFin(rs.getString("dateFin"));
+                sc.setIdUser(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScolariteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sc;
     }
 }

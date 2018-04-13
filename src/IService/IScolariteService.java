@@ -17,6 +17,8 @@ public interface IScolariteService {
     
     public List<Scolarite> getAllScolariteByUser(User u);
     
+    public Scolarite getScolariteById(int s);
+    
     public void ajouterScolarite(Scolarite e, User u);
     
     public void modifierScolarite(Scolarite e);

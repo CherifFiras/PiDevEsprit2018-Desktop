@@ -7,6 +7,7 @@ package IService;
 
 import Entity.Signaler;
 import Entity.User;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,9 @@ import java.util.List;
  */
 public interface ISignalerService {
     
-    public List<Signaler> getSignaledUsers();
+    public HashMap<User,List<Signaler>> getSignaledUsers();
     
-    public void ajouterSignal(User u);
+    public void ajouterSignal(Signaler u);
+        
+    
 }

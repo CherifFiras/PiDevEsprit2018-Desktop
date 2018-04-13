@@ -17,7 +17,7 @@ public interface ILoisirService {
     
     public List<Loisir> getAllLoisirsByUser(User u);
     
-    public void ajouterLoisir(Loisir l);
+    public void ajouterLoisir(Loisir l,int u);
     
     public void modifierLoisir(Loisir l);
     

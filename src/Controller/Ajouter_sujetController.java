@@ -37,6 +37,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -71,6 +73,8 @@ public class Ajouter_sujetController  implements Initializable {
      FileChooser saveFileChooser = new FileChooser();    
     File saveFile;
     File srcFile, destFile;
+    @FXML
+    private ImageView imagex;
 
     /**
      * Initializes the controller class.
@@ -135,6 +139,9 @@ public class Ajouter_sujetController  implements Initializable {
 
             }
         }
+        
+        Image image = new Image(srcFile.toURI().toString());
+        imagex.setImage(image);
 
 
     }

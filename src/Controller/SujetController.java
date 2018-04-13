@@ -294,7 +294,7 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAM6FlNZACK6emq5tZAq0CkpCzUdhnyAuI9mHOWIuXE7sLmZBMAOa1ETr8iwSISPcW82FGfvNlw96jHYgyeg7ZBLrhAovENqSp8qbzgDKdodb05Uu5wcWvEzRmTn3dg9aSqwQthmlhvAmzx20pfSzeDWriXwBT7eQZAVt7FDJQo3jp5p9R4qccJyqedpTDHQZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAEEjEiri48VhDxZCuhpKf7ZBFcNztXhWuSOJvD1JfbG1p7M5q5b6aqj0zOpqQ7ChOHRQPLFFRhk2BlZBalAJPzZChuSW8qnTiYEhE1eBRve2Qr4uxpgmcYOoqDPNERRDZC4LpX2erh3321L5AeJ2cdOrZCAss4aZCoZAQSb66HtIRbpF63FDwIbNNx2hg7MMLwZDZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        
@@ -344,7 +344,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
               
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -465,7 +465,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
                  
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -512,7 +512,7 @@ for (int i=0 ; i<count ; i++) {
               imageView.setPickOnBounds(true);
               imageView.setPreserveRatio(true);
               imageView.setImage(img1);
-        Circle clip = new Circle(30, 30, 30);
+        Circle clip = new Circle(50, 50, 30);
         imageView.setClip(clip);
         vbox2.getChildren().add(imageView);
         Label label2 = new Label();
@@ -771,7 +771,7 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAM6FlNZACK6emq5tZAq0CkpCzUdhnyAuI9mHOWIuXE7sLmZBMAOa1ETr8iwSISPcW82FGfvNlw96jHYgyeg7ZBLrhAovENqSp8qbzgDKdodb05Uu5wcWvEzRmTn3dg9aSqwQthmlhvAmzx20pfSzeDWriXwBT7eQZAVt7FDJQo3jp5p9R4qccJyqedpTDHQZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAEEjEiri48VhDxZCuhpKf7ZBFcNztXhWuSOJvD1JfbG1p7M5q5b6aqj0zOpqQ7ChOHRQPLFFRhk2BlZBalAJPzZChuSW8qnTiYEhE1eBRve2Qr4uxpgmcYOoqDPNERRDZC4LpX2erh3321L5AeJ2cdOrZCAss4aZCoZAQSb66HtIRbpF63FDwIbNNx2hg7MMLwZDZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        
@@ -815,13 +815,13 @@ for (int i=0 ; i<count ; i++) {
          
          
          btn2.setOnAction(e->{
- 
+             System.out.println("zefzffefef");
              serviceSujet SP = new serviceSujet();
         
         int ids = Integer.parseInt(x.getText()) ;
               
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -942,7 +942,7 @@ for (int i=0 ; i<count ; i++) {
         int ids = Integer.parseInt(x.getText()) ;
                  
                  try {
-                     SP.SupprimerSujet(ids);
+                     SP.SupprimerSujet(ids,this.idc);
                  } catch (SQLException ex) {
                      Logger.getLogger(SujetController.class.getName()).log(Level.SEVERE, null, ex);
                  }

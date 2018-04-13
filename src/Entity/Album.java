@@ -22,22 +22,25 @@ public class Album {
     public Album() {
     }
 
-    public Album(String url, Date datePublication) {
+    public Album(String url, User idUser) {
         this.url = url;
-        this.datePublication = datePublication;
+        this.idUser = idUser;
     }
 
-    public Album(Integer id, String url, Date datePublication) {
+    
+    public Album(Integer id, String url, Date datePublication, User idUser) {
         this.id = id;
         this.url = url;
         this.datePublication = datePublication;
+        this.idUser = idUser;
     }
 
-    public Album(Integer id) {
-        this.id = id;
+    public Album(String url, Date datePublication, User idUser) {
+        this.url = url;
+        this.datePublication = datePublication;
+        this.idUser = idUser;
     }
-
-
+        
     public Integer getId() {
         return id;
     }

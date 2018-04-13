@@ -13,10 +13,13 @@
 <AnchorPane id="AnchorPane" fx:id="holderPane" layoutX="69.0" layoutY="60.0" prefHeight="730.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EvenementController">
    <children>
       <ImageView fx:id="imageEve" fitHeight="389.0" fitWidth="404.0" layoutX="32.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="494.0" layoutY="158.0" prefHeight="109.0" prefWidth="420.0" style="-fx-background-color: white;" text="Description :" textFill="#0f6489" />
-      <Label fx:id="place" layoutX="494.0" layoutY="110.0" prefHeight="17.0" prefWidth="277.0" style="-fx-background-color: white;" text="Place :" textFill="#0f6489" />
-      <Label fx:id="date" layoutX="494.0" layoutY="80.0" prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: white;" text="Date :" textFill="#0f6489" />
-      <Label fx:id="titre" layoutX="494.0" layoutY="3.0" prefHeight="55.0" prefWidth="252.0" style="-fx-background-color: white;" text="Titre :" textAlignment="CENTER" textFill="#0f6489" textOverrun="WORD_ELLIPSIS">
+      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="494.0" layoutY="168.0" prefHeight="109.0" prefWidth="420.0" style="-fx-background-color: #edf2f6;" text="Description :" textFill="#0f6489" />
+      <Label fx:id="place" layoutX="494.0" layoutY="140.0" prefHeight="17.0" prefWidth="277.0" style="-fx-background-color: #edf2f6;" text="Place :" textFill="#0f6489" />
+      <Label fx:id="date" layoutX="494.0" layoutY="110.0" prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: #edf2f6;" text="Date :" textFill="#0f6489">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
+      <Label fx:id="titre" layoutX="494.0" layoutY="50.0" prefHeight="55.0" prefWidth="252.0" style="-fx-background-color: #edf2f6;" text="Titre :" textAlignment="CENTER" textFill="#0f6489" textOverrun="WORD_ELLIPSIS">
          <effect>
             <Glow />
          </effect>
@@ -24,7 +27,7 @@
             <Cursor fx:constant="MOVE" />
          </cursor>
          <font>
-            <Font name="Ebrima Bold" size="14.0" />
+            <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
       <TextArea fx:id="contenuu" layoutX="49.0" layoutY="467.0" prefHeight="79.0" prefWidth="315.0" />

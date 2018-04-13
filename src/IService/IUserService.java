@@ -7,6 +7,7 @@ package IService;
 
 import Entity.User;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -28,11 +29,21 @@ public interface IUserService {
     
     public int countInactifUsers();
     
-    public List<User> getSuggestionUsers();
+    public List<User> getSuggestionUsers(User u);
     
     public List<User> getBlockedUsers();
     
+    public void modifierUserPhoto(User u);
+    
     public void modifierUser(User u);
+    
+    public ResultSet getAllUsersRS();
+    
+    public int getByFacebook();
+    
+    public int getByTwitter();
+    
+    public int getByInstagram();
         
     
 }

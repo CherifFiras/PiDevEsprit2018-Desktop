@@ -30,6 +30,9 @@ public class Service {
     private IEspaceCopyService espaceCopyService;
     private IAvisEspaceService avisEspaceService;
     private IPhotoEspaceService photoEspaceService;
+    private IPublicationService publicationService;
+    private IAlbumService albumService;
+    private IBloquerService bloquerService; 
     private INotificationService notificationService;
     private Service()
     {
@@ -152,6 +155,27 @@ public class Service {
         if(photoEspaceService == null)
             photoEspaceService = new PhotoEspaceService();
         return photoEspaceService;
+    }
+    
+    public IPublicationService getPublicationService()
+    {
+        if(publicationService == null)
+            publicationService = new PublicationService();
+        return publicationService;
+    }
+    
+    public IAlbumService getAlbumService()
+    {
+        if(albumService == null)
+            albumService = new AlbumService();
+        return albumService;
+    }
+       
+    public IBloquerService getBloquerService()
+    {
+        if(bloquerService == null)
+            bloquerService = new BloquerService();
+        return bloquerService;
     }
     
     public INotificationService getNotificationService()
