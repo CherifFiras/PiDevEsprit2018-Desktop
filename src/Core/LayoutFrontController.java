@@ -48,11 +48,12 @@ public class LayoutFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Controller.holderPane = holderPane;
+        loadView("../View/Journal.fxml");
     }    
 
     @FXML
     private void home() throws IOException {
-        
+        loadView("../View/Journal.fxml");
                   
     }
     private void setNode(Node node) {

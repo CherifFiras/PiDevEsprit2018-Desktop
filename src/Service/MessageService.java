@@ -5,6 +5,7 @@
  */
 package Service;
 
+import Core.Controller;
 import Core.DataSource;
 import Entity.Message;
 import Entity.User;
@@ -27,7 +28,7 @@ import java.util.logging.Logger;
  *
  * @author hero
  */
-public class MessageService implements IMessageService {
+public class MessageService extends Controller implements IMessageService {
     private Connection con = DataSource.getInstance().getConnection();
 
     @Override
@@ -117,5 +118,9 @@ public class MessageService implements IMessageService {
             Logger.getLogger(MessageService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    @Override
+    public Message getMessageSenderByUser(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -17,6 +17,8 @@ public interface IEmploiService {
     
     public List<Emploi> getAllEmploisByUser(User u);
     
+    public Emploi getEmploiById(int e);
+    
     public void ajouterEmploi(Emploi e, User u);
     
     public void modifierEmploi(Emploi e);
