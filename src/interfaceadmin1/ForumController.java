@@ -69,7 +69,7 @@ public class ForumController implements Initializable {
     private void switchWork2(ActionEvent event) throws IOException {
 
 
-            AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/Forum_Work2.fxml")));
+            AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View/Liste_utilisateur.fxml")));
             UIController.setNode(parentContent);
 
     }

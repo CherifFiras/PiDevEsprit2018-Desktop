@@ -5,9 +5,13 @@
  */
 package Service;
 
+import Controller.SujetController;
 import Core.DataSource;
+import Entity.Category;
 import Entity.User;
 import IService.IUserService;
+import interfaceadmin1.UIController;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,6 +24,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -262,6 +272,24 @@ public class UserService implements IUserService {
     @Override
     public void modifierUser(User u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void deleteData(ActionEvent event,ObservableList<User>list,TableView<User> table) throws SQLException {
+        
+           list=FXCollections.observableArrayList();
+        User panier = table.getSelectionModel().getSelectedItem();
+        String a = panier.getEmail();
+     
+        String queryy ="DELETE FROM user WHERE email=?";
+
+        
+        PreparedStatement prss= con.prepareStatement(queryy);
+        prss.setString(1, a);
+        prss.executeUpdate();  
+        table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+        table.getSelectionModel().select(null);
+             
+       
     }
     
     
