@@ -75,7 +75,7 @@ public class MapController implements Initializable, MapComponentInitializedList
     public void mapInitialized() {
         MapOptions options = new MapOptions();
 
-        options.center(new LatLong(47.606189, -122.335842))
+        options.center(new LatLong(36.849109, 10.181531600000001))
                 .zoomControl(true)
                 .zoom(12)
                 .overviewMapControl(false)

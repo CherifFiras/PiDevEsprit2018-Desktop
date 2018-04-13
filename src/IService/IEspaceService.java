@@ -23,4 +23,5 @@ public interface IEspaceService {
     public Espace ajoutEspace(Espace e);
     public Espace lastEspaces();
     public List<Espace> findByDistance(double latitude, double longitude, double distance);
+    public void send_mailconf(Espace espace);
 }

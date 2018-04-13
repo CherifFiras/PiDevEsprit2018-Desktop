@@ -6,7 +6,9 @@
 package interfaceadmin1;
 
 import Entity.Espace;
+import Entity.PhotoEspace;
 import Service.EspaceService;
+import Service.PhotoEspaceService;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -24,6 +26,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -65,6 +69,16 @@ public class Espace_work1Controller implements Initializable {
     private ButtonType Oui;
     @FXML
     private TextField recherche;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private ImageView image4;
+    @FXML
+    private ImageView image3;
+    @FXML
+    private ImageView image2;
+    @FXML
+    private ImageView image11;
 
     /**
      * Initializes the controller class.
@@ -75,7 +89,7 @@ public class Espace_work1Controller implements Initializable {
         EspaceController espace = new EspaceController();
         esp = new EspaceService();
         ArrayList arrayList = (ArrayList) espace.afficherEspaceConfirmer();
-
+        PhotoEspaceService pht = new PhotoEspaceService();
         ObservableList observableList = FXCollections.observableArrayList(arrayList);
         titre.setCellValueFactory(new PropertyValueFactory<>("Titre"));
         description.setCellValueFactory(new PropertyValueFactory<>("Description"));
@@ -90,10 +104,31 @@ public class Espace_work1Controller implements Initializable {
         listEspace.setRowFactory(tv -> {
             TableRow<Espace> row = new TableRow<>();
             row.setOnMouseClicked(e -> {
+                  image1.setVisible(false);
+                image3.setVisible(false);
+                image2.setVisible(false);
+                image4.setVisible(false);
+                PhotoEspace phot = pht.getPhotoById(row.getItem().getId());
+                Image img = new Image(getClass().getResource("../Images/").toExternalForm() + row.getItem().getPhoto());
+                image11.setImage(img);
+                if (phot != null) {
+                    image1.setVisible(true);
+                    image3.setVisible(true);
+                    image2.setVisible(true);
+                    image4.setVisible(true);
+                    Image img1 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto1());
+                    image1.setImage(img1);
+                    Image img2 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto2());
+                    image3.setImage(img2);
+                    Image img3 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto3());
+                    image4.setImage(img3);
+                    Image img4 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto4());
+                    image2.setImage(img4);
+                }
+
                 if (e.getClickCount() == 2 && (!row.isEmpty())) {
                     Optional<ButtonType> result = ActionsAlert.showAndWait();
                     if (result.isPresent() && result.get() == supprimer) {
-
                         esp.removeEspace(row.getItem().getId());
                         listEspace.getItems().removeAll(listEspace.getSelectionModel().getSelectedItem());
                         listEspace.getSelectionModel().select(null);

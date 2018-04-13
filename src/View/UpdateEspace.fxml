@@ -8,10 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="holderPane" prefHeight="595.0" prefWidth="533.0" style="-fx-background-color: #edf2f6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controller.UpdateEspaceController">
+<AnchorPane id="AnchorPane" fx:id="holderPane" prefHeight="657.0" prefWidth="397.0" style="-fx-background-color: #edf2f6;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UpdateEspaceController">
    <children>
-      <Pane prefHeight="657.0" prefWidth="533.0" style="-fx-background-color: #fff;">
+      <Pane prefHeight="657.0" prefWidth="465.0" style="-fx-background-color: #fff;">
          <children>
             <Text fill="#494c62" layoutX="31.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre Espace">
                <font>
@@ -30,7 +29,7 @@
                </font>
             </Text>
             <TextArea fx:id="description" layoutX="229.0" layoutY="238.0" prefHeight="200.0" prefWidth="187.0" promptText="Description d'espace" />
-            <JFXButton fx:id="update" layoutX="201.0" layoutY="567.0" onAction="#update" style="-fx-background-color: #ff5e3a;" text="Modifier" />
+            <JFXButton fx:id="update" layoutX="239.0" layoutY="570.0" onAction="#update" style="-fx-background-color: #ff5e3a;" text="Modifier" />
          </children>
       </Pane>
    </children>

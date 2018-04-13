@@ -8,7 +8,9 @@ package Controller;
 import Core.Controller;
 import Entity.AvisEspace;
 import Entity.Espace;
+import Entity.User;
 import Entity.PhotoEspace;
+import Service.UserService;
 import Service.AvisEspaceService;
 import Service.EspaceService;
 import Service.PhotoEspaceService;
@@ -27,6 +29,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +38,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
 /**
@@ -42,10 +47,15 @@ import org.controlsfx.control.Rating;
  * @author Nayer Ben Jaber
  */
 public class EspaceContenuController extends Controller implements Initializable {
+
     public static int ide;
+    public static String nom;
+    public static String prenom;
+   
     @FXML
     private AnchorPane holderPane;
     EspaceService esp = new EspaceService();
+            UserService user = new UserService();
     PhotoEspaceService pht = new PhotoEspaceService();
     @FXML
     private Label titre;
@@ -93,8 +103,10 @@ public class EspaceContenuController extends Controller implements Initializable
         HBox b = new HBox();
         Espace espace = esp.getEspaceById(id);
         PhotoEspace photo = pht.getPhotoById(espace.getId());
-                                ide = espace.getId();
-
+         User   usr = user.getUserById(espace.getIdUser());
+        ide = espace.getId();
+        nom = usr.getNom();
+        prenom = usr.getPrenom();
         titre.setText(espace.getTitre());
         titre.setWrapText(true);
         description.setText(espace.getDescription());
@@ -105,9 +117,11 @@ public class EspaceContenuController extends Controller implements Initializable
         email.setText(espace.getEmail());
         adresse.setWrapText(true);
         ratings = avis.getRating(espace.getId());
-        if(this.getUser().getId() == espace.getIdUser())
+        if (this.getUser().getId() == espace.getIdUser()) {
             switchUpdate.setVisible(true);
-        else switchUpdate.setVisible(false);
+        } else {
+            switchUpdate.setVisible(false);
+        }
         if (!ratings.isEmpty()) {
             int h = 0;
             int d = 0;
@@ -143,17 +157,22 @@ public class EspaceContenuController extends Controller implements Initializable
 
     @FXML
     private void switchMap(ActionEvent event) throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(("../View/Map.fxml")));
-        AnchorPane parentContent = fxmlloader.load();
-        setNode(parentContent);
+ Stage stage = new Stage();
+          Parent root = FXMLLoader.load(getClass().getResource("../View/Map.fxml")); 
+        Scene scene = new Scene(root,1100,700);     
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     @FXML
     private void switchUpdate(ActionEvent event) throws IOException {
-                FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(("../View/UpdateEspace.fxml")));
-        AnchorPane parentContent = fxmlloader.load();
-        setNode(parentContent);
+ Stage stage = new Stage();
+          Parent root = FXMLLoader.load(getClass().getResource("../View/UpdateEspace.fxml")); 
+        Scene scene = new Scene(root,465,657);     
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

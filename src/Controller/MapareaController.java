@@ -19,7 +19,9 @@ import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import com.sun.prism.PhongMaterial.MapType;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,6 +31,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 /**
  * FXML Controller class
@@ -59,7 +69,8 @@ public class MapareaController implements Initializable, MapComponentInitialized
         slider.setMajorTickUnit(50);
         slider.setMinorTickCount(5);
         slider.setBlockIncrement(10);
-
+        TextField addresse = new TextField();
+        addresse.setPromptText("entrez votre addresse");
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                     Number old_val, Number new_val) {
@@ -82,7 +93,7 @@ public class MapareaController implements Initializable, MapComponentInitialized
                     markers.add(marker);
 
                     InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                    String adresse = "<h2 style='text-align: center'>" + esp.getTitre() + "</span>" + esp.getAdresse() + "</span>";
+                    String adresse = "<h2 style='text-align: center'>" + esp.getTitre() ;
                     infoWindowOptions.content(adresse);
                     InfoWindow infowindow = new InfoWindow(infoWindowOptions);
                     infowindow.open(map, marker);
@@ -94,6 +105,7 @@ public class MapareaController implements Initializable, MapComponentInitialized
         });
 
         mapView.addMapInializedListener(this);
+        
 
     }
 

@@ -32,7 +32,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
-
 /**
  * FXML Controller class
  *
@@ -40,19 +39,19 @@ import javafx.scene.layout.StackPane;
  */
 public class Espace_work2Controller implements Initializable {
 
-        private Alert ActionsAlert;
+    private Alert ActionsAlert;
     private Alert Description;
-    private ButtonType confirmer ;
+    private ButtonType confirmer;
     private ButtonType supprimer;
     private ButtonType annuler;
     private Alert ConfirmDelete;
-     private ButtonType Oui;
+    private ButtonType Oui;
     private EspaceService esp;
 
     @FXML
     private AnchorPane holderPane;
     private StackPane container;
-      @FXML
+    @FXML
     private TableView<Espace> listEspace;
     @FXML
     private TableColumn<Espace, String> titre;
@@ -87,11 +86,10 @@ public class Espace_work2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         init_buttons();
-         EspaceController espace = new EspaceController();
-     PhotoEspaceService pht = new PhotoEspaceService();
-                     
+        EspaceController espace = new EspaceController();
+        PhotoEspaceService pht = new PhotoEspaceService();
 
-         esp = new EspaceService();
+        esp = new EspaceService();
         ArrayList arrayList = (ArrayList) espace.afficherEspaceNonConfirmer();
         ObservableList observableList = FXCollections.observableArrayList(arrayList);
         titre.setCellValueFactory(new PropertyValueFactory<>("Titre"));
@@ -102,95 +100,76 @@ public class Espace_work2Controller implements Initializable {
         longitude.setCellValueFactory(new PropertyValueFactory<>("longi"));
         latitude.setCellValueFactory(new PropertyValueFactory<>("lat"));
         iduser.setCellValueFactory(new PropertyValueFactory<>("idUser"));
-         listEspace.setItems(observableList);
-         
-         listEspace.setRowFactory(tv->{
-             
-             TableRow<Espace> row=new TableRow<>();
-             
-             row.setOnMouseClicked(e->{
-                  image1.setVisible(false);
-              image3.setVisible(false);
-              image11.setVisible(false);
-              image31.setVisible(false);
-                  PhotoEspace phot = pht.getPhotoById(row.getItem().getId());
-                 
-             File f = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + row.getItem().getPhoto());
-            Image img = new Image(f.toURI().toString());
-            image.setImage(img);
-            if(phot != null){
-                   image1.setVisible(true);
-              image3.setVisible(true);
-              image11.setVisible(true);
-              image31.setVisible(true);
-                         File f1 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + phot.getPhoto1());
-            Image img1 = new Image(f1.toURI().toString());
-            image1.setImage(img1);
-                   File f2 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + phot.getPhoto2());
-            Image img2 = new Image(f2.toURI().toString());
-            image3.setImage(img2);
-                   File f3 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + phot.getPhoto3());
-            Image img3 = new Image(f3.toURI().toString());
-            image11.setImage(img3);
-                   File f4 = new File("C:/Users/Nayer Ben Jaber/Documents/NetBeansProjects/PiDevEsprit2018-Desktop/src/Images/" + phot.getPhoto4());
-            Image img4 = new Image(f4.toURI().toString());
-            image31.setImage(img4);
-                 }
-           
-                 if(e.getClickCount()==2 && (!row.isEmpty()))
-                 {
-                     Optional<ButtonType> result=ActionsAlert.showAndWait();
-                      if(result.isPresent()&&result.get()==confirmer)
-                      {
-                                   esp.confirmeEspace(row.getItem().getId());                           
-                                    esp.send_mail(row.getItem());
-                                    listEspace.getItems().removeAll(listEspace.getSelectionModel().getSelectedItem());
-                                    listEspace.getSelectionModel().select(null);
-                      }
-                      else if(result.isPresent()&&result.get()==supprimer)
-                      {
-                                  
-                                    esp.removeEspace(row.getItem().getId());
-                                    esp.send_maildel(row.getItem());
-                                    listEspace.getItems().removeAll(listEspace.getSelectionModel().getSelectedItem());
-                                    listEspace.getSelectionModel().select(null);
-                               
-                         
-                      }
+        listEspace.setItems(observableList);
+        listEspace.setRowFactory(tv -> {
+            TableRow<Espace> row = new TableRow<>();
+            row.setOnMouseClicked(e -> {
+                image1.setVisible(false);
+                image3.setVisible(false);
+                image11.setVisible(false);
+                image31.setVisible(false);
+                PhotoEspace phot = pht.getPhotoById(row.getItem().getId());
+                Image img = new Image(getClass().getResource("../Images/").toExternalForm() + row.getItem().getPhoto());
+                image.setImage(img);
+                if (phot != null) {
+                    image1.setVisible(true);
+                    image3.setVisible(true);
+                    image11.setVisible(true);
+                    image31.setVisible(true);
+                    Image img1 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto1());
+                    image1.setImage(img1);
+                    Image img2 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto2());
+                    image3.setImage(img2);
+                    Image img3 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto3());
+                    image11.setImage(img3);
+                    Image img4 = new Image(getClass().getResource("../Images/").toExternalForm() + phot.getPhoto4());
+                    image31.setImage(img4);
+                }
 
-                 }
+                if (e.getClickCount() == 2 && (!row.isEmpty())) {
+                    Optional<ButtonType> result = ActionsAlert.showAndWait();
+                    if (result.isPresent() && result.get() == confirmer) {
+                        esp.confirmeEspace(row.getItem().getId());
+                        esp.send_mail(row.getItem());
+                        listEspace.getItems().removeAll(listEspace.getSelectionModel().getSelectedItem());
+                        listEspace.getSelectionModel().select(null);
+                    } else if (result.isPresent() && result.get() == supprimer) {
 
-                 
-             });
-              return row; 
-         }
-          
-         
-        
-         );
-          }
-      
+                        esp.removeEspace(row.getItem().getId());
+                        esp.send_maildel(row.getItem());
+                        listEspace.getItems().removeAll(listEspace.getSelectionModel().getSelectedItem());
+                        listEspace.getSelectionModel().select(null);
 
-      public void set_content(Node widget)
-    {
+                    }
+
+                }
+
+            });
+            return row;
+        }
+        );
+    }
+
+    public void set_content(Node widget) {
         container.getChildren().clear();
         container.getChildren().add(widget);
     }
-        private void init_buttons() {
+
+    private void init_buttons() {
         confirmer = new ButtonType("Confirmer");
-        supprimer= new ButtonType("Supprimer");
-        annuler= new ButtonType("Annuler");
+        supprimer = new ButtonType("Supprimer");
+        annuler = new ButtonType("Annuler");
         EspaceService esp = new EspaceService();
-      ActionsAlert = new Alert(Alert.AlertType.CONFIRMATION);
-      Description = new Alert(Alert.AlertType.CONFIRMATION);
-      ActionsAlert.setContentText("");
-           Description.setTitle("Description");
-      Description.setHeaderText("Description d'espace");
-      ActionsAlert.setTitle("MySoulMate");
-      ActionsAlert.setHeaderText("Gestion Espace");
-      ActionsAlert.getButtonTypes().clear();
-      ActionsAlert.getButtonTypes().addAll(confirmer,supprimer,annuler);
-      
+        ActionsAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        Description = new Alert(Alert.AlertType.CONFIRMATION);
+        ActionsAlert.setContentText("");
+        Description.setTitle("Description");
+        Description.setHeaderText("Description d'espace");
+        ActionsAlert.setTitle("MySoulMate");
+        ActionsAlert.setHeaderText("Gestion Espace");
+        ActionsAlert.getButtonTypes().clear();
+        ActionsAlert.getButtonTypes().addAll(confirmer, supprimer, annuler);
+
     }
-    
+
 }

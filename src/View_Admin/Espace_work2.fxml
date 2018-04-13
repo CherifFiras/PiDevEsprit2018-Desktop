@@ -71,11 +71,11 @@
             <TableColumn fx:id="iduser" minWidth="144.0" prefWidth="75.0" text="IdUser" />
         </columns>
       </TableView>
-      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="239.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="image3" fitHeight="150.0" fitWidth="200.0" layoutX="460.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="image11" fitHeight="150.0" fitWidth="200.0" layoutX="678.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="image31" fitHeight="150.0" fitWidth="200.0" layoutX="893.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="232.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image3" fitHeight="150.0" fitWidth="200.0" layoutX="453.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image11" fitHeight="150.0" fitWidth="200.0" layoutX="671.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image31" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="18.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true" />
       
    </children>
 </AnchorPane>

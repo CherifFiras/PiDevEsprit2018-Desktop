@@ -36,6 +36,8 @@ public class UpdateEspaceController implements Initializable {
     private JFXButton update;
                   EspaceContenuController ics = new EspaceContenuController();
                 int id = ics.ide;
+                String nom = ics.nom;
+                String prenom = ics.prenom;
     /**
      * Initializes the controller class.
      */
@@ -52,9 +54,10 @@ public class UpdateEspaceController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) {
-        EspaceCopy esp = new EspaceCopy(titre.getText(), description.getText(), "nayer", "jabri", id);
+        EspaceCopy esp = new EspaceCopy(titre.getText(), description.getText(), nom, prenom , id);
         EspaceCopyService espc = new EspaceCopyService();
         espc.ajoutEspaceCopy(esp);
+        
     }
     
 }
