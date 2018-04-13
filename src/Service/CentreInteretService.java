@@ -29,19 +29,21 @@ public class CentreInteretService implements ICentreInteretService {
 
     @Override
     public List<CentreInteret> getFilmsByUser(User u) {
-        String req = "SELECT * FROM centre_interet where idUser=? and type=film";
+        String req = "SELECT * FROM centre_interet where idUser=? and type='film'";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<CentreInteret> ci = new ArrayList<>();
         try {
             while (rs.next()){
-                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), user));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,19 +53,21 @@ public class CentreInteretService implements ICentreInteretService {
 
     @Override
     public List<CentreInteret> getSeriesByUser(User u) {
-        String req = "SELECT * FROM centre_interet where idUser=? and type=serie";
+        String req = "SELECT * FROM centre_interet where idUser=? and type='serie'";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<CentreInteret> ci = new ArrayList<>();
         try {
             while (rs.next()){
-                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), user));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,19 +77,21 @@ public class CentreInteretService implements ICentreInteretService {
 
     @Override
     public List<CentreInteret> getArtistsByUser(User u) {
-        String req = "SELECT * FROM centre_interet where idUser=? and type=artist";
+        String req = "SELECT * FROM centre_interet where idUser=? and type='artist'";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<CentreInteret> ci = new ArrayList<>();
         try {
             while (rs.next()){
-                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), user));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,19 +101,21 @@ public class CentreInteretService implements ICentreInteretService {
 
     @Override
     public List<CentreInteret> getLivresByUser(User u) {
-        String req = "SELECT * FROM centre_interet where idUser=? and type=livre";
+        String req = "SELECT * FROM centre_interet where idUser=? and type='livre'";
         ResultSet rs= null;
         try {
             PreparedStatement ps = con.prepareStatement(req);
             ps.setInt(1, u.getId());
-            rs = ps.executeQuery(req);
+            rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<CentreInteret> ci = new ArrayList<>();
         try {
             while (rs.next()){
-                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), (User) rs.getObject("idUser")));
+                User user = new User();
+                user.setId(rs.getInt("idUser"));
+                ci.add(new CentreInteret(rs.getInt("id"), rs.getString("type"), rs.getString("contenu"), user));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);

@@ -59,7 +59,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void switchWork1(ActionEvent event) throws IOException {
 
-        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/Profile_Work1.fxml")));
+        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/ListUtilAdmin.fxml")));
         holderPane.getChildren().setAll(parentContent);
 
     }
@@ -67,7 +67,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void switchWork2(ActionEvent event) throws IOException {
 
-        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/Profile_Work2.fxml")));
+        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/ListSignalAdmin.fxml")));
         holderPane.getChildren().setAll(parentContent);
 
     }
@@ -75,7 +75,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void switchWork3(ActionEvent event) throws IOException {
 
-        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/Profile_Work3.fxml")));
+        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/ListBlockAdmin.fxml")));
         holderPane.getChildren().setAll(parentContent);
 
     }
@@ -83,7 +83,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void switchWork4(ActionEvent event) throws IOException {
 
-        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/Profile_Work4.fxml")));
+        AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("../View_Admin/StatistiqueAdmin.fxml")));
         holderPane.getChildren().setAll(parentContent);
 
     }
