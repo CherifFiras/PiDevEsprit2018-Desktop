@@ -12,6 +12,7 @@ import Entity.Message;
 import Entity.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -51,6 +52,10 @@ public class MatchingController extends Controller implements Initializable {
     private Button stopButton;
     @FXML
     private Button nextButton;
+    @FXML
+    private Label age;
+    @FXML
+    private Label ville;
 
 
     /**
@@ -108,6 +113,11 @@ public class MatchingController extends Controller implements Initializable {
             startButton.setDisable(false);
             stopButton.setDisable(true);
             nextButton.setDisable(true);
+            userImage.setImage(null);
+            userName.setText("Stopped");
+            messageBox.setDisable(true);
+            age.setText("");
+            ville.setText("");
         } catch (IOException ex) {
             Logger.getLogger(MatchingController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,8 +165,15 @@ public class MatchingController extends Controller implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                Calendar c = Calendar.getInstance();
+                c.setTime(new java.util.Date());
+                int currentYear = c.get(Calendar.YEAR);
+                c.setTime(sender.getDateNaissance());
+                int userBirthYear = c.get(Calendar.YEAR);
                 userImage.setImage(new Image(getClass().getResource("../Images/"+sender.getImage()).toExternalForm()));
                 userName.setText(sender.getPrenom()+" "+sender.getNom());
+                ville.setText(sender.getVille());
+                age.setText(String.valueOf((currentYear-userBirthYear)));
                 messageBox.setDisable(false);
             }
         });
@@ -169,6 +186,8 @@ public class MatchingController extends Controller implements Initializable {
                 userImage.setImage(null);
                 userName.setText("Waiting");
                 messageBox.setDisable(true);
+                age.setText("");
+                ville.setText("");
             }
         });
         

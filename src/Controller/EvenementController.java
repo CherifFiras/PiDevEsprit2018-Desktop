@@ -91,7 +91,7 @@ private final IAvisEvenementService as = this.getService().getAvisEvenementServi
             if( newValue != Worker.State.SUCCEEDED ) {
                 return;  
             }
-            webEngine.executeScript("document.init("+year+","+month+","+day+","+hour+","+minute+","+second+")");
+            webEngine.executeScript("document.init("+year+","+(month+1)+","+day+","+hour+","+minute+","+second+")");
         });
     }    
 

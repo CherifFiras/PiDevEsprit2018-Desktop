@@ -10,6 +10,7 @@ import Core.Controller;
 import Entity.Relation;
 import Entity.User;
 import IService.IRelationService;
+import IService.IUserService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,6 +49,7 @@ import javafx.stage.WindowEvent;
 public class FriendListController extends Controller implements Initializable {
 
     private IRelationService relationService = this.getService().getRelationService();
+    private IUserService userService = this.getService().getUserService();
     private List<User> friendList;
     private Timer timer;
     @FXML
@@ -118,8 +121,16 @@ public class FriendListController extends Controller implements Initializable {
     
     @FXML
     private void openProfile(MouseEvent event) {
-        Label label = (Label) event.getSource();
-        System.out.println(label.getId());
+        Label button = (Label) event.getSource();
+        User user = userService.getUserById(Integer.valueOf(button.getId()));
+        AutreJournalController.setAutreUser(user);
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource(("../View/autreJournal.fxml")));
+        Controller.holderPane.getChildren().clear();
+        try {
+            Controller.holderPane.getChildren().add(fxmlLoader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(RechercheProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private HBox userItem(User user)

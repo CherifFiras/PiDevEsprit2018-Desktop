@@ -12,18 +12,22 @@ import Entity.User;
 import IService.IDemandeService;
 import IService.IRelationService;
 import IService.IUserService;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -168,7 +172,7 @@ public class RechercheProfileController extends Controller implements Initializa
         profileButton.setPrefSize(100, 60);
         profileButton.setFont(prefFont);
         profileButton.setId(user.getId().toString());
-        profileButton.setOnAction(this::demandeInteraction);
+        profileButton.setOnAction(this::profileAction);
         ObservableList<Node> childs = hBox.getChildren();
         childs.add(userImage);
         childs.add(userName);
@@ -205,6 +209,21 @@ public class RechercheProfileController extends Controller implements Initializa
         NotificationApi.createDemandeNotification(demande);
         demandeButton.setVisible(false);
         Notifications.create().text("Votre demande a été envoyé").position(Pos.CENTER).hideAfter(Duration.seconds(3)).showConfirm();
+    }
+    
+    @FXML
+    private void profileAction(ActionEvent event)
+    {
+        Button button = (Button) event.getSource();
+        User user = userService.getUserById(Integer.valueOf(button.getId()));
+        AutreJournalController.setAutreUser(user);
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource(("../View/autreJournal.fxml")));
+        Controller.holderPane.getChildren().clear();
+        try {
+            Controller.holderPane.getChildren().add(fxmlLoader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(RechercheProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private String genderValue()
