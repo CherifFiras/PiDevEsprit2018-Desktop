@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutY="3.0" prefHeight="485.0" prefWidth="786.0">
          <children>
-            <TableView fx:id="display" layoutX="13.0" layoutY="7.0" onMouseClicked="#Fetch" prefHeight="234.0" prefWidth="434.0" style="-fx-background-color: silver;">
+            <TableView fx:id="display" layoutX="13.0" layoutY="7.0" onMouseClicked="#Fetch" prefHeight="234.0" prefWidth="427.0" style="-fx-background-color: silver;">
               <columns>
                   <TableColumn fx:id="image" minWidth="0.0" prefWidth="0.0" text="imageEve" />
                 <TableColumn fx:id="nbplaces" prefWidth="56.0" text="nbplaces" />
@@ -43,7 +43,7 @@
             <Label fx:id="ramy2" layoutX="596.0" layoutY="403.0" text="choisir un descriptionSVP!!" visible="false" />
             <Label fx:id="datenow" layoutX="633.0" layoutY="125.0" text="choisir une date SVP!!" textFill="#ee0303" visible="false" />
             <Label fx:id="date_act" layoutX="633.0" layoutY="140.0" text="choisir une date supérieur" textFill="#e40b0b" visible="false" />
-            <TableView fx:id="display1" layoutX="14.0" layoutY="300.0" prefHeight="176.0" prefWidth="434.0">
+            <TableView fx:id="display1" layoutX="14.0" layoutY="300.0" prefHeight="176.0" prefWidth="427.0">
               <columns>
                 <TableColumn fx:id="contenu" prefWidth="433.0" text="avis" />
               </columns>

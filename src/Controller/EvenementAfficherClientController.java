@@ -126,6 +126,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             JFXButton btn = new JFXButton();
             btn.setPrefHeight(87.0);
             btn.setPrefWidth(160.0);
+            
             //setFont(Font.font("Verdana", FontWeight.BOLD, 70));
             btn.setFont(new Font("Cambria", 20));
             btn.setStyle("-fx-background-color: #aaffff; ");
@@ -296,16 +297,18 @@ public class EvenementAfficherClientController extends Controller implements Ini
             Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("imageEve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
             btn.setOnAction(a -> {
                 try {
+                    EvenementController.evenement = evenement;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/evenement.fxml"));
                     AnchorPane root = loader.load();
+                    
                     JFXButton participer = new JFXButton();
-                    participer.setText("participer");
+                    participer.setText("Participer");
                     participer.setPrefHeight(25.0);
                     participer.setPrefWidth(88.0);
                     participer.setLayoutX(603);
                     participer.setLayoutY(476);
                     JFXButton annuler = new JFXButton();
-                    annuler.setText("annuler");
+                    annuler.setText("Annuler");
                     annuler.setPrefHeight(25.0);
                     annuler.setPrefWidth(88.0);
                     annuler.setLayoutX(703);
@@ -314,11 +317,13 @@ public class EvenementAfficherClientController extends Controller implements Ini
                     nbr.setLayoutX(764);
                     nbr.setLayoutY(446);
                     nbr.setText(String.valueOf(evenement.getNbplaces()));
+                    
                     root.getChildren().add(nbr);
                     //setFont(Font.font("Verdana", FontWeight.BOLD, 70));
                     participer.setFont(new Font("Cambria", 15));
-                    participer.setStyle("-fx-background-color: #f4c3c3; ");
+                    participer.setStyle("-fx-background-color: #724848; ");
                     participer.setTextFill(Color.web("#e8f8ff"));
+                    
                     root.getChildren().add(participer);
                     if(p.checkParticipation(evenement, this.getUser()))
                     {
@@ -335,13 +340,13 @@ public class EvenementAfficherClientController extends Controller implements Ini
                                                  
                        nbr.setText(String.valueOf(Integer.parseInt(nbr.getText())+1));
                        evenement.setNbplaces(Integer.parseInt(nbr.getText())-1);
-                        p.increment(evenement, this.getUser());
+                        p.increment(evenement,this.getUser());
                         participer.setDisable(true);
                         annuler.setDisable(false);
                     });
 
                     annuler.setFont(new Font("Cambria", 15));
-                    annuler.setStyle("-fx-background-color: #f4c3c3; ");
+                    annuler.setStyle("-fx-background-color: #724848; ");
                     annuler.setTextFill(Color.web("#e8f8ff"));
                     root.getChildren().add(annuler);
                     annuler.setOnMouseClicked(k
@@ -354,6 +359,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
                                                         
                     });
                     EvenementController ec = loader.getController();
+                    ec.setIdEvenement(evenement.getId());
                     ec.setTitre("Titre de l'evenement : "+evenement.getTitre());
                     ec.setDate("Date de l'evenement : "+evenement.getDateEvenement().toString());
                     ec.setDescription("Description sur l'evenement : "+evenement.getDescription());
