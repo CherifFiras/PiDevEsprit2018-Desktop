@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceadmin1.ProfileController">
+<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceadmin1.ProfileController">
     <stylesheets>
         <URL value="@Stylesheet.css" />
     </stylesheets>
@@ -62,7 +62,7 @@
          </children></HBox>
             <Pane layoutX="129.0" layoutY="180.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Work 1" textFill="#6c6c6c">
+                  <Label layoutX="14.0" layoutY="14.0" text="Liste des Profils" textFill="#6c6c6c">
                      <font>
                         <Font name="Ebrima Bold" size="20.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <Image url="@../picture/icons8-administrator-male-filled-100.png" />
                      </image>
                   </ImageView>
-            <JFXButton fx:id="btnWork1" layoutX="110.0" layoutY="158.0" onAction="#switchWork1" style="-fx-background-color: #25a89f;" text="Check out" textFill="WHITE">
+            <JFXButton fx:id="btnWork1" layoutX="110.0" layoutY="158.0" onAction="#switchWork1" style="-fx-background-color: #25a89f;" text="Accéder" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -81,7 +81,7 @@
       </Pane>
       <Pane layoutX="598.0" layoutY="180.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Work 2" textFill="#6c6c6c">
+            <Label layoutX="14.0" layoutY="14.0" text="Liste des utilisateurs signalés" textFill="#6c6c6c">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>
@@ -91,7 +91,7 @@
                   <Image url="@../picture/icons8-administrator-male-filled-100.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnWork2" layoutX="110.0" layoutY="158.0" onAction="#switchWork2" style="-fx-background-color: #25a89f;" text="Check out" textFill="WHITE">
+            <JFXButton fx:id="btnWork2" layoutX="110.0" layoutY="158.0" onAction="#switchWork2" style="-fx-background-color: #25a89f;" text="Accéder" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -100,7 +100,7 @@
       </Pane>
       <Pane layoutX="129.0" layoutY="493.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Work 3" textFill="#6c6c6c">
+            <Label layoutX="14.0" layoutY="14.0" text="Liste des utilisateurs bloqués" textFill="#6c6c6c">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>
@@ -110,7 +110,7 @@
                   <Image url="@../picture/icons8-administrator-male-filled-100.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnWork3" layoutX="110.0" layoutY="158.0" onAction="#switchWork3" style="-fx-background-color: #25a89f;" text="Check out" textFill="WHITE">
+            <JFXButton fx:id="btnWork3" layoutX="110.0" layoutY="158.0" onAction="#switchWork3" style="-fx-background-color: #25a89f;" text="Accéder" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -119,7 +119,7 @@
       </Pane>
       <Pane layoutX="598.0" layoutY="493.0" prefHeight="203.0" prefWidth="306.0" styleClass="module">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Work 4" textFill="#6c6c6c">
+            <Label layoutX="14.0" layoutY="14.0" text="Statistiques" textFill="#6c6c6c">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>
@@ -129,7 +129,7 @@
                   <Image url="@../picture/icons8-administrator-male-filled-100.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnWork4" layoutX="110.0" layoutY="158.0" onAction="#switchWork4" style="-fx-background-color: #25a89f;" text="Check out" textFill="WHITE">
+            <JFXButton fx:id="btnWork4" layoutX="110.0" layoutY="158.0" onAction="#switchWork4" style="-fx-background-color: #25a89f;" text="Accéder" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

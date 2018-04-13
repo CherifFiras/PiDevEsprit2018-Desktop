@@ -24,12 +24,17 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -38,6 +43,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -52,6 +58,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -102,6 +110,12 @@ public class AutreJournalController extends Controller implements Initializable 
     private VBox vboxStatus;
     @FXML
     private Button signalerProfil;
+    @FXML
+    private Label facebook;
+    @FXML
+    private Label twitter;
+    @FXML
+    private Label instagram;
 
     /**
      * Initializes the controller class.
@@ -113,6 +127,16 @@ public class AutreJournalController extends Controller implements Initializable 
         photop.setImage(new Image(getClass().getResource("../Images/"+autreUser.getImage()).toExternalForm()));
         //-------------
         descriptionLabel.setText(autreUser.getApropos());
+        //-------------
+        facebook.setText(autreUser.getFacebook());
+        facebook.setId(autreUser.getId().toString());
+        facebook.setOnMouseClicked(this::openFacebook);
+        twitter.setText(autreUser.getTwitter());
+        twitter.setId(autreUser.getId().toString());
+        twitter.setOnMouseClicked(this::openTwitter);
+        instagram.setText(autreUser.getInstagram());
+        instagram.setId(autreUser.getId().toString());
+        instagram.setOnMouseClicked(this::openInstagram);
         //-------------
         String series="";
         List<CentreInteret> listSeries = centreInteretService.getSeriesByUser(autreUser);
@@ -278,6 +302,90 @@ public class AutreJournalController extends Controller implements Initializable 
                 Logger.getLogger(ParamsEmpController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    @FXML
+    private void openFacebook(MouseEvent event) {
+        Label x = (Label) event.getSource();
+        User uw = userService.getUserById(Integer.parseInt(x.getId()));        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Messages envoyés !");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setResizable(true);
+        
+        WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load(uw.getFacebook());
+        webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>()
+	        {
+	            public void changed(ObservableValue<? extends State> ov, State oldState, State newState)
+	            {
+	                if (newState == State.SUCCEEDED)
+	                {
+	                    //stage.setTitle(webEngine.getLocation());
+	                    alert.setTitle(webEngine.getTitle());
+	                }
+	            }
+	        });        
+        alert.getDialogPane().setContent(webView);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void openTwitter(MouseEvent event) {
+        Label x = (Label) event.getSource();
+        User uw = userService.getUserById(Integer.parseInt(x.getId()));        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Messages envoyés !");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setResizable(true);
+        
+        WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load(uw.getTwitter());
+        webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>()
+	        {
+	            public void changed(ObservableValue<? extends State> ov, State oldState, State newState)
+	            {
+	                if (newState == State.SUCCEEDED)
+	                {
+	                    //stage.setTitle(webEngine.getLocation());
+	                    alert.setTitle(webEngine.getTitle());
+	                }
+	            }
+	        });        
+        alert.getDialogPane().setContent(webView);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void openInstagram(MouseEvent event) {
+        Label x = (Label) event.getSource();
+        User uw = userService.getUserById(Integer.parseInt(x.getId()));        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Messages envoyés !");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setResizable(true);
+        
+        WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load(uw.getInstagram());
+        webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>()
+	        {
+	            public void changed(ObservableValue<? extends State> ov, State oldState, State newState)
+	            {
+	                if (newState == State.SUCCEEDED)
+	                {
+	                    //stage.setTitle(webEngine.getLocation());
+	                    alert.setTitle(webEngine.getTitle());
+	                }
+	            }
+	        });        
+        alert.getDialogPane().setContent(webView);
+        alert.showAndWait();
     }
     
 }

@@ -14,6 +14,7 @@ import Service.LoginService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import java.io.IOException;
@@ -160,6 +161,11 @@ public class LoginController extends Controller implements Initializable {
                 User user= new User();
                 user.setId(x);
                 Controller.setUserId(x);
+                try {
+                    getLocationByIp(x);
+                } catch (GeoIp2Exception ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 init();
                 Node node =(Node)event.getSource();
                 stage = (Stage)node.getScene().getWindow();
@@ -170,6 +176,7 @@ public class LoginController extends Controller implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 stage.setResizable(false);          
+                
             }
             else {
                 loginService.createiniFile(path,username.getText(),password.getText());
@@ -183,6 +190,11 @@ public class LoginController extends Controller implements Initializable {
                 } 
                 User user= new User();
                 Controller.setUserId(x);
+                try {
+                    getLocationByIp(x);
+                } catch (GeoIp2Exception ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 init();
                 Node node =(Node)event.getSource();
                 stage = (Stage)node.getScene().getWindow();
@@ -193,7 +205,7 @@ public class LoginController extends Controller implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 stage.setResizable(false);
-
+                
             }
             }
             else

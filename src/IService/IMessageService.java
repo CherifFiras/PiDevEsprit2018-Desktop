@@ -17,5 +17,5 @@ public interface IMessageService {
     public List<Message> fetchMessage(User cUser,User oUser);
     public Message insertMessage(Message message);
     public Message getMessageById(int id);
-    public Message getMessageSenderByUser(int id);
+    public List<Message> getMessageSenderByUser(int id);
 }

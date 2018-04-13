@@ -27,7 +27,7 @@ public class ProfilPaysAPI {
     private static ProfilPaysAPI paysAPI;
     private JSONArray items;
     private JSONObject item;
-    private static final String URL = "https://battuta.medunes.net/api/country/all/?key=82b39a02b45cbb66f0c8db9e27684a3d";    
+    private static final String URL = "https://battuta.medunes.net/api/country/all/?key=c16aba7bbd8682ff9dfebea23b8113d1";    
     private URL url ;
     private HttpURLConnection httpURLConnection ;
     private BufferedReader in;
@@ -66,7 +66,7 @@ public class ProfilPaysAPI {
     }
 
     public String getPaysName(String cod) {
-        String URL2 = "https://battuta.medunes.net/api/country/code/"+cod+"/?key=82b39a02b45cbb66f0c8db9e27684a3d";
+        String URL2 = "https://battuta.medunes.net/api/country/code/"+cod+"/?key=c16aba7bbd8682ff9dfebea23b8113d1";
         String name = "";
         try {
             url = new URL(URL2);
@@ -87,7 +87,7 @@ public class ProfilPaysAPI {
     }
     
     public List<String> getVilleByPays(String pays) {
-        String URL3 = "https://battuta.medunes.net/api/region/"+pays+"/all/?key=82b39a02b45cbb66f0c8db9e27684a3d";
+        String URL3 = "https://battuta.medunes.net/api/region/"+pays+"/all/?key=c16aba7bbd8682ff9dfebea23b8113d1";
         List<String> resultList = new ArrayList();
         try {
             url = new URL(URL3);
@@ -111,7 +111,7 @@ public class ProfilPaysAPI {
     }
     
     public List<String> getRegionByPaysVille(String pays, String ville) {
-        String URL4 = "https://battuta.medunes.net/api/city/"+pays+"/search/?region="+ville+"&key=82b39a02b45cbb66f0c8db9e27684a3d";
+        String URL4 = "https://battuta.medunes.net/api/city/"+pays+"/search/?region="+ville+"&key=c16aba7bbd8682ff9dfebea23b8113d1";
         List<String> resultList = new ArrayList();
         try {
             url = new URL(URL4);
@@ -135,7 +135,7 @@ public class ProfilPaysAPI {
     }
     
     public String getOneRegion(String pays,String ville,String region) {
-        String URL4 = "https://battuta.medunes.net/api/city/"+pays+"/search/?region="+ville+"&key=82b39a02b45cbb66f0c8db9e27684a3d";
+        String URL4 = "https://battuta.medunes.net/api/city/"+pays+"/search/?region="+ville+"&key=c16aba7bbd8682ff9dfebea23b8113d1";
         String name = "";
         try {
             url = new URL(URL4);

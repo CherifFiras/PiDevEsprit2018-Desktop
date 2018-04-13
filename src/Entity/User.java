@@ -374,6 +374,8 @@ public class User implements Serializable {
         u.setUsername(rs.getString("username"));
         u.setNom(rs.getString("nom"));
         u.setPrenom(rs.getString("prenom"));
+        u.setEmail(rs.getString("email"));
+        u.setTel(rs.getString("tel"));
         u.setImage(rs.getString("image"));
         u.setPays(rs.getString("pays"));
         u.setVille(rs.getString("ville"));

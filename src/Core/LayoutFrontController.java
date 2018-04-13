@@ -7,6 +7,7 @@ package Core;
 
 import APIs.MatchingListener;
 import Controller.MatchingController;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

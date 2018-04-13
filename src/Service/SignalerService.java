@@ -76,4 +76,26 @@ public class SignalerService implements ISignalerService {
             Logger.getLogger(SignalerService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public List<Signaler> getAllSignalsByUser(User u) {
+        String req = "SELECT * FROM signaler where idUser=?";
+        ResultSet rs= null;
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, u.getId());
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(SignalerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<Signaler> s = new ArrayList<>();
+        try {
+            while (rs.next()){
+                s.add(new Signaler(rs.getInt("id"), rs.getString("cause"), rs.getInt("idUser")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SignalerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return s;
+    }
 }

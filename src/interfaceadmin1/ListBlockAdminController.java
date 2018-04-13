@@ -111,10 +111,10 @@ public class ListBlockAdminController extends Controller implements Initializabl
         u.setId(Integer.parseInt(x.getId()));
         bloquerService.debloquerUser(u);
         //-------
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ListBlockAdmin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View_Admin/ListBlockAdmin.fxml"));      
             try {
-                Parent root = loader.load();
-                vboxRow.getScene().setRoot(root);
+                holderPane.getChildren().clear();
+                holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ListBlockAdminController.class.getName()).log(Level.SEVERE, null, ex);
             }
