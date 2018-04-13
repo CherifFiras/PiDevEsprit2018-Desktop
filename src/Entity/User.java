@@ -5,10 +5,12 @@
  */
 package Entity;
 
+
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -45,6 +47,7 @@ public class User implements Serializable {
     private String image;
     private Date updatedAt;
     private String occupation;
+    private List<Message> messageList;
 
     public User() {
     }
@@ -388,6 +391,14 @@ public class User implements Serializable {
         u.setRegion(rs.getString("region"));
         u.setDateNaissance(rs.getDate("date_naissance"));
         return u;
+    }
+
+    public List<Message> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
     }
     
 }

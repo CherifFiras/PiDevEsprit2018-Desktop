@@ -17,6 +17,8 @@ public interface IPublicationService {
     
     public List<Publication> getPublicationByUser(User u);
     
+    public Publication getPublicationById(int id);
+    
     public void ajouterPublication(Publication p);
     
     public void modifierPublication(Publication p);
