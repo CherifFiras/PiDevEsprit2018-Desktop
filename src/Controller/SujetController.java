@@ -512,7 +512,7 @@ for (int i=0 ; i<count ; i++) {
               imageView.setPickOnBounds(true);
               imageView.setPreserveRatio(true);
               imageView.setImage(img1);
-        Circle clip = new Circle(30, 30, 30);
+        Circle clip = new Circle(50, 50, 30);
         imageView.setClip(clip);
         vbox2.getChildren().add(imageView);
         Label label2 = new Label();
