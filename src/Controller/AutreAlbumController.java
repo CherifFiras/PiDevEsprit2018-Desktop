@@ -110,10 +110,10 @@ public class AutreAlbumController extends Controller implements Initializable {
         AutreJournalController.setAutreUser(autreUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreJournal.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AutreJournalController autreJournalController = loader.getController();
             autreJournalController.setAutreUser(autreUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(AutreAlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -124,10 +124,10 @@ public class AutreAlbumController extends Controller implements Initializable {
         AutreAproposController.setAutreUser(autreUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreApropos.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AutreAproposController autreAproposController = loader.getController();
             autreAproposController.setAutreUser(autreUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(AutreAlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -171,8 +171,8 @@ public class AutreAlbumController extends Controller implements Initializable {
             //----
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreJournal.fxml"));
             try {
-                Parent root = loader.load();
-                nomp.getScene().setRoot(root);
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ParamsEmpController.class.getName()).log(Level.SEVERE, null, ex);
             }

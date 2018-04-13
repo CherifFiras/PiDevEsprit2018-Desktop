@@ -26,12 +26,8 @@ import java.util.logging.Logger;
  * @author hero
  */
 public class SignalerService implements ISignalerService {
-<<<<<<< HEAD
-    private Connection con = DataSource.getInstance().getCon();
-    private Statement ste;
-=======
     private Connection con = DataSource.getInstance().getConnection();
->>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
+    private Statement ste;
 
     public SignalerService() {
         try {

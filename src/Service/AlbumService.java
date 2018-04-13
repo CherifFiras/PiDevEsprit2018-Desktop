@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author Achrafoun
  */
 public class AlbumService implements IAlbumService{
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
 
     @Override
     public List<Album> getPhotosByUser(User u) {

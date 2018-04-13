@@ -7,7 +7,6 @@ package Core;
 
 import Controller.NotificationController;
 import Entity.User;
-<<<<<<< HEAD
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -17,12 +16,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
-=======
 import IService.IUserService;
 import java.util.Calendar;
 import java.util.Date;
 import javafx.scene.layout.AnchorPane;
->>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
 
 /**
  *
@@ -52,7 +49,6 @@ public class Controller {
     {
         return service;
     }
-<<<<<<< HEAD
     
     //----------
     public static void getLocationByIp() throws IOException, GeoIp2Exception {
@@ -76,7 +72,6 @@ public class Controller {
         String state = response.getLeastSpecificSubdivision().getName();       
         System.out.println("CountryName: "+countryName+"  ,CityName: "+cityName+"  ,PostCode: "+postal+"  ,State: "+state);        
     }    
-=======
     public String getLongDateFormat(Date date)
     {
         Calendar c = Calendar.getInstance();
@@ -90,6 +85,5 @@ public class Controller {
     public static void setNotificationController(NotificationController notificationController) {
         Controller.notificationController = notificationController;
     }
->>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
     
 }

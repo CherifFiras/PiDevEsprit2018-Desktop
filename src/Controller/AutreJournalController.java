@@ -211,10 +211,10 @@ public class AutreJournalController extends Controller implements Initializable 
         AutreAproposController.setAutreUser(autreUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreApropos.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AutreAproposController autreAproposController = loader.getController();
             autreAproposController.setAutreUser(autreUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(AutreJournalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -225,10 +225,10 @@ public class AutreJournalController extends Controller implements Initializable 
         AutreAlbumController.setAutreUser(autreUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreAlbum.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AutreAlbumController autreAlbumController = loader.getController();
             autreAlbumController.setAutreUser(autreUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(AutreJournalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -240,7 +240,7 @@ public class AutreJournalController extends Controller implements Initializable 
         s.setIdUser(autreUser.getId());
         //------------------
         TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("Ajouter un emploi");
+        dialog.setTitle("Signaler profil");
         //dialog.setContentText("Please enter your name:");
         dialog.setHeaderText(null);
         dialog.setGraphic(null);
@@ -272,8 +272,8 @@ public class AutreJournalController extends Controller implements Initializable 
             //----
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/autreJournal.fxml"));
             try {
-                Parent root = loader.load();
-                nomp.getScene().setRoot(root);
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ParamsEmpController.class.getName()).log(Level.SEVERE, null, ex);
             }

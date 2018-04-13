@@ -14,12 +14,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AlbumController">
-    <top><fx:include fx:id="menubar" source="Menubar.fxml" /></top>
-    <left><fx:include fx:id="leftbar" source="LeftBar.fxml" /></left>
-    <right><fx:include fx:id="righttbar" source="RightBar.fxml" /></right>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AlbumController">
          <children>
             <Label fx:id="nomp" layoutX="171.0" layoutY="3.0" text="Abdennadher Achraf">
                <font>
@@ -69,5 +65,3 @@
             <Button fx:id="paramsProfil" layoutX="598.0" layoutY="16.0" mnemonicParsing="false" onAction="#paramsProfilAction" text="Parametres" />
          </children>
       </AnchorPane>
-   </center>
-</BorderPane>

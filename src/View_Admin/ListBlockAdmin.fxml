@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ListSignalAdminController">
+<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceadmin1.ListBlockAdminController">
     <stylesheets>
         <URL value="@Stylesheet.css" />
     </stylesheets>
     <children>
                  <HBox layoutX="1.0" layoutY="2.0" prefHeight="64.0" prefWidth="1106.0" styleClass="dash">
          <children>
-            <Label prefHeight="39.0" prefWidth="786.0" text="Liste d'utilisateurs signalés" textFill="#6c6c6c">
+            <Label prefHeight="39.0" prefWidth="786.0" text="Liste d'utilisateurs bloqués" textFill="#6c6c6c">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
@@ -91,12 +91,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="605.0" layoutY="9.0" text="Nb Signal">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="788.0" layoutY="9.0" text="Action">
+                        <Label layoutX="625.0" layoutY="9.0" text="Action">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -111,7 +106,7 @@
                                  <children>
                                     <Label fx:id="username" text="test1234">
                                        <HBox.margin>
-                                          <Insets left="5.0" />
+                                          <Insets left="5.0" top="10.0" />
                                        </HBox.margin>
                                     </Label>
                                     <Label fx:id="nom" text="Chaari">
@@ -133,22 +128,9 @@
                                        <HBox.margin>
                                           <Insets left="50.0" />
                                        </HBox.margin></Label>
-                                    <Label fx:id="nbSig" text="7">
+                                    <Button fx:id="deblock" mnemonicParsing="false" onAction="#debloquerAction" text="Débloquer">
                                        <HBox.margin>
-                                          <Insets left="32.0" />
-                                       </HBox.margin></Label>
-                                    <Button fx:id="affCauses" mnemonicParsing="false" onAction="#afficherCausesAction" text="Afficher Causes">
-                                       <HBox.margin>
-                                          <Insets left="70.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="affPub" mnemonicParsing="false" onAction="#afficherPubAction" text="Afficher Msgs">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin></Button>
-                                    <Button fx:id="block" mnemonicParsing="false" onAction="#bloquerAction" text="Block">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="50.0" />
                                        </HBox.margin></Button>
                                  </children>
                               </HBox>

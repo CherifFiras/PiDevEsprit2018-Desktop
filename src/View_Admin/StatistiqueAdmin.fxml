@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatistiqueAdminController">
+<AnchorPane fx:id="holderPane" prefHeight="801.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceadmin1.StatistiqueAdminController">
     <stylesheets>
         <URL value="@Stylesheet.css" />
     </stylesheets>

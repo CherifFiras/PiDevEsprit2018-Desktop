@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Achrafoun
  */
 public class BloquerService implements IBloquerService {
-    private Connection con = DataSource.getInstance().getCon();
+    private Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
 
     public BloquerService() {

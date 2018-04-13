@@ -175,10 +175,10 @@ public class ParamsEmpController extends Controller implements Initializable {
     private void journalAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Journal.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             ProfilController profilController = loader.getController();
             profilController.setConnectedUser(connectedUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -189,10 +189,9 @@ public class ParamsEmpController extends Controller implements Initializable {
         AProposController.setaProposUser(connectedUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/aPropos.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AProposController aproposController = loader.getController();
-
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -203,10 +202,10 @@ public class ParamsEmpController extends Controller implements Initializable {
         AlbumController.setConnectedUser(connectedUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/album.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             AlbumController albumController = loader.getController();
             albumController.setConnectedUser(connectedUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -217,10 +216,10 @@ public class ParamsEmpController extends Controller implements Initializable {
         ParamsProfilController.setConnectedUser(connectedUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsProfil.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             ParamsProfilController paramsProfilController = loader.getController();
             paramsProfilController.setConnectedUser(connectedUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,10 +230,10 @@ public class ParamsEmpController extends Controller implements Initializable {
         ParamsCentreController.setConnectedUser(connectedUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsCentre.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             ParamsCentreController paramsCentreController = loader.getController();
             paramsCentreController.setConnectedUser(connectedUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -245,10 +244,10 @@ public class ParamsEmpController extends Controller implements Initializable {
         ParamsEducController.setConnectedUser(connectedUser);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsEduc.fxml"));
         try {
-            Parent root = loader.load();
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             ParamsEducController paramsEducController = loader.getController();
             paramsEducController.setConnectedUser(connectedUser);
-            nomp.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -308,8 +307,8 @@ public class ParamsEmpController extends Controller implements Initializable {
             //----
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsEmp.fxml"));
             try {
-                Parent root = loader.load();
-                nomp.getScene().setRoot(root);
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ParamsEmpController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -334,8 +333,8 @@ public class ParamsEmpController extends Controller implements Initializable {
             //---
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsEmp.fxml"));
             try {
-                Parent root = loader.load();
-                nomp.getScene().setRoot(root);
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ParamsEmpController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -389,8 +388,8 @@ public class ParamsEmpController extends Controller implements Initializable {
             //----
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/paramsEmp.fxml"));
             try {
-                Parent root = loader.load();
-                nomp.getScene().setRoot(root);
+            holderPane.getChildren().clear();
+            holderPane.getChildren().add(loader.load());
             } catch (IOException ex) {
                 Logger.getLogger(ParamsEducController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -30,14 +30,10 @@ public class Service {
     private IEspaceCopyService espaceCopyService;
     private IAvisEspaceService avisEspaceService;
     private IPhotoEspaceService photoEspaceService;
-<<<<<<< HEAD
     private IPublicationService publicationService;
     private IAlbumService albumService;
-    private IBloquerService bloquerService;
-    
-=======
+    private IBloquerService bloquerService; 
     private INotificationService notificationService;
->>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
     private Service()
     {
         
@@ -161,7 +157,6 @@ public class Service {
         return photoEspaceService;
     }
     
-<<<<<<< HEAD
     public IPublicationService getPublicationService()
     {
         if(publicationService == null)
@@ -183,12 +178,10 @@ public class Service {
         return bloquerService;
     }
     
-=======
     public INotificationService getNotificationService()
     {
         if(notificationService == null)
             notificationService = new NotificationService();
         return notificationService;
     }
->>>>>>> d17f97ee5a47138237512e68bcc9638598b21fd1
 }
