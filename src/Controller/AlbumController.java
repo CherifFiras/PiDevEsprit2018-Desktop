@@ -274,7 +274,7 @@ public class AlbumController extends Controller implements Initializable {
         }*/
         try {
             //---
-            sleep(3000);
+            sleep(8000);
         } catch (InterruptedException ex) {
             Logger.getLogger(AlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }

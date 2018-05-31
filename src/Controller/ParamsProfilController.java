@@ -356,7 +356,7 @@ public class ParamsProfilController extends Controller implements Initializable 
         User up_user = new User();
         up_user= connectedUser;
         up_user.setImage(nameF);
-        userService.modifierUser(up_user);
+        userService.modifierUserPhoto(up_user);
                         
         /*if (file != null) {                
             srcFile = file;
@@ -416,7 +416,7 @@ public class ParamsProfilController extends Controller implements Initializable 
         }*/
         try {
             //---
-            sleep(1800);
+            sleep(8000);
         } catch (InterruptedException ex) {
             Logger.getLogger(AlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }

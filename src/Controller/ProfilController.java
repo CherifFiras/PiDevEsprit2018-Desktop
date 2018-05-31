@@ -269,7 +269,6 @@ public class ProfilController extends Controller implements Initializable {
         HBox hbox = new HBox();
         hbox.setPrefSize(239, 48);
         
-        
         ImageView userImage = new ImageView(getClass().getResource("../Images/"+user.getImage()).toExternalForm());
         userImage.setFitWidth(60);
         userImage.setFitHeight(50);

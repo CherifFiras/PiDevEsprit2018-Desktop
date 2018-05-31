@@ -81,7 +81,7 @@ public class SingUpController implements Initializable {
     @FXML
     private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException {
         Connection conn = DataSource.getInstance().getConnection(); 
-        String req= "INSERT INTO user  (username,prenom,nom,email,password,date_naissance) VALUES (?,?,?,?,?,?)";
+        String req= "INSERT INTO user  (username,prenom,nom,email,password,date_naissance,roles,username_canonical) VALUES (?,?,?,?,?,?,'a:0:{}',?)";
         String req1= "SELECT * FROM user WHERE email=?";
         PreparedStatement prs= conn.prepareStatement(req);
         PreparedStatement prs1= conn.prepareStatement(req1);
@@ -94,6 +94,7 @@ public class SingUpController implements Initializable {
         String pwd = BCrypt.hashpw(password.getText(),BCrypt.gensalt(13));
         prs.setString(5, pwd.substring(0,2)+"y"+pwd.substring(3));
         prs.setDate(6, new java.sql.Date(new Date().getTime()));
+        prs.setString(7, username.getText());
         if (username.getText().equals(""))
         {   info.setText("username is empty");  }
         else if (rs.next()){

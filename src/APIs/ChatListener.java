@@ -3,6 +3,7 @@ package APIs;
 import Controller.ChatController;
 import Entity.Message;
 import Entity.User;
+import Utility.ServerUtils;
 
 import java.io.*;
 import java.net.Socket;
@@ -24,11 +25,19 @@ public class ChatListener implements Runnable{
     private static OutputStream outputStream;
     private static User user;
     public ChatListener(String hostname, int port,User user) {
+        ServerUtils.register("User", User.class);
         ChatListener.hostname = hostname;
         ChatListener.port = port;
         ChatListener.user = user;
+        this.user.setSalt("D");
     }
 
+    public static HashMap<User, ChatController> getChatListcontrollers() {
+        return chatListcontrollers;
+    }
+
+    
+    
     public static void addController(ChatController controller)
     {
         chatListcontrollers.put(controller.getChatUser(), controller);
@@ -44,6 +53,7 @@ public class ChatListener implements Runnable{
         try {
             socket = new Socket(hostname, port);
             outputStream = socket.getOutputStream();
+            ServerUtils.writeObject(ChatListener.user, new DataOutputStream(outputStream));
             oos = new ObjectOutputStream(outputStream);
             is = socket.getInputStream();
             input = new ObjectInputStream(is);
@@ -52,12 +62,12 @@ public class ChatListener implements Runnable{
         }
 
         try {
-            oos.writeObject(ChatListener.user);
             while (socket.isConnected()) {
                 Message message;
                 message = (Message) input.readObject();
                 if(message != null)
                 {
+                    System.out.println(message.getSender());
                     ChatController controller = chatListcontrollers.get(message.getSender());
                     if(controller != null)
                         controller.addToChat(message);

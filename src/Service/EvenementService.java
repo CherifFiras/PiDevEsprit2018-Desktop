@@ -37,7 +37,7 @@ public class EvenementService implements IEvenementService {
             ResultSet rs = ps.executeQuery();
             Evenement evenement;
             while (rs.next()) {
-                evenement = new Evenement(rs.getInt("id"), rs.getString("imageEve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
+                evenement = new Evenement(rs.getInt("id"), rs.getString("image_eve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
                 return evenement;
             }
         } catch (SQLException ex) {
@@ -50,7 +50,7 @@ public class EvenementService implements IEvenementService {
     public Evenement insertEvenement(Evenement e) {
         try {
            
-            String query = "INSERT INTO `evenement`(`imageEve`, `nbplaces`, `dateEvenement`, `titre`, `description`, `titreCordination`) VALUES(?,?,?,?,?,?)";
+            String query = "INSERT INTO `evenement`(`image_eve`, `nbplaces`, `dateEvenement`, `titre`, `description`, `titreCordination`) VALUES(?,?,?,?,?,?)";
             PreparedStatement prs = con.prepareStatement(query);
             
             prs.setString(1, e.getImageEve());
@@ -98,7 +98,7 @@ public class EvenementService implements IEvenementService {
             ResultSet rs = ste.executeQuery(query);
             ObservableList<Evenement> evenements = FXCollections.observableArrayList();
             while (rs.next()) {
-                evenements.add(new Evenement(rs.getInt("id"), rs.getString("imageEve") , rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination")));
+                evenements.add(new Evenement(rs.getInt("id"), rs.getString("image_eve") , rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination")));
             }
             System.out.println(evenements.size());
             return evenements;

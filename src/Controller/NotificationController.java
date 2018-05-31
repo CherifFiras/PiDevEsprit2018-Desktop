@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import APIs.ChatListener;
 import APIs.NotificationApi;
 import Core.Controller;
 import Entity.Demande;
@@ -176,6 +177,14 @@ public class NotificationController extends Controller implements Initializable 
                 case"Message":unseenMessageNotifications.add(notification);break;
             }
         }
+        for(Notification notification :unseenMessageNotifications)
+        {
+            Message message = messageService.getMessageById(Integer.valueOf(notification.getMessage()));
+            ChatController controller =  ChatListener.getChatListcontrollers().get(message.getSender());
+            if(controller != null)
+                controller.addToChat(message);
+        }
+        
         initVBoxItems();
         switch(openedTab)
         {

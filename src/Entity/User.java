@@ -6,18 +6,26 @@
 package Entity;
 
 
+import Utility.Externalizable;
+import Utility.ServerUtils;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author hero
  */
 
-public class User implements Serializable {
+public class User implements Serializable,Externalizable {
     private Integer id;
     private String username;
     private String usernameCanonical;
@@ -378,22 +386,7 @@ public class User implements Serializable {
         return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", genre=" + genre + ", pays=" + pays + ", region=" + region + ", religion=" + religion + ", apropos=" + apropos + ", occupation=" + occupation + '}';
     }
 
-    public static User createUser(ResultSet rs) throws SQLException
-    {
-        User u = new User();
-        u.setId(rs.getInt("id"));
-        u.setUsername(rs.getString("username"));
-        u.setNom(rs.getString("nom"));
-        u.setPrenom(rs.getString("prenom"));
-        u.setEmail(rs.getString("email"));
-        u.setTel(rs.getString("tel"));
-        u.setImage(rs.getString("image"));
-        u.setPays(rs.getString("pays"));
-        u.setVille(rs.getString("ville"));
-        u.setRegion(rs.getString("region"));
-        u.setDateNaissance(rs.getDate("date_naissance"));
-        return u;
-    }
+
 
     public List<Message> getMessageList() {
         return messageList;
@@ -403,4 +396,45 @@ public class User implements Serializable {
         this.messageList = messageList;
     }
     
+    public static User createUser(ResultSet rs)
+    {
+        User user = new User();
+        try {
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setImage(rs.getString("image"));
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+
+    @Override
+    public int getVersion() {
+        return 1 ;
+    }
+
+    @Override
+    public void externalize(DataOutputStream out) throws IOException {
+        ServerUtils.writeObject(id, out);
+        ServerUtils.writeObject(nom, out);
+        ServerUtils.writeObject(prenom, out);
+        ServerUtils.writeObject(salt, out);
+        ServerUtils.writeObject(image, out);
+    }
+
+    @Override
+    public void internalize(int version, DataInputStream in) throws IOException {
+        id = (Integer) ServerUtils.readObject(in);
+        nom = (String) ServerUtils.readObject(in);
+        prenom = (String) ServerUtils.readObject(in);
+        salt = (String) ServerUtils.readObject(in);
+        image = (String) ServerUtils.readObject(in);
+    }
+
+    @Override
+    public String getObjectId() {
+        return "User";
+    }
 }

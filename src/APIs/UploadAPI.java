@@ -26,7 +26,7 @@ public class UploadAPI {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         String fileName = "";
         try {
-            HttpPost httppost = new HttpPost("http://localhost:80/uploads/savetofile.php");
+            HttpPost httppost = new HttpPost("http://localhost:8888/PiDevEsprit2018-Desktop/savetofile.php");
 
             FileBody bin = new FileBody(x);
 

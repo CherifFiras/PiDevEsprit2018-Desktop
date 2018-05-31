@@ -78,7 +78,6 @@ public class MessageService extends Controller implements IMessageService {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 message.setId(rs.getInt(1));
-                Logger.getGlobal().log(Level.INFO, message.getId().toString());
                 return message;
             }
         } catch (SQLException ex) {

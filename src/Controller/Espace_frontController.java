@@ -189,22 +189,7 @@ public class Espace_frontController extends Controller implements Initializable,
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
 
-         if (titre.getText().equals(""))
-        {   info.setText("username is empty");  }
-         
-         else if (description.getText().isEmpty()){
-             info.setText("Please insert your description");
-         }
-         else if (email.getText().isEmpty()){
-             info.setText("Please insert your email");
-         }
-          else if (adresse.getText().isEmpty()){
-             info.setText("Please insert your addresse");
-         }
-         else if (!email.getText().matches("[a-zA-Z0-9\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9]{3}")){
-             info.setText("Incorrect Email");
-         }
-         else{
+        
              
         Espace e = new Espace(titre.getText(), description.getText(), email.getText(), adresse.getText(), srcFile.getName(), 0, this.getUser().getId(), Float.valueOf(longi.getText()), Float.valueOf(lat.getText()));
         
@@ -216,7 +201,7 @@ public class Espace_frontController extends Controller implements Initializable,
         holderPane.getChildren().clear();
         holderPane.getChildren().setAll(parentContent);
          }
-    }
+    
 
     @FXML
     private void UploadImage(ActionEvent event) {

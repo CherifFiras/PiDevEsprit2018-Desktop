@@ -5,9 +5,12 @@
  */
 package Entity;
 
+import Utility.Externalizable;
+import Utility.ServerUtils;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -15,7 +18,7 @@ import java.util.Date;
  * @author hero
  */
 
-public class Message implements Serializable {
+public class Message implements Serializable,Externalizable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String text;
@@ -103,6 +106,34 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return "Entity.Message[ id=" + id + " ]";
+    }
+
+    @Override
+    public int getVersion() {
+        return 1;
+    }
+
+    @Override
+    public void externalize(DataOutputStream out) throws IOException {
+        ServerUtils.writeObject(id, out);
+        ServerUtils.writeObject(sender, out);
+        ServerUtils.writeObject(receiver, out);
+        ServerUtils.writeObject(text, out);
+        ServerUtils.writeObject(date, out);
+    }
+
+    @Override
+    public void internalize(int version, DataInputStream in) throws IOException {
+        id = (Integer) ServerUtils.readObject(in);
+        sender =(User) ServerUtils.readObject(in);
+        receiver =(User) ServerUtils.readObject(in);
+        text = (String) ServerUtils.readObject(in);
+        date = (Date) ServerUtils.readObject(in);
+    }
+
+    @Override
+    public String getObjectId() {
+        return "Message";
     }
 
 }

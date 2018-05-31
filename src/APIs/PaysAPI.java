@@ -26,7 +26,7 @@ public class PaysAPI implements JSONDataSource {
 
     private static PaysAPI paysAPI;
     private JSONArray items;
-    private static final String URL = "https://battuta.medunes.net/api/country/all/?key=b55b50cebe8809ff19058499250142fe";
+    private static final String URL = "https://battuta.medunes.net/api/country/all/?key=c16aba7bbd8682ff9dfebea23b8113d1";
     private URL url ;
     private HttpURLConnection httpURLConnection ;
     private BufferedReader in;

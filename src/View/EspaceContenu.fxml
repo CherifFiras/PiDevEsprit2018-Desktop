@@ -11,15 +11,15 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" fx:id="holderPane" prefHeight="730.0" prefWidth="1013.0" style="-fx-background-color: #edf2f6;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EspaceContenuController">
+<AnchorPane id="AnchorPane" fx:id="holderPane" prefHeight="730.0" prefWidth="1013.0" style="-fx-background-color: #edf2f6;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EspaceContenuController">
    <children>
       <Pane layoutX="22.0" layoutY="41.0" prefHeight="646.0" prefWidth="480.0" style="-fx-background-color: #fff;">
          <children>
             <ImageView fx:id="image" fitHeight="264.0" fitWidth="428.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image1" fitHeight="120.0" fitWidth="200.0" layoutX="21.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image3" fitHeight="120.0" fitWidth="200.0" layoutX="255.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image11" fitHeight="120.0" fitWidth="200.0" layoutX="21.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image31" fitHeight="120.0" fitWidth="200.0" layoutX="255.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image1" fitHeight="106.0" fitWidth="200.0" layoutX="19.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image3" fitHeight="106.0" fitWidth="200.0" layoutX="253.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image11" fitHeight="106.0" fitWidth="200.0" layoutX="21.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image31" fitHeight="106.0" fitWidth="200.0" layoutX="255.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
             <Rating fx:id="rating" layoutX="152.0" layoutY="536.0" />
             <JFXButton fx:id="switchUpdate" layoutX="206.0" layoutY="593.0" onAction="#switchUpdate" style="-fx-background-color: #ff5e3a;" text="Modifier" />
          </children>

@@ -279,7 +279,7 @@ for (int i=0 ; i<count ; i++) {
               
               partager.setOnAction(e->{
  
-                   String accessToken = "EAAB4Ydgv3yABAEEjEiri48VhDxZCuhpKf7ZBFcNztXhWuSOJvD1JfbG1p7M5q5b6aqj0zOpqQ7ChOHRQPLFFRhk2BlZBalAJPzZChuSW8qnTiYEhE1eBRve2Qr4uxpgmcYOoqDPNERRDZC4LpX2erh3321L5AeJ2cdOrZCAss4aZCoZAQSb66HtIRbpF63FDwIbNNx2hg7MMLwZDZD";
+                   String accessToken = "EAAB4Ydgv3yABAOiZCv2mq3p07BJXKaWZAnNzKtNnUNqeSMBSc11snPKQetwBFoi6jC25k5mZAcj8BTUoO8GZCBjIP17BBGwg39IOCePG9CS7LpEGj1FUoRHoWPsdRZAkDqrEwT1jIqqhLdknZCWntBXdzfoZAVaR1SSOGhZCyAg3HgXL2m1Nq79jhPNa9WUkHP0ZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
        

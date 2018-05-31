@@ -108,7 +108,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             image.setPickOnBounds(true);
             image.setPreserveRatio(true);
             //File f = new File("G:/PiDev/Sprint2/PiDevEsprit2018-Desktop/src/Images/" + rs.getString("imageEve"));
-            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
+            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("image_eve"));
             image.setImage(img);
             
             Label label1 = new Label();
@@ -138,7 +138,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             hbox.getChildren().addAll(image, label1, btn);
 
             vbox.getChildren().add(hbox);
-            Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("imageEve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
+            Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("image_eve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
             btn.setOnAction(e -> {
                 try {
                     EvenementController.evenement = evenement;
@@ -265,7 +265,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             image.setPreserveRatio(true);
             System.out.print(rs.getString("imageEve"));
             //File f = new File(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
-            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("imageEve"));
+            Image img = new Image(getClass().getResource("../Images/").toExternalForm() + rs.getString("image_eve"));
             image.setImage(img);
             
             Label label1 = new Label();
@@ -294,7 +294,7 @@ public class EvenementAfficherClientController extends Controller implements Ini
             hbox.getChildren().addAll(image, label1, btn);
 
             vbox.getChildren().add(hbox);
-            Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("imageEve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
+            Evenement evenement = new Evenement(rs.getInt("id"), rs.getString("image_eve"), rs.getInt("nbplaces"), rs.getDate("dateEvenement"), rs.getString("titre"), rs.getString("description"), rs.getString("titreCordination"));
             btn.setOnAction(a -> {
                 try {
                     EvenementController.evenement = evenement;

@@ -67,7 +67,6 @@ public class MenuBarController extends Controller implements Initializable {
         {
             if(notifications.get(0).getId() > lastNotificationId)
             {
-                Notifications.create().text("Il y'a des nouveaux notifications  !!!").position(Pos.CENTER).hideAfter(Duration.seconds(3)).showConfirm();
                 Controller.getNotificationController().refreshUnseenNotifications(notifications);
             }
             lastNotificationId = notifications.get(0).getId();
@@ -83,8 +82,8 @@ public class MenuBarController extends Controller implements Initializable {
         {
             switch(notification.getSubject())
             {
-                case"Accept":acceptNotifCount++;break;
-                case"Demande":demandeNotifCount++;break;
+                case"Accept":acceptNotifCount++;Notifications.create().text("Il y'a des nouveaux notifications  !!!").position(Pos.CENTER).hideAfter(Duration.seconds(3)).showConfirm();break;
+                case"Demande":demandeNotifCount++;Notifications.create().text("Il y'a des nouveaux notifications  !!!").position(Pos.CENTER).hideAfter(Duration.seconds(3)).showConfirm();break;
                 case"Message":messageNotifCount++;break;
             }
         }
